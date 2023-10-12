@@ -20,12 +20,14 @@ function UserRegister() {
   };
 
   const successMessage = () => toast("Registration success! Redirecting...");
+  const invalidPhoneMessage = () =>
+    toast("Invalid phone format! Start with +62 or 0 for your phone number.");
 
   const submit = async (e: any) => {
     e.preventDefault();
 
     if (!validPhoneNumber(phoneNumber)) {
-      alert("Invalid phone format");
+      invalidPhoneMessage();
       return;
     }
 

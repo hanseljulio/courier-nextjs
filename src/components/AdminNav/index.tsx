@@ -6,7 +6,7 @@ interface HomeNavProps {
   currentPage?: string;
 }
 
-function UserNav(props: HomeNavProps) {
+function AdminNav(props: HomeNavProps) {
   const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
 
@@ -42,35 +42,11 @@ function UserNav(props: HomeNavProps) {
           <ul className="flex gap-10 items-center pt-[8px] font-semibold text-sm mr-[110px]">
             <li
               className={`text-secondarytext ${
-                props.currentPage === "home" ? "underline" : ""
-              } hover:cursor-pointer`}
-              onClick={redirectHome}
-            >
-              Home
-            </li>
-            <li
-              className={`text-secondarytext ${
-                props.currentPage === "transfer" ? "underline" : ""
-              } hover:cursor-pointer`}
-              onClick={redirectTransfer}
-            >
-              Transfer
-            </li>
-            <li
-              className={`text-secondarytext ${
-                props.currentPage === "topup" ? "underline" : ""
-              } hover:cursor-pointer`}
-              onClick={redirectTopup}
-            >
-              Topup
-            </li>
-            <li
-              className={`text-secondarytext ${
-                props.currentPage === "games" ? "underline" : ""
+                props.currentPage === "profile" ? "underline" : ""
               } hover:cursor-pointer`}
               onClick={redirectGames}
             >
-              Games
+              Profile
             </li>
             <li
               className="text-secondarytext hover:cursor-pointer"
@@ -85,4 +61,4 @@ function UserNav(props: HomeNavProps) {
   );
 }
 
-export default UserNav;
+export default AdminNav;

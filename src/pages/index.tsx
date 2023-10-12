@@ -13,8 +13,14 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    stateLoginPersist.setEmail("");
-    stateLoginPersist.setPassword("");
+    if (stateLoginPersist.id !== 0 && stateLoginPersist.isAdmin) {
+      router.replace("/admin");
+    } else if (stateLoginPersist.id !== 0 && !stateLoginPersist.isAdmin) {
+      router.replace("/user");
+    } else {
+      stateLoginPersist.setId(0);
+      stateLoginPersist.setIsAdmin(false);
+    }
   }, []);
 
   const submit = async (e: any) => {
@@ -31,6 +37,8 @@ export default function Home() {
           result[i].password === password &&
           result[i].role === "admin"
         ) {
+          stateLoginPersist.setId(result[i].id);
+          stateLoginPersist.setIsAdmin(true);
           router.push("/admin");
         }
 
@@ -39,6 +47,8 @@ export default function Home() {
           result[i].password === password &&
           result[i].role === "user"
         ) {
+          stateLoginPersist.setId(result[i].id);
+          stateLoginPersist.setIsAdmin(false);
           router.push("/user");
         }
       }
