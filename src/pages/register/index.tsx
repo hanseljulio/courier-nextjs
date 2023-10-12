@@ -41,7 +41,9 @@ function UserRegister() {
             type="email"
             name="registerEmail"
             styling="pb-5"
+            width="w-[300px]"
             required={true}
+            placeholder="email@email.com"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
@@ -49,6 +51,7 @@ function UserRegister() {
             type="password"
             name="registerPassword"
             styling="pb-5"
+            width="w-[300px]"
             required={true}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -57,6 +60,7 @@ function UserRegister() {
             type="text"
             name="registerFullName"
             styling="pb-5"
+            width="w-[300px]"
             required={true}
             onChange={(e) => setFullName(e.target.value)}
           />
@@ -66,6 +70,7 @@ function UserRegister() {
             name="registerPhoneNumber"
             styling="pb-5"
             placeholder="+6281291345300"
+            width="w-[300px]"
             required={true}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
@@ -73,7 +78,9 @@ function UserRegister() {
             label="Referral code"
             type="text"
             name="registerReferralCode"
+            width="w-[300px]"
             styling="pb-5"
+            placeholder="Leave it blank if you don't have one"
             onChange={(e) => setReferralCode(e.target.value)}
           />
           <Button
@@ -85,7 +92,7 @@ function UserRegister() {
       <p className="text-center">
         Already have an account?{" "}
         <span className="font-bold hover:cursor-pointer">
-          <Link href="/user/login">Login here</Link>
+          <Link href="/">Login here</Link>
         </span>
       </p>
     </div>
