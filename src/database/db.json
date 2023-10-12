@@ -17,6 +17,16 @@
       "photo": "",
       "referral": "",
       "role": "user"
+    },
+    {
+      "email": "usertest@gmail.com",
+      "password": "password",
+      "fullname": "User Test",
+      "phone": "08151874567",
+      "photo": "",
+      "referral": "",
+      "role": "user",
+      "id": 3
     }
   ]
 }

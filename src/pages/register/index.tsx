@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function UserRegister() {
   const [email, setEmail] = useState<string>("");
@@ -10,9 +13,13 @@ function UserRegister() {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [referralCode, setReferralCode] = useState<string>("");
 
+  const router = useRouter();
+
   const validPhoneNumber = (phone: string) => {
     return /^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/.test(phone);
   };
+
+  const successMessage = () => toast("Registration success! Redirecting...");
 
   const submit = async (e: any) => {
     e.preventDefault();
@@ -22,11 +29,37 @@ function UserRegister() {
       return;
     }
 
-    alert(
-      `User successfully registered:\nEmail: ${email}\nPassword: ${password}\nFull Name: ${fullName}\nPhone number: ${phoneNumber}\nReferral: ${
-        !referralCode ? "None" : referralCode
-      }\n`
-    );
+    const newUser = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        fullname: fullName,
+        phone: phoneNumber,
+        photo: "",
+        referral: referralCode,
+        role: "user",
+      }),
+    };
+
+    try {
+      const response = await fetch("http://localhost:2000/users", newUser);
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
+
+      successMessage();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -35,6 +68,7 @@ function UserRegister() {
         <h1 className="text-2xl font-3xl">Courier Register</h1>
       </div>
       <div className="admin-login-form items-center flex justify-center">
+        <ToastContainer />
         <form action="" onSubmit={submit}>
           <Input
             label="Email"

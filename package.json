@@ -6,12 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db": "json-server --watch src/database/db.json --port 2000 --routes src/database/routes.json"
   },
   "dependencies": {
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-toastify": "^9.1.3",
     "zustand": "^4.4.3"
   },
   "devDependencies": {
