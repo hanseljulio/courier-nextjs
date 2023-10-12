@@ -1,0 +1,23 @@
+{
+  "admin": [
+    {
+      "id": 1,
+      "email": "admin@mail.com",
+      "password": "admin",
+      "phone": 81513131434,
+      "photo": ""
+    }
+  ],
+
+  "users": [
+    {
+      "id": 1,
+      "email": "asep@mail.com",
+      "password": "password",
+      "fullname": "Agus Budiantoro",
+      "phone": 8123456789,
+      "photo": "",
+      "referral": ""
+    }
+  ]
+}

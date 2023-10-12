@@ -1,5 +1,5 @@
 import React from "react";
-import "./Input.module.css";
+import styles from "./Input.module.css";
 
 interface InputProps {
   label: string;
@@ -12,6 +12,7 @@ interface InputProps {
   value?: string;
   disabled?: boolean;
   required?: boolean;
+  pattern?: string;
 }
 
 function Input(props: InputProps) {
@@ -22,11 +23,9 @@ function Input(props: InputProps) {
           props.styling ? props.styling : ""
         }`}
       >
-        <p className="pb-[16px] text-lg font-bold text-[#252B42]">
-          {props.label}
-        </p>
+        <p className="pb-[8px] text-lg font-bold ">{props.label}</p>
         <input
-          className={`input-area ${props.width ? props.width : ""}`}
+          className={`${styles.inputArea} ${props.width ? props.width : ""}`}
           type={props.type}
           name={props.name}
           placeholder={props.placeholder ? props.placeholder : ""}
@@ -34,6 +33,7 @@ function Input(props: InputProps) {
           onChange={props.onChange}
           disabled={props.disabled ? true : false}
           required={!props.required ? false : true}
+          pattern={props.pattern}
         />
       </div>
     </div>
