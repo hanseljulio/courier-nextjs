@@ -4,6 +4,8 @@ import Button from "@/components/Button";
 import { useStoreLoginPersist } from "@/store/store";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   const [email, setEmail] = useState<string>("");
@@ -11,6 +13,9 @@ export default function Home() {
 
   const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
+
+  const loginFailMessage = () =>
+    toast("User not found or password is incorrect");
 
   useEffect(() => {
     if (stateLoginPersist.id !== 0 && stateLoginPersist.isAdmin) {
@@ -40,9 +45,7 @@ export default function Home() {
           stateLoginPersist.setId(result[i].id);
           stateLoginPersist.setIsAdmin(true);
           router.push("/admin");
-        }
-
-        if (
+        } else if (
           result[i].email === email &&
           result[i].password === password &&
           result[i].role === "user"
@@ -52,6 +55,8 @@ export default function Home() {
           router.push("/user");
         }
       }
+
+      loginFailMessage();
     } catch (e) {
       console.log(e);
     }
@@ -62,6 +67,7 @@ export default function Home() {
       <div className="admin-login-titles pb-8 text-center py-[200px]">
         <h1 className="text-2xl font-3xl">Courier Login</h1>
       </div>
+      <ToastContainer />
       <div className="admin-login-form items-center flex justify-center">
         <form action="" onSubmit={submit}>
           <Input

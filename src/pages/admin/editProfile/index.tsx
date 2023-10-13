@@ -10,7 +10,6 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { profile } from "console";
 
 interface IAdmin {
   id: number;

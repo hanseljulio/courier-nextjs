@@ -91,17 +91,15 @@ function AdminNav(props: AdminNavProps) {
           </h1>
         </div>
         <div
-          className="user-picture hover:cursor-pointer"
+          className={`user-picture hover:cursor-pointer mr-[110px] ${styles.navRight} `}
           onClick={redirectEditProfile}
         >
           <ul
-            className={`${styles.navRight} flex gap-5 items-center pt-[-1px] font-semibold text-sm mr-[110px]`}
+            className={`flex gap-5 items-center pt-[-1px] font-semibold text-sm`}
           >
             <li className="text-secondarytext ">{`${adminData?.fullname}`}</li>
             <Image
-              src={`${
-                !adminData?.photo ? "/images/defaultuser.png" : imageFile
-              }`}
+              src={`${!imageFile ? "/images/defaultuser.png" : imageFile}`}
               alt="Nothing"
               width={25}
               height={25}
