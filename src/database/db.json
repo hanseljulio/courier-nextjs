@@ -3,6 +3,7 @@
     {
       "id": 1,
       "email": "admin@mail.com",
+      "fullname": "Admin",
       "password": "admin",
       "phone": 81513131434,
       "photo": "",

@@ -1,0 +1,12 @@
+@media (max-width: 414px) {
+  .adminMainArea {
+    margin-left: 40px;
+    margin-right: 40px;
+    text-align: center;
+  }
+
+  .adminSelectionArea {
+    width: 150px;
+    margin: 0 90px;
+  }
+}

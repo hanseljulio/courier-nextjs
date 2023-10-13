@@ -1,0 +1,10 @@
+@media (max-width: 414px) {
+  .navArea {
+    margin-left: 35px;
+    margin-right: 0;
+  }
+
+  .navRight {
+    margin-right: 35px;
+  }
+}
