@@ -6,6 +6,11 @@ import Input from "@/components/Input";
 import Image from "next/image";
 import Button from "@/components/Button";
 import styles from "../../../styles/AdminPage.module.css";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { profile } from "console";
 
 interface IAdmin {
   id: number;
@@ -18,13 +23,7 @@ interface IAdmin {
 }
 
 function AdminEditProfile() {
-  const stateLoginPersist = useStoreLoginPersist();
-  const router = useRouter();
-
-  const randomId = Math.floor(
-    Math.random() * (999999 - 100000) + 100000
-  ).toString();
-
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [adminData, setAdminData] = useState<IAdmin>({
     id: 0,
     email: "",
@@ -35,6 +34,35 @@ function AdminEditProfile() {
     role: "",
   });
 
+  const [showLoading, setShowLoading] = useState<boolean>(false);
+
+  const successMessage = () => toast("Profile update success!");
+
+  const invalidPhoneMessage = () =>
+    toast("Invalid phone format! Start with +62 or 0 for your phone number.");
+
+  const urlToLink = async (link: string) => {
+    const randomName =
+      Math.floor(Math.random() * (999999 - 100000) + 100000).toString() +
+      ".jpg";
+
+    let imgFile = fetch(link).then(async (response) => {
+      const blob = await response.blob();
+      const file = new File([blob], randomName);
+      return file;
+    });
+
+    return imgFile;
+  };
+
+  const getFile = async (link: File | string) => {
+    let result = await urlToLink(typeof link === "string" ? link : "");
+    return result;
+  };
+
+  const stateLoginPersist = useStoreLoginPersist();
+  const router = useRouter();
+
   const getAdminData = async () => {
     try {
       const response = await fetch(
@@ -42,9 +70,64 @@ function AdminEditProfile() {
       );
       const result = await response.json();
       setAdminData(result);
+
+      if (result.photo !== "") {
+        let profileImageFile = await getFile(result.photo);
+        setImageFile(profileImageFile);
+      }
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const profileUpload = async (file: any, folder: string) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", folder);
+    let data = "";
+
+    let response = await axios.post(
+      `https://api.cloudinary.com/v1_1/dsngblge5/image/upload`,
+      formData
+    );
+
+    data = response.data.url;
+    return data;
+  };
+
+  const validPhoneNumber = (phone: string) => {
+    return /^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/.test(phone);
+  };
+
+  const submit = async (e: any) => {
+    e.preventDefault();
+
+    if (!validPhoneNumber(adminData.phone)) {
+      invalidPhoneMessage();
+      return;
+    }
+
+    setShowLoading(true);
+
+    if (imageFile) {
+      let profilePictureLink = await profileUpload(
+        imageFile,
+        "adminProfileImage"
+      );
+
+      let currentData = adminData;
+      currentData.photo = profilePictureLink;
+      setAdminData(currentData);
+    }
+
+    const submitData = adminData;
+
+    axios
+      .patch(`http://localhost:2000/users/${stateLoginPersist.id}`, submitData)
+      .then(() => {
+        setShowLoading(false);
+        successMessage();
+      });
   };
 
   useEffect(() => {
@@ -57,13 +140,11 @@ function AdminEditProfile() {
 
   return (
     <div className="admin-profile-div min-h-screen bg-slate-200">
-      <AdminNav
-        userName={adminData?.fullname}
-        profilePicture={adminData?.photo}
-      />
+      <AdminNav picture={adminData.photo} />
       <div
         className={`${styles.adminMainArea} admin-profile-content mx-[200px] py-[18px] pt-[50px]`}
       >
+        <ToastContainer />
         <div className="titles-section">
           <h1 className="text-[30px] text-center font-medium">Edit profile</h1>
         </div>
@@ -71,7 +152,7 @@ function AdminEditProfile() {
       <div
         className={`${styles.adminMainArea} form-area mx-[350px] py-[18px] pt-[20px]`}
       >
-        <form action="">
+        <form action="" onSubmit={submit}>
           <div className={`${styles.formArea} flex justify-around`}>
             <div className="input-form-area">
               <Input
@@ -121,38 +202,49 @@ function AdminEditProfile() {
               />
             </div>
             <div
-              className={`${styles.formImageArea} flex-col admin-edit-photo`}
+              className={`${styles.formImageArea} flex-col justify-center items-center admin-edit-photo`}
             >
               <Image
                 src={`${
-                  adminData.photo === ""
+                  imageFile === null
                     ? "/images/defaultuser.png"
-                    : adminData.photo
+                    : URL.createObjectURL(imageFile)
                 }`}
                 alt="Nothing"
                 width={200}
                 height={200}
-                className={`${styles.imgArea}`}
+                className={`${styles.imgArea} w-[200px] h-[200px]`}
                 style={{
-                  objectFit: "cover",
+                  objectFit: "fill",
                   borderRadius: "100%",
-                  marginLeft: 10,
                 }}
               />
               <br />
-              <label className="custom-file-upload bg-slate-300 hover:cursor-pointer hover:bg-white p-4 rounded-[10px]">
-                <input type="file" className="hidden" />
+              <label className="custom-file-upload bg-slate-300 hover:cursor-pointer hover:bg-white p-4 rounded-[10px] ml-1.5 text-center">
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={(e) => {
+                    if (e.target.files !== null) {
+                      setImageFile(e.target.files[0]);
+                    }
+                  }}
+                />
                 {!adminData.photo
-                  ? "Upload new profile photo"
+                  ? "Upload profile photo"
                   : "Replace profile photo"}
               </label>
             </div>
           </div>
           <div className="flex submit-btn justify-center pt-[100px]">
-            <Button
-              text="Save Changes"
-              styling="p-4 mb-[50px] bg-slate-300 rounded-[10px] w-[200px] hover:bg-white"
-            />
+            {showLoading ? (
+              <AiOutlineLoading3Quarters className="animate-spin text-3xl" />
+            ) : (
+              <Button
+                text="Save Changes"
+                styling="p-4 mb-[50px] bg-slate-300 rounded-[10px] w-[200px] hover:bg-white"
+              />
+            )}
           </div>
         </form>
       </div>

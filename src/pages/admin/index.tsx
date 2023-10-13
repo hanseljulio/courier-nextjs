@@ -20,6 +20,25 @@ function AdminPage() {
 
   const [adminData, setAdminData] = useState<IAdmin>();
 
+  const urlToLink = async (link: string) => {
+    const randomName =
+      Math.floor(Math.random() * (999999 - 100000) + 100000).toString() +
+      ".jpg";
+
+    let imgFile = fetch(link).then(async (response) => {
+      const blob = await response.blob();
+      const file = new File([blob], randomName);
+      return file;
+    });
+
+    return imgFile;
+  };
+
+  const getFile = async (link: File | string) => {
+    let result = await urlToLink(typeof link === "string" ? link : "");
+    return result;
+  };
+
   const getAdminData = async () => {
     try {
       const response = await fetch(
@@ -64,10 +83,7 @@ function AdminPage() {
 
   return (
     <div className="admin-main-div min-h-screen bg-slate-200">
-      <AdminNav
-        userName={adminData?.fullname}
-        profilePicture={adminData?.photo}
-      />
+      <AdminNav />
       <div
         className={`${styles.adminMainArea} admin-main-content mx-[200px] py-[18px] pt-[50px]`}
       >
