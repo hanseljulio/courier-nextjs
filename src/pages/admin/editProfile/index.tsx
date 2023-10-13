@@ -5,6 +5,7 @@ import AdminNav from "@/components/AdminNav";
 import Input from "@/components/Input";
 import Image from "next/image";
 import Button from "@/components/Button";
+import styles from "../../../styles/AdminPage.module.css";
 
 interface IAdmin {
   id: number;
@@ -60,14 +61,18 @@ function AdminEditProfile() {
         userName={adminData?.fullname}
         profilePicture={adminData?.photo}
       />
-      <div className="admin-profile-content mx-[200px] py-[18px] pt-[50px]">
+      <div
+        className={`${styles.adminMainArea} admin-profile-content mx-[200px] py-[18px] pt-[50px]`}
+      >
         <div className="titles-section">
           <h1 className="text-[30px] text-center font-medium">Edit profile</h1>
         </div>
       </div>
-      <div className="form-area mx-[350px] py-[18px] pt-[20px]">
+      <div
+        className={`${styles.adminMainArea} form-area mx-[350px] py-[18px] pt-[20px]`}
+      >
         <form action="">
-          <div className="flex justify-around">
+          <div className={`${styles.formArea} flex justify-around`}>
             <div className="input-form-area">
               <Input
                 label="Email"
@@ -115,7 +120,9 @@ function AdminEditProfile() {
                 }}
               />
             </div>
-            <div className="flex-col admin-edit-photo">
+            <div
+              className={`${styles.formImageArea} flex-col admin-edit-photo`}
+            >
               <Image
                 src={`${
                   adminData.photo === ""
@@ -125,6 +132,7 @@ function AdminEditProfile() {
                 alt="Nothing"
                 width={200}
                 height={200}
+                className={`${styles.imgArea}`}
                 style={{
                   objectFit: "cover",
                   borderRadius: "100%",
@@ -140,10 +148,10 @@ function AdminEditProfile() {
               </label>
             </div>
           </div>
-          <div className="flex submit-btn justify-center pt-[120px]">
+          <div className="flex submit-btn justify-center pt-[100px]">
             <Button
               text="Save Changes"
-              styling="p-4 bg-slate-300 rounded-[10px] w-[200px] hover:bg-white"
+              styling="p-4 mb-[50px] bg-slate-300 rounded-[10px] w-[200px] hover:bg-white"
             />
           </div>
         </form>
