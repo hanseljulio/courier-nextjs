@@ -20,6 +20,10 @@ function AdminEditProfile() {
   const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
 
+  const randomId = Math.floor(
+    Math.random() * (999999 - 100000) + 100000
+  ).toString();
+
   const [adminData, setAdminData] = useState<IAdmin>({
     id: 0,
     email: "",
@@ -58,12 +62,12 @@ function AdminEditProfile() {
       />
       <div className="admin-profile-content mx-[200px] py-[18px] pt-[50px]">
         <div className="titles-section">
-          <h1 className="text-[30px] font-medium">Edit profile</h1>
+          <h1 className="text-[30px] text-center font-medium">Edit profile</h1>
         </div>
       </div>
-      <div className="form-area mx-[200px] py-[18px] pt-[20px]">
+      <div className="form-area mx-[350px] py-[18px] pt-[20px]">
         <form action="">
-          <div className="flex">
+          <div className="flex justify-around">
             <div className="input-form-area">
               <Input
                 label="Email"
@@ -111,7 +115,7 @@ function AdminEditProfile() {
                 }}
               />
             </div>
-            <div className="admin-edit-photo">
+            <div className="flex-col admin-edit-photo">
               <Image
                 src={`${
                   adminData.photo === ""
@@ -124,9 +128,23 @@ function AdminEditProfile() {
                 style={{
                   objectFit: "cover",
                   borderRadius: "100%",
+                  marginLeft: 10,
                 }}
               />
+              <br />
+              <label className="custom-file-upload bg-slate-300 hover:cursor-pointer hover:bg-white p-4 rounded-[10px]">
+                <input type="file" className="hidden" />
+                {!adminData.photo
+                  ? "Upload new profile photo"
+                  : "Replace profile photo"}
+              </label>
             </div>
+          </div>
+          <div className="flex submit-btn justify-center pt-[120px]">
+            <Button
+              text="Save Changes"
+              styling="p-4 bg-slate-300 rounded-[10px] w-[200px] hover:bg-white"
+            />
           </div>
         </form>
       </div>

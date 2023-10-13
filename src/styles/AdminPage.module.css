@@ -9,4 +9,9 @@
     width: 150px;
     margin: 0 90px;
   }
+
+  .image-btn::file-selector-button {
+    display: none;
+    visibility: none;
+  }
 }
