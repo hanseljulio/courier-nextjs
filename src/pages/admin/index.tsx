@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import AdminNav from "@/components/AdminNav";
-import styles from "./AdminPage.module.css";
+import styles from "../../styles/AdminPage.module.css";
 
 interface IAdmin {
   id: number;
