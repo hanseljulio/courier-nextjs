@@ -10,16 +10,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-
-interface IAdmin {
-  id: number;
-  email: string;
-  fullname: string;
-  password: string;
-  phone: string;
-  photo: string;
-  role: string;
-}
+import { IAdmin } from "@/types/types";
 
 function AdminEditProfile() {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -214,7 +205,7 @@ function AdminEditProfile() {
                 height={200}
                 className={`${styles.imgArea} w-[200px] h-[200px]`}
                 style={{
-                  objectFit: "fill",
+                  objectFit: "cover",
                   borderRadius: "100%",
                 }}
               />

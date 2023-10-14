@@ -3,16 +3,7 @@ import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "./AdminNav.module.css";
-
-interface IAdmin {
-  id: number;
-  email: string;
-  fullname: string;
-  password: string;
-  phone: string;
-  photo: string;
-  role: string;
-}
+import { IAdmin } from "@/types/types";
 
 interface AdminNavProps {
   picture?: string;

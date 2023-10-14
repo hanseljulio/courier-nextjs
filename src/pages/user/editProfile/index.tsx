@@ -10,35 +10,38 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import UserNav from "@/components/UserNav";
-
-interface IAdmin {
-  id: number;
-  email: string;
-  fullname: string;
-  password: string;
-  phone: string;
-  photo: string;
-  role: string;
-}
+import { IUser } from "@/types/types";
 
 function UserEditProfile() {
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [adminData, setAdminData] = useState<IAdmin>({
+  const [adminData, setAdminData] = useState<IUser>({
     id: 0,
     email: "",
     fullname: "",
     password: "",
     phone: "",
     photo: "",
+    referral: "",
+    referralSelfId: 0,
     role: "",
   });
+
+  const [userReferralCode, setUserReferralCode] = useState<string>("Not found");
 
   const [showLoading, setShowLoading] = useState<boolean>(false);
 
   const successMessage = () => toast("Profile update success!");
 
+  const referralCopySuccessMessage = () =>
+    toast("Referral code copied to clipboard!");
+
   const invalidPhoneMessage = () =>
     toast("Invalid phone format! Start with +62 or 0 for your phone number.");
+
+  const copyTextToClipboard = async (text: string) => {
+    navigator.clipboard.writeText(text);
+    referralCopySuccessMessage();
+  };
 
   const urlToLink = async (link: string) => {
     const randomName =
@@ -69,6 +72,13 @@ function UserEditProfile() {
       );
       const result = await response.json();
       setAdminData(result);
+
+      const referralResponse = await fetch(
+        `http://localhost:2000/referralCodes/${result.referralSelfId}`
+      );
+      const referralResult = await referralResponse.json();
+
+      setUserReferralCode(referralResult.referral);
 
       if (result.photo !== "") {
         let profileImageFile = await getFile(result.photo);
@@ -214,7 +224,7 @@ function UserEditProfile() {
                 height={200}
                 className={`${styles.imgArea} w-[200px] h-[200px]`}
                 style={{
-                  objectFit: "fill",
+                  objectFit: "cover",
                   borderRadius: "100%",
                 }}
               />
@@ -235,7 +245,19 @@ function UserEditProfile() {
               </label>
             </div>
           </div>
-          <div className="flex submit-btn justify-center pt-[100px]">
+          <div className="flex justify-center pt-[50px] referralCode-area">
+            <h1>
+              This is your referral code:{" "}
+              <span
+                className="font-bold hover:cursor-pointer hover:bg-amber-500 bg-amber-300 p-4 rounded-[10px]"
+                onClick={() => copyTextToClipboard(userReferralCode)}
+              >
+                {userReferralCode}
+              </span>
+            </h1>
+          </div>
+
+          <div className="flex submit-btn justify-center pt-[50px]">
             {showLoading ? (
               <AiOutlineLoading3Quarters className="animate-spin text-3xl" />
             ) : (

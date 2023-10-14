@@ -3,16 +3,7 @@ import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import AdminNav from "@/components/AdminNav";
 import styles from "../../styles/AdminPage.module.css";
-
-interface IAdmin {
-  id: number;
-  email: string;
-  fullname: string;
-  password: string;
-  phone: string;
-  photo: string;
-  role: string;
-}
+import { IAdmin } from "@/types/types";
 
 function AdminPage() {
   const stateLoginPersist = useStoreLoginPersist();

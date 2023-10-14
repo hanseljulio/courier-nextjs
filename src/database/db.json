@@ -17,6 +17,7 @@
       "phone": "+628123456789",
       "photo": "http://res.cloudinary.com/dsngblge5/image/upload/v1697264510/vmnikd7kkafo0cmrd9ab.jpg",
       "referral": "",
+      "referralSelfId": 1,
       "role": "user"
     },
     {
@@ -26,8 +27,37 @@
       "phone": "08151874567",
       "photo": "",
       "referral": "",
+      "referralSelfId": 2,
       "role": "user",
       "id": 3
+    },
+    {
+      "id": 12667,
+      "email": "referraltest@mail.com",
+      "password": "password",
+      "fullname": "Referral Test",
+      "phone": "+621234567890",
+      "photo": "",
+      "referral": "",
+      "referralSelfId": 89475,
+      "role": "user"
+    }
+  ],
+  "referralCodes": [
+    {
+      "id": 1,
+      "userId": 2,
+      "referral": "dwj5ca"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "referral": "jb6fbp"
+    },
+    {
+      "id": 89475,
+      "userId": 12667,
+      "referral": "rumqs0"
     }
   ]
 }

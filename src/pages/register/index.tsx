@@ -31,19 +31,37 @@ function UserRegister() {
       return;
     }
 
+    const referralId = Math.floor(Math.random() * 99999 - 10000) + 10000;
+    const randomId = Math.floor(Math.random() * 99999 - 10000) + 10000;
+    const randomReferral = Math.random().toString(36).substring(2, 8);
+
     const newUser = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id: randomId,
         email: email,
         password: password,
         fullname: fullName,
         phone: phoneNumber,
         photo: "",
         referral: referralCode,
+        referralSelfId: referralId,
         role: "user",
+      }),
+    };
+
+    const newReferral = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: referralId,
+        userId: randomId,
+        referral: randomReferral,
       }),
     };
 
@@ -51,6 +69,15 @@ function UserRegister() {
       const response = await fetch("http://localhost:2000/users", newUser);
 
       if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      const referralResponse = await fetch(
+        "http://localhost:2000/referralCodes",
+        newReferral
+      );
+
+      if (!referralResponse.ok) {
         throw new Error(response.statusText);
       }
 
