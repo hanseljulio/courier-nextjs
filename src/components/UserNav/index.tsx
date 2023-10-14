@@ -1,45 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { useStoreLoginPersist } from "@/store/store";
-import { useRouter } from "next/router";
 import Image from "next/image";
-import styles from "./UserNav.module.css";
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useStoreLoginPersist } from "@/store/store";
 
-interface HomeNavProps {
-  currentPage?: string;
-  picture?: string;
-}
-
-interface IAdmin {
-  id: number;
-  email: string;
-  fullname: string;
-  password: string;
-  phone: string;
-  photo: string;
-  role: string;
-}
-
-function UserNav(props: HomeNavProps) {
+function UserNav() {
+  const [navbar, setNavbar] = useState(false);
   const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
 
-  const [adminData, setAdminData] = useState<IAdmin>();
-  const [imageFile, setImageFile] = useState<string>("");
-
-  const redirectEditProfile = () => {
-    router.push("/user/editProfile");
+  const redirectUserHomeShipping = () => {
+    router.push("/user");
   };
 
-  const redirectTransfer = () => {
-    alert();
+  const redirectUserAddress = () => {
+    router.push("/user/address");
   };
 
-  const redirectTopup = () => {
-    alert();
+  const redirectUserPayment = () => {
+    router.push("/user/payment");
   };
 
-  const redirectGames = () => {
-    alert();
+  const redirectUserTopup = () => {
+    router.push("/user/topup");
+  };
+
+  const redirectUserGames = () => {
+    router.push("/user/games");
   };
 
   const redirectLogout = () => {
@@ -48,131 +35,89 @@ function UserNav(props: HomeNavProps) {
     router.push("/");
   };
 
-  const redirectHome = () => {
-    alert();
-  };
-
-  const urlToLink = async (link: string) => {
-    const randomName =
-      Math.floor(Math.random() * (999999 - 100000) + 100000).toString() +
-      ".jpg";
-
-    let imgFile = fetch(link).then(async (response) => {
-      const blob = await response.blob();
-      const file = new File([blob], randomName);
-      return file;
-    });
-
-    return imgFile;
-  };
-
-  const getFile = async (link: File | string) => {
-    let result = await urlToLink(typeof link === "string" ? link : "");
-    return result;
-  };
-
-  const getAdminData = async () => {
-    if (props.picture) {
-      let profileImageFile = await getFile(props.picture);
-      setImageFile(URL.createObjectURL(profileImageFile));
-    }
-
-    try {
-      const response = await fetch(
-        `http://localhost:2000/users/${stateLoginPersist.id}`
-      );
-      const result = await response.json();
-      setAdminData(result);
-
-      if (result.photo !== "") {
-        let profileImageFile = await getFile(result.photo);
-        setImageFile(URL.createObjectURL(profileImageFile));
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    getAdminData();
-  }, [props.picture]);
-
   return (
-    <div className="user-nav-div ">
-      <div
-        className={`${styles.navArea} flex user-nav-wrapper mx-[200px] py-[18px] justify-between`}
-      >
-        <div className="logo-section flex items-center">
-          <h1 className="text-[24px] font-bold">Courier</h1>
+    <div>
+      <nav className="w-full fixed top-0 left-0 right-0 z-10">
+        <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+          <div>
+            <div className="flex items-center justify-between py-3 md:py-5 md:block">
+              {/* LOGO */}
+              <h2 className="text-[24px] font-bold ">Courier</h2>
+
+              {/* HAMBURGER BUTTON FOR MOBILE */}
+              <div className="md:hidden">
+                <button
+                  className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                  onClick={() => setNavbar(!navbar)}
+                >
+                  {navbar ? (
+                    <Image
+                      src="/images/cross.svg"
+                      width={30}
+                      height={30}
+                      alt="logo"
+                    />
+                  ) : (
+                    <Image
+                      src="/images/hamburger.svg"
+                      width={30}
+                      height={30}
+                      alt="logo"
+                      className="focus:border-none active:border-none"
+                    />
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+                navbar ? "p-12 md:p-0 block" : "hidden"
+              }`}
+            >
+              <ul className="h-screen font-semibold text-sm md:h-auto items-center justify-center md:flex ">
+                <li
+                  onClick={redirectUserHomeShipping}
+                  className="px-6 py-3 text-center hover:cursor-pointer  hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                >
+                  Shipping
+                </li>
+                <li
+                  onClick={redirectUserAddress}
+                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                >
+                  Address
+                </li>
+                <li
+                  onClick={redirectUserPayment}
+                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                >
+                  Payment
+                </li>
+                <li
+                  onClick={redirectUserTopup}
+                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                >
+                  Topup
+                </li>
+                <li
+                  onClick={redirectUserGames}
+                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                >
+                  Games
+                </li>
+                <li
+                  onClick={redirectLogout}
+                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                >
+                  Logout
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className={`${styles.centerSelectionDisplay}`}>
-          <ul className="flex gap-10 items-center pt-[8px] font-semibold text-sm">
-            <li
-              className={`text-secondarytext ${
-                props.currentPage === "home" ? "underline" : ""
-              } hover:cursor-pointer`}
-              onClick={redirectHome}
-            >
-              Shipping
-            </li>
-            <li
-              className={`text-secondarytext ${
-                props.currentPage === "transfer" ? "underline" : ""
-              } hover:cursor-pointer`}
-              onClick={redirectTransfer}
-            >
-              Address
-            </li>
-            <li
-              className={`text-secondarytext ${
-                props.currentPage === "transfer" ? "underline" : ""
-              } hover:cursor-pointer`}
-              onClick={redirectTransfer}
-            >
-              Payment
-            </li>
-            <li
-              className={`text-secondarytext ${
-                props.currentPage === "topup" ? "underline" : ""
-              } hover:cursor-pointer`}
-              onClick={redirectTopup}
-            >
-              Topup
-            </li>
-            <li
-              className={`text-secondarytext ${
-                props.currentPage === "games" ? "underline" : ""
-              } hover:cursor-pointer`}
-              onClick={redirectGames}
-            >
-              Games
-            </li>
-          </ul>
-        </div>
-        <div
-          className={`user-picture hover:cursor-pointer mr-[110px] ${styles.navRight} `}
-          onClick={redirectEditProfile}
-        >
-          <ul
-            className={`flex gap-5 items-center pt-[-1px] font-semibold text-sm`}
-          >
-            <li
-              className={`text-secondarytext ${styles.nameDisplay}`}
-            >{`${adminData?.fullname}`}</li>
-            <Image
-              src={`${!imageFile ? "/images/defaultuser.png" : imageFile}`}
-              alt="Nothing"
-              width={25}
-              height={25}
-              className={`w-[45px] h-[45px]`}
-              style={{
-                objectFit: "cover",
-                borderRadius: "100%",
-              }}
-            />
-          </ul>
-        </div>
-      </div>
+      </nav>
     </div>
   );
 }
