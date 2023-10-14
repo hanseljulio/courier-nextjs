@@ -3,6 +3,8 @@ import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import UserNav from "@/components/UserNav";
 import GreetUser from "@/components/GreetUser";
+import SelectionCard from "@/components/SelectionCard";
+import styles from "../../styles/UserPage.module.css";
 
 function UserPage() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -17,8 +19,20 @@ function UserPage() {
   return (
     <div>
       <UserNav currentPage="shipping" />
-      <div className="greeting-section">
+      <div className="greeting-section pb-8">
         <GreetUser />
+      </div>
+      <div
+        className={`${styles.selectionCardsArea} bg-slate-200 bg-opacity-50 w-full selection-card-area flex justify-evenly pt-[60px] pb-[80px]`}
+      >
+        <SelectionCard
+          title="Create Shipping"
+          description="Create your shipping label here"
+        />
+        <SelectionCard
+          title="View Shipping"
+          description="See a list of your shippings"
+        />
       </div>
     </div>
   );
