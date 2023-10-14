@@ -14,8 +14,8 @@
       "email": "asep@mail.com",
       "password": "password",
       "fullname": "Agus Budiantoro",
-      "phone": 8123456789,
-      "photo": "",
+      "phone": "+628123456789",
+      "photo": "http://res.cloudinary.com/dsngblge5/image/upload/v1697264510/vmnikd7kkafo0cmrd9ab.jpg",
       "referral": "",
       "role": "user"
     },

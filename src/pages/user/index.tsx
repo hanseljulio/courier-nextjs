@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import UserNav from "@/components/UserNav";
+import UserNavTest from "@/components/UserNavTest";
 
 function UserPage() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -15,7 +16,11 @@ function UserPage() {
 
   return (
     <div>
-      <UserNav />
+      <UserNavTest />
+      {/* <br />
+      <br />
+      <br />
+      <UserNav /> */}
     </div>
   );
 }
