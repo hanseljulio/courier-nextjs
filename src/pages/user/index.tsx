@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import UserNav from "@/components/UserNav";
+import GreetUser from "@/components/GreetUser";
 
 function UserPage() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -15,7 +16,10 @@ function UserPage() {
 
   return (
     <div>
-      <UserNav />
+      <UserNav currentPage="shipping" />
+      <div className="greeting-section">
+        <GreetUser />
+      </div>
     </div>
   );
 }

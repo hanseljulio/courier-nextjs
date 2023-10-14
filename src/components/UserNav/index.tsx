@@ -1,10 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useStoreLoginPersist } from "@/store/store";
 
-function UserNav() {
+interface UserNavProps {
+  currentPage?: string;
+}
+
+function UserNav(props: UserNavProps) {
   const [navbar, setNavbar] = useState(false);
   const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
@@ -37,12 +40,17 @@ function UserNav() {
 
   return (
     <div>
-      <nav className="w-full fixed top-0 left-0 right-0 z-10">
-        <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+      <nav className="w-full bg-amber-300">
+        <div className="bg-amber-300 justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               {/* LOGO */}
-              <h2 className="text-[24px] font-bold ">Courier</h2>
+              <h2
+                onClick={redirectUserHomeShipping}
+                className="text-[24px] font-bold hover:cursor-pointer hover:text-orange-600"
+              >
+                Courier
+              </h2>
 
               {/* HAMBURGER BUTTON FOR MOBILE */}
               <div className="md:hidden">
@@ -79,31 +87,51 @@ function UserNav() {
               <ul className="h-screen font-semibold text-sm md:h-auto items-center justify-center md:flex ">
                 <li
                   onClick={redirectUserHomeShipping}
-                  className="px-6 py-3 text-center hover:cursor-pointer  hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                  className={`${
+                    props.currentPage === "shipping"
+                      ? "bg-orange-400 rounded-full hover:cursor-default"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                  } px-6 py-3 text-center`}
                 >
                   Shipping
                 </li>
                 <li
                   onClick={redirectUserAddress}
-                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                  className={`${
+                    props.currentPage === "address"
+                      ? "bg-orange-400 rounded-full hover:cursor-default"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                  } px-6 py-3 text-center`}
                 >
                   Address
                 </li>
                 <li
                   onClick={redirectUserPayment}
-                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                  className={`${
+                    props.currentPage === "payment"
+                      ? "bg-orange-400 rounded-full hover:cursor-default"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                  } px-6 py-3 text-center`}
                 >
                   Payment
                 </li>
                 <li
                   onClick={redirectUserTopup}
-                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                  className={`${
+                    props.currentPage === "topup"
+                      ? "bg-orange-400 rounded-full hover:cursor-default"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                  } px-6 py-3 text-center`}
                 >
                   Topup
                 </li>
                 <li
                   onClick={redirectUserGames}
-                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500   md:hover:text-amber-500 md:hover:bg-transparent"
+                  className={`${
+                    props.currentPage === "games"
+                      ? "bg-orange-400 rounded-full hover:cursor-default"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                  } px-6 py-3 text-center`}
                 >
                   Games
                 </li>

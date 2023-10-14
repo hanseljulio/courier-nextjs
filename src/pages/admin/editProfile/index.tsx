@@ -141,7 +141,7 @@ function AdminEditProfile() {
     <div className="admin-profile-div min-h-screen bg-slate-200">
       <AdminNav picture={adminData.photo} />
       <div
-        className={`${styles.adminMainArea} admin-profile-content mx-[200px] py-[18px] pt-[50px]`}
+        className={`${styles.adminMainArea} admin-profile-content mx-[200px] py-[18px] pt-[100px]`}
       >
         <ToastContainer />
         <div className="titles-section">
