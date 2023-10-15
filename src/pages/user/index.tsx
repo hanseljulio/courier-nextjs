@@ -23,13 +23,15 @@ function UserPage() {
         <GreetUser />
       </div>
       <div
-        className={`${styles.selectionCardsArea} bg-slate-200 bg-opacity-50 w-full selection-card-area flex justify-evenly pt-[60px] pb-[80px]`}
+        className={`${styles.selectionCardsArea} bg-slate-200 bg-opacity-50 w-full selection-card-area flex justify-center gap-[200px] pt-[60px] pb-[80px]`}
       >
         <SelectionCard
+          picture="bg-create-shipping"
           title="Create Shipping"
           description="Create your shipping label here"
         />
         <SelectionCard
+          picture="bg-view-shipping"
           title="View Shipping"
           description="See a list of your shippings"
         />
