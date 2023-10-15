@@ -13,23 +13,27 @@ function UserNav(props: UserNavProps) {
   const router = useRouter();
 
   const redirectUserHomeShipping = () => {
-    router.push("/user");
+    if (props.currentPage !== "shipping") {
+      router.push("/user");
+    }
   };
 
   const redirectUserAddress = () => {
-    router.push("/user/address");
+    if (props.currentPage !== "address") {
+      router.push("/user/address");
+    }
   };
 
   const redirectUserPayment = () => {
-    router.push("/user/payment");
+    if (props.currentPage !== "payment") {
+      router.push("/user/payment");
+    }
   };
 
   const redirectUserTopup = () => {
-    router.push("/user/topup");
-  };
-
-  const redirectUserGames = () => {
-    router.push("/user/games");
+    if (props.currentPage !== "topup") {
+      router.push("/user/topup");
+    }
   };
 
   const redirectLogout = () => {
@@ -124,16 +128,6 @@ function UserNav(props: UserNavProps) {
                   } px-6 py-3 text-center`}
                 >
                   Topup
-                </li>
-                <li
-                  onClick={redirectUserGames}
-                  className={`${
-                    props.currentPage === "games"
-                      ? "bg-orange-400 rounded-full hover:cursor-default"
-                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
-                  } px-6 py-3 text-center`}
-                >
-                  Games
                 </li>
                 <li
                   onClick={redirectLogout}
