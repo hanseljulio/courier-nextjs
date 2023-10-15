@@ -14,6 +14,8 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "create-shipping": "url('/images/createshipping.png')",
         "view-shipping": "url('/images/viewshipping.png')",
+        "create-address": "url('/images/createaddress.png')",
+        "view-address": "url('/images/viewaddress.png')",
       },
     },
   },
