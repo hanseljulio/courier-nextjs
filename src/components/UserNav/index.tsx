@@ -94,7 +94,7 @@ function UserNav(props: UserNavProps) {
                   className={`${
                     props.currentPage === "shipping"
                       ? "bg-orange-400 rounded-full hover:cursor-default"
-                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 rounded-full md:hover:bg-transparent"
                   } px-6 py-3 text-center`}
                 >
                   Shipping
@@ -104,7 +104,7 @@ function UserNav(props: UserNavProps) {
                   className={`${
                     props.currentPage === "address"
                       ? "bg-orange-400 rounded-full hover:cursor-default"
-                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 rounded-full md:hover:bg-transparent"
                   } px-6 py-3 text-center`}
                 >
                   Address
@@ -114,7 +114,7 @@ function UserNav(props: UserNavProps) {
                   className={`${
                     props.currentPage === "payment"
                       ? "bg-orange-400 rounded-full hover:cursor-default"
-                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 rounded-full md:hover:bg-transparent"
                   } px-6 py-3 text-center`}
                 >
                   Payment
@@ -124,14 +124,14 @@ function UserNav(props: UserNavProps) {
                   className={`${
                     props.currentPage === "topup"
                       ? "bg-orange-400 rounded-full hover:cursor-default"
-                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 rounded-full md:hover:bg-transparent"
                   } px-6 py-3 text-center`}
                 >
                   Topup
                 </li>
                 <li
                   onClick={redirectLogout}
-                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 md:hover:bg-transparent"
+                  className="px-6 py-3 text-center hover:cursor-pointer hover:bg-amber-500 rounded-full md:hover:text-amber-500 md:hover:bg-transparent"
                 >
                   Logout
                 </li>

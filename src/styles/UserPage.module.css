@@ -1,10 +1,10 @@
 @media (max-width: 414px) {
   .selectionCardsArea {
     margin: 0;
-    padding-left: 60px;
     display: flex;
     flex-direction: column;
     gap: 50px;
     padding-bottom: 100px;
+    align-items: center;
   }
 }
