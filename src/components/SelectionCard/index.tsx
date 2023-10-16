@@ -5,11 +5,12 @@ interface SelectionCardProps {
   picture: string;
   title?: string;
   description?: string;
+  onClick?: () => void;
 }
 
 function SelectionCard(props: SelectionCardProps) {
   return (
-    <div className="selection-card-div">
+    <div className="selection-card-div" onClick={props.onClick}>
       <div
         className={`${styles.cardArea} ${styles.popout} relative selection-card-area ${props.picture} bg-cover hover:cursor-pointer w-[300px] h-[450px] rounded-[8px] justify-center`}
       >

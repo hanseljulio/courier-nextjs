@@ -3,8 +3,17 @@ import UserNav from "@/components/UserNav";
 import React from "react";
 import SelectionCard from "@/components/SelectionCard";
 import styles from "../../../styles/UserPage.module.css";
+import { useStoreLoginPersist } from "@/store/store";
+import { useRouter } from "next/router";
 
 function UserAddress() {
+  const stateLoginPersist = useStoreLoginPersist();
+  const router = useRouter();
+
+  const redirectCreateAddress = () => {
+    router.push("/user/address/create");
+  };
+
   return (
     <div>
       <UserNav currentPage="address" />
@@ -18,6 +27,7 @@ function UserAddress() {
           picture="bg-create-address"
           title="Create Address"
           description="Add a new address here"
+          onClick={redirectCreateAddress}
         />
         <SelectionCard
           picture="bg-view-address"
