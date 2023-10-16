@@ -25,7 +25,10 @@ function TransactionHistory(props: TransactionHistoryProps) {
       <div className={`${styles.overlay}`}></div>
       <div className={`${styles.modalContent} ${styles.popout}`}>
         <div className="header-confirm pt-[10px] pl-[23px] pb-[8px] flex justify-between">
-          <h2 className="text-xl">Transaction History</h2>
+          <div className="title-area">
+            <h2 className="text-xl">Transaction History</h2>
+            <p>Sorted by least recent</p>
+          </div>
           <button className="pr-[23px]" onClick={props.exitFunction}>
             X
           </button>
