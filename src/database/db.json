@@ -44,6 +44,18 @@
       "referralSelfId": "referral-89475",
       "walletId": "wallet-89475",
       "role": "user"
+    },
+    {
+      "id": 2575,
+      "email": "wallettest@mail.com",
+      "password": "password",
+      "fullname": "Wallet Test",
+      "phone": "+621234567890",
+      "photo": "",
+      "referral": "",
+      "referralSelfId": "referral-91486",
+      "walletId": "wallet-91486",
+      "role": "user"
     }
   ],
   "referralCodes": [
@@ -61,6 +73,11 @@
       "id": "referral-89475",
       "userId": 12667,
       "referral": "rumqs0"
+    },
+    {
+      "id": "referral-91486",
+      "userId": 2575,
+      "referral": "24e4n5"
     }
   ],
   "userWallet": [
@@ -95,7 +112,7 @@
     },
     {
       "id": "wallet-89475",
-      "userId": 3,
+      "userId": 12667,
       "balance": 1350000,
       "history": [
         {
@@ -129,6 +146,12 @@
           "amount": "1000000"
         }
       ]
+    },
+    {
+      "id": "wallet-91486",
+      "userId": 2575,
+      "balance": 0,
+      "history": []
     }
   ]
 }

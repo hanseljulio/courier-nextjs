@@ -49,7 +49,8 @@ function UserRegister() {
         phone: phoneNumber,
         photo: "",
         referral: referralCode,
-        referralSelfId: referralId,
+        referralSelfId: `referral-${referralId}`,
+        walletId: `wallet-${referralId}`,
         role: "user",
       }),
     };
@@ -60,9 +61,22 @@ function UserRegister() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: referralId,
+        id: `referral-${referralId}`,
         userId: randomId,
         referral: randomReferral,
+      }),
+    };
+
+    const newWallet = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: `wallet-${referralId}`,
+        userId: randomId,
+        balance: 0,
+        history: [],
       }),
     };
 
@@ -74,11 +88,17 @@ function UserRegister() {
       }
 
       const referralResponse = await fetch(
-        "http://localhost:2000/referralCodes",
+        `${BASE_URL}/referralCodes`,
         newReferral
       );
 
       if (!referralResponse.ok) {
+        throw new Error(response.statusText);
+      }
+
+      const walletResponse = await fetch(`${BASE_URL}/userWallet`, newWallet);
+
+      if (!walletResponse.ok) {
         throw new Error(response.statusText);
       }
 
@@ -94,7 +114,7 @@ function UserRegister() {
 
   return (
     <div className="admin-login-div min-h-screen ">
-      <div className="admin-login-titles pb-8 text-center py-[120px]">
+      <div className="admin-login-titles pb-8 text-center py-[100px]">
         <h1 className="text-2xl font-3xl">Courier Register</h1>
       </div>
       <div className="admin-login-form items-center flex justify-center">

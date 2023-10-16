@@ -35,6 +35,9 @@ function TransactionHistory(props: TransactionHistoryProps) {
         </div>
         <hr />
         <div className="history-content flex-col pt-[10px] pl-[23px] pb-[8px] font-medium mr-[20px] overflow-y-scroll h-[90%]">
+          {props.historyData.length === 0 ? (
+            <h1 className="text-center pt-[50px]">Nothing to see here!</h1>
+          ) : null}
           {props.historyData.map((data, index) => (
             <div
               key={index}
