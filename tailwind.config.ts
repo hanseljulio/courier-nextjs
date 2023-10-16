@@ -17,6 +17,9 @@ const config: Config = {
         "create-address": "url('/images/createaddress.png')",
         "view-address": "url('/images/viewaddress.png')",
       },
+      screens: {
+        mobile: { max: "414px" },
+      },
     },
   },
   plugins: [],
