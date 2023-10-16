@@ -10,6 +10,7 @@ import { IWallet } from "@/types/types";
 import { BASE_URL } from "@/constants/constants";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 function TopUp() {
   const [money, setMoney] = useState<number>(0);
@@ -73,7 +74,31 @@ function TopUp() {
       return;
     }
 
-    successMessage();
+    try {
+      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
+      const result = await response.json();
+
+      const walletResponse = await fetch(
+        `${BASE_URL}/userWallet/${result.walletId}`
+      );
+      const walletResult = await walletResponse.json();
+
+      walletResult.balance += parseInt(money.toString());
+      walletResult.history.push({
+        id: walletResult.history.length + 1,
+        date: new Date().toString(),
+        amount: money,
+      });
+
+      axios
+        .patch(`${BASE_URL}/userWallet/${result.walletId}`, walletResult)
+        .then(() => {
+          getWalletData();
+          successMessage();
+        });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -91,11 +116,11 @@ function TopUp() {
           <UserHeader title="Top Up" description="Add your balance here!" />
         </div>
         <div
-          className={`mobile:mx-auto your-balance-section mx-[350px] pt-[30px] text-center `}
+          className={`mobile:mx-auto your-balance-section mx-[350px] pt-[30px] text-center`}
         >
-          <h1 className="text-[25px]">
+          <h1 className="text-[25px] pb-3">
             Your current balance is:{" "}
-            <span className="text-amber-500">
+            <span className="text-amber-500 mobile:whitespace-pre">
               Rp. {currencyConverter(walletData.balance)}
             </span>
           </h1>
@@ -103,7 +128,8 @@ function TopUp() {
         </div>
         <div className="top-up-form pt-8">
           <form action="" onSubmit={submit}>
-            <div className="form-section items-center flex justify-center">
+            <div className="form-section items-center flex justify-center gap-5">
+              <h1 className="font-bold mt-2 text-[20px]">IDR</h1>
               <Input
                 label=""
                 type="number"

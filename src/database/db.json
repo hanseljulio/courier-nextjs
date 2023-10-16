@@ -96,7 +96,7 @@
     {
       "id": "wallet-89475",
       "userId": 3,
-      "balance": 150000,
+      "balance": 1350000,
       "history": [
         {
           "id": 1,
@@ -115,63 +115,18 @@
         },
         {
           "id": 4,
-          "date": "Mon Oct 16 2023 05:57:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
+          "date": "Mon Oct 16 2023 13:37:29 GMT+0700 (Western Indonesia Time)",
+          "amount": "100000"
         },
         {
           "id": 5,
-          "date": "Mon Oct 16 2023 05:58:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
+          "date": "Mon Oct 16 2023 13:38:10 GMT+0700 (Western Indonesia Time)",
+          "amount": "100000"
         },
         {
           "id": 6,
-          "date": "Mon Oct 16 2023 05:59:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
-        },
-        {
-          "id": 7,
-          "date": "Mon Oct 16 2023 06:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
-        },
-        {
-          "id": 8,
-          "date": "Mon Oct 16 2023 07:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
-        },
-        {
-          "id": 9,
-          "date": "Mon Oct 16 2023 08:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
-        },
-        {
-          "id": 10,
-          "date": "Mon Oct 16 2023 09:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
-        },
-        {
-          "id": 11,
-          "date": "Mon Oct 16 2023 10:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
-        },
-        {
-          "id": 12,
-          "date": "Mon Oct 16 2023 11:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
-        },
-        {
-          "id": 13,
-          "date": "Mon Oct 16 2023 12:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
-        },
-        {
-          "id": 14,
-          "date": "Mon Oct 16 2023 13:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
-        },
-        {
-          "id": 15,
-          "date": "Mon Oct 16 2023 14:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
+          "date": "Mon Oct 16 2023 13:43:55 GMT+0700 (Western Indonesia Time)",
+          "amount": "1000000"
         }
       ]
     }

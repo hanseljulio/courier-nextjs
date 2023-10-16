@@ -37,11 +37,13 @@ function TransactionHistory(props: TransactionHistoryProps) {
               key={index}
               className="flex justify-center text-center history-section"
             >
-              <h1 className="bg-amber-200 py-3 w-[10%]">{data.id}</h1>
-              <h1 className="bg-amber-200 py-3 w-[40%]">
+              <h1 className="bg-amber-200 py-3 w-[10%] mobile:text-[12px]">
+                {data.id}
+              </h1>
+              <h1 className="bg-amber-200 py-3 w-[40%] mobile:text-[12px]">
                 {dateConverter(new Date(data.date))}
               </h1>
-              <h1 className="bg-amber-200 py-3 w-[50%] text-green-600">
+              <h1 className="bg-amber-200 py-3 w-[50%] text-green-600 mobile:text-[12px]">
                 +Rp. {currencyConverter(data.amount)}
               </h1>
             </div>
