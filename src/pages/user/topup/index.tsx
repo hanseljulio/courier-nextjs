@@ -135,7 +135,6 @@ function TopUp() {
                 type="number"
                 name="topupValue"
                 width="w-[300px]"
-                required={true}
                 onChange={(e) => setMoney(e.target.value)}
               />
             </div>

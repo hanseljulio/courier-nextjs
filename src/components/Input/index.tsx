@@ -23,7 +23,13 @@ function Input(props: InputProps) {
           props.styling ? props.styling : ""
         }`}
       >
-        <p className="pb-[8px] text-lg font-bold ">{props.label}</p>
+        <p className="pb-[8px] text-lg font-bold ">
+          {props.label}
+          <span className={`text-red-600 ${!props.required ? "hidden" : ""}`}>
+            {" "}
+            *
+          </span>
+        </p>
         <input
           className={`${styles.inputArea} ${props.width ? props.width : ""}`}
           type={props.type}
