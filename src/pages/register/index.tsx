@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "@/constants/constants";
 
 function UserRegister() {
   const [email, setEmail] = useState<string>("");
@@ -66,7 +67,7 @@ function UserRegister() {
     };
 
     try {
-      const response = await fetch("http://localhost:2000/users", newUser);
+      const response = await fetch(`${BASE_URL}/users`, newUser);
 
       if (!response.ok) {
         throw new Error(response.statusText);

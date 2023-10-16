@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { IAdmin } from "@/types/types";
+import { BASE_URL } from "@/constants/constants";
 
 function AdminEditProfile() {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -55,9 +56,7 @@ function AdminEditProfile() {
 
   const getAdminData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:2000/users/${stateLoginPersist.id}`
-      );
+      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
       const result = await response.json();
       setAdminData(result);
 

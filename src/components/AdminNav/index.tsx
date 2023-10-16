@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "./AdminNav.module.css";
 import { IAdmin } from "@/types/types";
+import { BASE_URL } from "@/constants/constants";
 
 interface AdminNavProps {
   picture?: string;
@@ -49,9 +50,7 @@ function AdminNav(props: AdminNavProps) {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:2000/users/${stateLoginPersist.id}`
-      );
+      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
       const result = await response.json();
       setAdminData(result);
 

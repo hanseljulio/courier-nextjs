@@ -16,6 +16,20 @@ export interface IUser {
   phone: string;
   photo: string;
   referral: string;
-  referralSelfId: number;
+  referralSelfId: string;
+  walletId: string;
   role: string;
+}
+
+export interface IWallet {
+  id: string;
+  userId: number;
+  balance: number;
+  history: IWalletHistory[];
+}
+
+export interface IWalletHistory {
+  id: number;
+  date: string;
+  amount: number;
 }

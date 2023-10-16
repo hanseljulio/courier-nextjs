@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import styles from "./GreetUserNav.module.css";
+import { BASE_URL } from "@/constants/constants";
 
 function GreetUser() {
   const [userName, setUserName] = useState<string>("");
@@ -10,9 +11,7 @@ function GreetUser() {
 
   const getUserName = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:2000/users/${stateLoginPersist.id}`
-      );
+      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
       const result = await response.json();
       setUserName(result.fullname);
     } catch (e) {

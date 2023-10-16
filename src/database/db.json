@@ -17,7 +17,8 @@
       "phone": "+628123456789",
       "photo": "http://res.cloudinary.com/dsngblge5/image/upload/v1697296665/ai4agio4m7ho8589sfth.jpg",
       "referral": "",
-      "referralSelfId": 1,
+      "referralSelfId": "referral-1",
+      "walletId": "wallet-1",
       "role": "user"
     },
     {
@@ -27,7 +28,8 @@
       "phone": "08151874567",
       "photo": "",
       "referral": "",
-      "referralSelfId": 2,
+      "referralSelfId": "referral-2",
+      "walletId": "wallet-2",
       "role": "user",
       "id": 3
     },
@@ -39,25 +41,139 @@
       "phone": "+621234567890",
       "photo": "",
       "referral": "",
-      "referralSelfId": 89475,
+      "referralSelfId": "referral-89475",
+      "walletId": "wallet-89475",
       "role": "user"
     }
   ],
   "referralCodes": [
     {
-      "id": 1,
+      "id": "referral-1",
       "userId": 2,
       "referral": "dwj5ca"
     },
     {
-      "id": 2,
+      "id": "referral-2",
       "userId": 3,
       "referral": "jb6fbp"
     },
     {
-      "id": 89475,
+      "id": "referral-89475",
       "userId": 12667,
       "referral": "rumqs0"
+    }
+  ],
+  "userWallet": [
+    {
+      "id": "wallet-1",
+      "userId": 2,
+      "balance": 50000,
+      "history": [
+        {
+          "id": 1,
+          "date": "Mon Oct 16 2023 05:32:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "id": "wallet-2",
+      "userId": 3,
+      "balance": 100000,
+      "history": [
+        {
+          "id": 1,
+          "date": "Mon Oct 16 2023 05:32:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 2,
+          "date": "Mon Oct 16 2023 05:52:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "id": "wallet-89475",
+      "userId": 3,
+      "balance": 150000,
+      "history": [
+        {
+          "id": 1,
+          "date": "Mon Oct 16 2023 05:32:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 2,
+          "date": "Mon Oct 16 2023 05:52:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 3,
+          "date": "Mon Oct 16 2023 05:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 4,
+          "date": "Mon Oct 16 2023 05:57:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 5,
+          "date": "Mon Oct 16 2023 05:58:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 6,
+          "date": "Mon Oct 16 2023 05:59:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 7,
+          "date": "Mon Oct 16 2023 06:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 8,
+          "date": "Mon Oct 16 2023 07:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 9,
+          "date": "Mon Oct 16 2023 08:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 10,
+          "date": "Mon Oct 16 2023 09:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 11,
+          "date": "Mon Oct 16 2023 10:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 12,
+          "date": "Mon Oct 16 2023 11:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 13,
+          "date": "Mon Oct 16 2023 12:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 14,
+          "date": "Mon Oct 16 2023 13:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        },
+        {
+          "id": 15,
+          "date": "Mon Oct 16 2023 14:56:41 GMT+0000 (Coordinated Universal Time)",
+          "amount": 50000
+        }
+      ]
     }
   ]
 }

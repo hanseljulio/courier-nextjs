@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "@/constants/constants";
 
 export default function Home() {
   const [email, setEmail] = useState<string>("");
@@ -32,7 +33,7 @@ export default function Home() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:2000/auth/login?email=${email}&password=${password}`
+        `${BASE_URL}/auth/login?email=${email}&password=${password}`
       );
       const result = await response.json();
 

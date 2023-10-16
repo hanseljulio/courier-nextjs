@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import AdminNav from "@/components/AdminNav";
 import styles from "../../styles/AdminPage.module.css";
 import { IAdmin } from "@/types/types";
+import { BASE_URL } from "@/constants/constants";
 
 function AdminPage() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -13,9 +14,7 @@ function AdminPage() {
 
   const getAdminData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:2000/users/${stateLoginPersist.id}`
-      );
+      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
       const result = await response.json();
       setAdminData(result);
     } catch (e) {

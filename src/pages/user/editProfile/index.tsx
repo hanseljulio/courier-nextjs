@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import UserNav from "@/components/UserNav";
 import { IUser } from "@/types/types";
+import { BASE_URL } from "@/constants/constants";
 
 function UserEditProfile() {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -22,7 +23,8 @@ function UserEditProfile() {
     phone: "",
     photo: "",
     referral: "",
-    referralSelfId: 0,
+    referralSelfId: "",
+    walletId: "",
     role: "",
   });
 
@@ -67,9 +69,7 @@ function UserEditProfile() {
 
   const getAdminData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:2000/users/${stateLoginPersist.id}`
-      );
+      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
       const result = await response.json();
       setAdminData(result);
 
