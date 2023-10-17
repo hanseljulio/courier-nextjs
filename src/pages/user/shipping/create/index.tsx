@@ -5,6 +5,7 @@ import WarningModal from "@/components/WarningModal";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import { BASE_URL } from "@/constants/constants";
+import PackageDimensions from "./PackageDimensions";
 
 function CreateShipping() {
   const [showEmptyAddress, setShowEmptyAddress] = useState<boolean>(false);
@@ -55,6 +56,7 @@ function CreateShipping() {
         <div className="header-section pb-8">
           <UserHeader title="Create Shipping" />
         </div>
+        <PackageDimensions />
       </div>
     </>
   );
