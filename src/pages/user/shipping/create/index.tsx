@@ -21,8 +21,6 @@ function CreateShipping() {
     zip: "",
   });
 
-  console.log(selectedAddress);
-
   const selectStartingAddress = (address: IAddress) => {
     setSelectedAddress(address);
     setAddressSelection(false);

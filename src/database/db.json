@@ -106,12 +106,17 @@
     {
       "id": "wallet-1",
       "userId": 2,
-      "balance": 50000,
+      "balance": 150000,
       "history": [
         {
           "id": 1,
           "date": "Mon Oct 16 2023 05:32:41 GMT+0000 (Coordinated Universal Time)",
           "amount": 50000
+        },
+        {
+          "id": 2,
+          "date": "Tue Oct 17 2023 15:21:27 GMT+0700 (Western Indonesia Time)",
+          "amount": 100000
         }
       ]
     },
@@ -155,17 +160,17 @@
         {
           "id": 4,
           "date": "Mon Oct 16 2023 13:37:29 GMT+0700 (Western Indonesia Time)",
-          "amount": "100000"
+          "amount": 100000
         },
         {
           "id": 5,
           "date": "Mon Oct 16 2023 13:38:10 GMT+0700 (Western Indonesia Time)",
-          "amount": "100000"
+          "amount": 100000
         },
         {
           "id": 6,
           "date": "Mon Oct 16 2023 13:43:55 GMT+0700 (Western Indonesia Time)",
-          "amount": "1000000"
+          "amount": 100000
         }
       ]
     },
@@ -224,7 +229,15 @@
     {
       "id": "address-91486",
       "userId": 2575,
-      "addressList": []
+      "addressList": [
+        {
+          "id": 1,
+          "address": "Jalan Mega Kuningan Barat III Lot 10.1-6, RT.3/RW.3",
+          "city": "Jakarta Selatan",
+          "province": "DKI Jakarta",
+          "zip": "12230"
+        }
+      ]
     },
     {
       "id": "address-39271",

@@ -87,7 +87,7 @@ function TopUp() {
       walletResult.history.push({
         id: walletResult.history.length + 1,
         date: new Date().toString(),
-        amount: money,
+        amount: parseInt(money.toString()),
       });
 
       axios
