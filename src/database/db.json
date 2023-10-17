@@ -19,6 +19,7 @@
       "referral": "",
       "referralSelfId": "referral-1",
       "walletId": "wallet-1",
+      "addressId": "address-1",
       "role": "user"
     },
     {
@@ -30,6 +31,7 @@
       "referral": "",
       "referralSelfId": "referral-2",
       "walletId": "wallet-2",
+      "addressId": "address-2",
       "role": "user",
       "id": 3
     },
@@ -43,6 +45,7 @@
       "referral": "",
       "referralSelfId": "referral-89475",
       "walletId": "wallet-89475",
+      "addressId": "address-89475",
       "role": "user"
     },
     {
@@ -55,6 +58,20 @@
       "referral": "",
       "referralSelfId": "referral-91486",
       "walletId": "wallet-91486",
+      "addressId": "address-91486",
+      "role": "user"
+    },
+    {
+      "id": 12796,
+      "email": "addresstest@mail.com",
+      "password": "password",
+      "fullname": "Address Test",
+      "phone": "+621234567890",
+      "photo": "",
+      "referral": "",
+      "referralSelfId": "referral-39271",
+      "walletId": "wallet-39271",
+      "addressId": "address-39271",
       "role": "user"
     }
   ],
@@ -78,6 +95,11 @@
       "id": "referral-91486",
       "userId": 2575,
       "referral": "24e4n5"
+    },
+    {
+      "id": "referral-39271",
+      "userId": 12796,
+      "referral": "28z481"
     }
   ],
   "userWallet": [
@@ -152,6 +174,70 @@
       "userId": 2575,
       "balance": 0,
       "history": []
+    },
+    {
+      "id": "wallet-39271",
+      "userId": 12796,
+      "balance": 0,
+      "history": []
+    }
+  ],
+  "userAddress": [
+    {
+      "id": "address-1",
+      "userId": 1,
+      "addressList": [
+        {
+          "id": 1,
+          "address": "This is my address test",
+          "province": "Jambi",
+          "city": "Kerinci",
+          "zip": "37319"
+        }
+      ]
+    },
+    {
+      "id": "address-2",
+      "userId": 3,
+      "addressList": [
+        {
+          "id": 1,
+          "address": "This is my new address test",
+          "province": "Bengkulu",
+          "city": "Bengkulu Tengah",
+          "zip": "38319"
+        },
+        {
+          "id": 2,
+          "address": "Banten address",
+          "province": "Banten",
+          "city": "Lebak",
+          "zip": "42111"
+        }
+      ]
+    },
+    {
+      "id": "address-89475",
+      "userId": 12667,
+      "addressList": []
+    },
+    {
+      "id": "address-91486",
+      "userId": 2575,
+      "addressList": []
+    },
+    {
+      "id": "address-39271",
+      "userId": 12796,
+      "addressList": [
+        {
+          "id": 1,
+          "address": "Address-Test",
+          "city": "Gunung Kidul",
+          "province": "DI Yogyakarta",
+          "zip": "55812"
+        }
+      ]
     }
   ]
 }

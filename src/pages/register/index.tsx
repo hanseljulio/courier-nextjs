@@ -51,6 +51,7 @@ function UserRegister() {
         referral: referralCode,
         referralSelfId: `referral-${referralId}`,
         walletId: `wallet-${referralId}`,
+        addressId: `address-${referralId}`,
         role: "user",
       }),
     };
@@ -80,6 +81,18 @@ function UserRegister() {
       }),
     };
 
+    const newAddress = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: `address-${referralId}`,
+        userId: randomId,
+        addressList: [],
+      }),
+    };
+
     try {
       const response = await fetch(`${BASE_URL}/users`, newUser);
 
@@ -99,6 +112,15 @@ function UserRegister() {
       const walletResponse = await fetch(`${BASE_URL}/userWallet`, newWallet);
 
       if (!walletResponse.ok) {
+        throw new Error(response.statusText);
+      }
+
+      const addressResponse = await fetch(
+        `${BASE_URL}/userAddress`,
+        newAddress
+      );
+
+      if (!addressResponse.ok) {
         throw new Error(response.statusText);
       }
 

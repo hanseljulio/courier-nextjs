@@ -6,6 +6,12 @@ import provinces from "@/database/provinces.json";
 import cities from "@/database/cities.json";
 import Dropdown from "@/components/Dropdown/Dropdown";
 import Button from "@/components/Button";
+import { BASE_URL } from "@/constants/constants";
+import { useStoreLoginPersist } from "@/store/store";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface IProvince {
   province_id: string;
@@ -21,6 +27,11 @@ function CreateAddress() {
   const [currentProvince, setCurrentProvince] = useState<string>("");
   const [currentCity, setCurrentCity] = useState<string>("");
   const [currentZipCode, setCurrentZipCode] = useState<string>("");
+
+  const stateLoginPersist = useStoreLoginPersist();
+  const router = useRouter();
+
+  const successMessage = () => toast("Address has been successfully added!");
 
   const getProvinceData = () => {
     setProvinceList(provinces.provinces);
@@ -53,6 +64,10 @@ function CreateAddress() {
   };
 
   useEffect(() => {
+    if (stateLoginPersist.id === 0 || stateLoginPersist.isAdmin) {
+      router.push("/error");
+    }
+
     if (provinceId === "") {
       provinceChange("1");
     }
@@ -61,16 +76,40 @@ function CreateAddress() {
 
   const submit = async (e: any) => {
     e.preventDefault();
-    console.log("RESULTS");
-    console.log("Address: " + currentAddress);
-    console.log("Province: " + currentProvince);
-    console.log("City: " + currentCity);
-    console.log("Zip Code: " + currentZipCode);
+
+    const newAddress = {};
+
+    try {
+      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
+      const result = await response.json();
+
+      const addressResponse = await fetch(
+        `${BASE_URL}/userAddress/${result.addressId}`
+      );
+      const addressResult = await addressResponse.json();
+
+      addressResult.addressList.push({
+        id: addressResult.addressList.length + 1,
+        address: currentAddress,
+        city: currentCity,
+        province: currentProvince,
+        zip: currentZipCode,
+      });
+
+      axios
+        .patch(`${BASE_URL}/userAddress/${result.addressId}`, addressResult)
+        .then(() => {
+          successMessage();
+        });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
     <div>
       <UserNav currentPage="address" />
+      <ToastContainer />
       <div className="header-section pb-8">
         <UserHeader title="Create Address" />
       </div>

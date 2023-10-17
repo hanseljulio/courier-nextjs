@@ -25,6 +25,7 @@ function UserEditProfile() {
     referral: "",
     referralSelfId: "",
     walletId: "",
+    addressId: "",
     role: "",
   });
 

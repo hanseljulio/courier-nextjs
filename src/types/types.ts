@@ -18,6 +18,7 @@ export interface IUser {
   referral: string;
   referralSelfId: string;
   walletId: string;
+  addressId: string;
   role: string;
 }
 
@@ -32,6 +33,12 @@ export interface IWalletHistory {
   id: number;
   date: string;
   amount: number;
+}
+
+export interface IUserAddress {
+  id: string;
+  userId: number;
+  addressList: IAddress[];
 }
 
 export interface IAddress {
