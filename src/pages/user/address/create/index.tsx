@@ -77,8 +77,6 @@ function CreateAddress() {
   const submit = async (e: any) => {
     e.preventDefault();
 
-    const newAddress = {};
-
     try {
       const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
       const result = await response.json();

@@ -10,6 +10,10 @@ function UserPage() {
   const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
 
+  const redirectCreateShipping = () => {
+    router.push("/user/shipping/create");
+  };
+
   useEffect(() => {
     if (stateLoginPersist.id === 0 || stateLoginPersist.isAdmin) {
       router.push("/error");
@@ -29,6 +33,7 @@ function UserPage() {
           picture="bg-create-shipping"
           title="Create Shipping"
           description="Create your shipping label here"
+          onClick={redirectCreateShipping}
         />
         <SelectionCard
           picture="bg-view-shipping"

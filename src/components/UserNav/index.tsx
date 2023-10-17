@@ -12,6 +12,10 @@ function UserNav(props: UserNavProps) {
   const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
 
+  const redirectHome = () => {
+    router.push("/user");
+  };
+
   const redirectUserHomeShipping = () => {
     if (props.currentPage !== "shipping") {
       router.push("/user");
@@ -50,7 +54,7 @@ function UserNav(props: UserNavProps) {
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               {/* LOGO */}
               <h2
-                onClick={redirectUserHomeShipping}
+                onClick={redirectHome}
                 className="text-[24px] font-bold hover:cursor-pointer hover:text-orange-600"
               >
                 Courier
