@@ -43,9 +43,12 @@ function GreetUser() {
     <div
       className={`${styles.greetingArea} flex justify-between greet-user-div mx-[350px] pt-[50px]`}
     >
-      <div className="greet-section">
+      <div className="greet-section mx-10">
         <h1 className="text-[30px] font-medium pb-2">
-          {getTimeOfDay()}, <span className="text-amber-600">{userName}</span>
+          {getTimeOfDay()},{" "}
+          <span className="text-amber-600 mobile:whitespace-pre">
+            {userName}
+          </span>
         </h1>
         <h1>What would you like to do today?</h1>
       </div>
