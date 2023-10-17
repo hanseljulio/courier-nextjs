@@ -6,9 +6,28 @@ import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import { BASE_URL } from "@/constants/constants";
 import PackageDimensions from "./PackageDimensions";
+import SelectionModal from "@/components/SelectionModal";
+import { IAddress } from "@/types/types";
 
 function CreateShipping() {
   const [showEmptyAddress, setShowEmptyAddress] = useState<boolean>(false);
+  const [addressSelection, setAddressSelection] = useState<boolean>(false);
+  const [addressList, setAddressList] = useState<IAddress[]>([]);
+  const [selectedAddress, setSelectedAddress] = useState<IAddress>({
+    id: 0,
+    address: "",
+    city: "",
+    province: "",
+    zip: "",
+  });
+
+  console.log(selectedAddress);
+
+  const selectStartingAddress = (address: IAddress) => {
+    setSelectedAddress(address);
+    setAddressSelection(false);
+  };
+
   const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
 
@@ -31,7 +50,8 @@ function CreateShipping() {
         return;
       }
 
-      console.log(addressResult.addressList);
+      setAddressList(addressResult.addressList);
+      setAddressSelection(true);
     } catch (e) {
       console.log(e);
     }
@@ -51,12 +71,19 @@ function CreateShipping() {
           redirectFunction={redirectCreateAddress}
         />
       )}
+
+      {addressSelection && (
+        <SelectionModal
+          addressList={addressList}
+          selectAddressFunction={selectStartingAddress}
+        />
+      )}
+
       <div>
         <UserNav currentPage="shipping" />
         <div className="header-section pb-8">
           <UserHeader title="Create Shipping" />
         </div>
-        <PackageDimensions />
       </div>
     </>
   );
