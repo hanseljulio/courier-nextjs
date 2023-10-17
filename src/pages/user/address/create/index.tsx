@@ -30,11 +30,19 @@ function CreateAddress() {
     setProvinceId(newId);
     setCurrentProvince(provinces.provinces[parseInt(newId) - 1].province);
 
+    let firstTime = false;
+
     const newCityList = [];
     const newZipCodeList = [];
 
     for (let i = 0; i < cities.cities.length; i++) {
       if (cities.cities[i].province_id === newId) {
+        if (!firstTime) {
+          setCurrentCity(cities.cities[i].city_name);
+          setCurrentZipCode(cities.cities[i].postal_code);
+          firstTime = true;
+        }
+
         newCityList.push(cities.cities[i].city_name);
         newZipCodeList.push(cities.cities[i].postal_code);
       }
@@ -91,14 +99,14 @@ function CreateAddress() {
               labelStyle="font-bold pb-2"
               width="w-[300px] mobile:w-full"
               options={cityList}
-              onChange={(e) => setCurrentCity(e.target.value)}
+              onChange={(e) => setCurrentCity(e)}
             />
             <Dropdown
               label="Zip Code"
               labelStyle="font-bold pb-2"
               width="w-[300px] mobile:w-full"
               options={zipCodeList}
-              onChange={(e) => setCurrentZipCode(e.target.value)}
+              onChange={(e) => setCurrentZipCode(e)}
             />
           </div>
           <div className="submit-btn flex justify-center pt-[100px]">

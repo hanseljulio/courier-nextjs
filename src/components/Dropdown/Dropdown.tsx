@@ -19,15 +19,16 @@ function Dropdown(props: DropdownProps) {
     <div className={`dropdown-div ${props.spacing ? props.spacing : ""}`}>
       <p className={props.labelStyle}>{props.label}</p>
       <select
-        className={`p-4 ${props.width} rounded`}
+        className={`p-4 ${props.width} rounded bg-amber-100`}
         name="category-dropdown"
+        value={props.value}
         onChange={(e) => {
           if (props.provinceChange) {
             props.provinceChange(e.target.value);
-          } else {
-            if (props.onChange) {
-              props.onChange(e.target.value);
-            }
+          }
+
+          if (props.onChange) {
+            props.onChange(e.target.value);
           }
         }}
       >

@@ -33,3 +33,11 @@ export interface IWalletHistory {
   date: string;
   amount: number;
 }
+
+export interface IAddress {
+  id: number;
+  address: string;
+  city: string;
+  province: string;
+  zip: string;
+}
