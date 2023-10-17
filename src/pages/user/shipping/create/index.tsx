@@ -8,6 +8,10 @@ import { BASE_URL } from "@/constants/constants";
 import PackageDimensions from "./PackageDimensions";
 import SelectionModal from "@/components/SelectionModal";
 import { IAddress } from "@/types/types";
+import PackageAddress from "./PackageAddress";
+import { useMultiStepForm } from "./UseMultiform";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
 
 function CreateShipping() {
   const [showEmptyAddress, setShowEmptyAddress] = useState<boolean>(false);
@@ -59,6 +63,16 @@ function CreateShipping() {
     checkAddress();
   }, []);
 
+  const { step, isFirstStep, back, next } = useMultiStepForm([
+    <PackageDimensions key={1} />,
+    <PackageAddress key={2} />,
+  ]);
+
+  const submit = async (e: any) => {
+    e.preventDefault();
+    next();
+  };
+
   return (
     <>
       {showEmptyAddress && (
@@ -79,8 +93,27 @@ function CreateShipping() {
 
       <div>
         <UserNav currentPage="shipping" />
-        <div className="header-section pb-8">
-          <UserHeader title="Create Shipping" />
+
+        <div className="create-shipping-div">
+          <form action="" onSubmit={submit}>
+            {step}
+            <div className="button-section flex justify-center pt-8 gap-8">
+              {!isFirstStep && (
+                <Button
+                  text="Back"
+                  styling="p-3 rounded-[8px] w-[100px] my-6 bg-amber-400  hover:bg-amber-500"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    back();
+                  }}
+                />
+              )}
+              <Button
+                text="Next"
+                styling="p-3 rounded-[8px] w-[100px] my-6 bg-amber-400  hover:bg-amber-500"
+              />
+            </div>
+          </form>
         </div>
       </div>
     </>

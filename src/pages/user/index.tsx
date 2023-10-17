@@ -32,13 +32,13 @@ function UserPage() {
         <SelectionCard
           picture="bg-create-shipping"
           title="Create Shipping"
-          description="Create your shipping label here"
+          description="Create your new shipping here"
           onClick={redirectCreateShipping}
         />
         <SelectionCard
           picture="bg-view-shipping"
-          title="View Shipping"
-          description="See a list of your shippings"
+          title="Manage Shipping"
+          description="View shipping and make payments"
         />
       </div>
     </div>

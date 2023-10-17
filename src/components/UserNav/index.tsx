@@ -113,16 +113,7 @@ function UserNav(props: UserNavProps) {
                 >
                   Address
                 </li>
-                <li
-                  onClick={redirectUserPayment}
-                  className={`${
-                    props.currentPage === "payment"
-                      ? "bg-orange-400 rounded-full hover:cursor-default"
-                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 rounded-full md:hover:bg-transparent"
-                  } px-6 py-3 text-center`}
-                >
-                  Payment
-                </li>
+
                 <li
                   onClick={redirectUserTopup}
                   className={`${

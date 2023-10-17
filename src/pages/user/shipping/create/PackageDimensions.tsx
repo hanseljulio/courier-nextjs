@@ -7,9 +7,9 @@ import Image from "next/image";
 function PackageDimensions() {
   return (
     <div>
-      <h1 className="text-[30px] font-medium pb-2 mx-[350px] mobile:mx-auto mobile:flex-col mobile:items-center mobile:text-center mobile:pb-10">
-        Package dimensions
-      </h1>
+      <div className="header-section pb-8">
+        <UserHeader title="Create Shipping - Package Dimensions" />
+      </div>
       <div className="package-form-wrapper flex justify-center items-center gap-[150px]">
         <div className="image-section mobile:hidden">
           <Image
@@ -31,6 +31,7 @@ function PackageDimensions() {
               name="createShippingLength"
               styling="pb-6"
               width="w-[300px]"
+              required
             />
             <h1 className="font-bold text-[20px]">CM</h1>
           </div>
@@ -41,6 +42,7 @@ function PackageDimensions() {
               name="createShippingWidth"
               styling="pb-6"
               width="w-[300px]"
+              required
             />
             <h1 className="font-bold text-[20px]">CM</h1>
           </div>
@@ -51,6 +53,7 @@ function PackageDimensions() {
               name="createShippingHeight"
               styling="pb-6"
               width="w-[300px]"
+              required
             />
             <h1 className="font-bold text-[20px]">CM</h1>
           </div>
@@ -61,6 +64,7 @@ function PackageDimensions() {
               name="createShippingWeight"
               styling="pb-6"
               width="w-[300px]"
+              required
             />
             <h1 className="font-bold text-[20px]">KG</h1>
           </div>
