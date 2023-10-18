@@ -18,14 +18,8 @@ function ManageAddress() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [count, setCount] = useState<number>(0);
   const [showEdit, setShowEdit] = useState<boolean>(false);
-  const [dataToEdit, setDataToEdit] = useState<IAddress>({
-    id: 0,
-    address: "",
-    province: "",
-    city: "",
-    zip: "",
-  });
   const [currentAddressId, setCurrentAddressId] = useState<string>("");
+  const [currentSelectedId, setCurrentSelectedId] = useState<number>(0);
 
   const deleteMessage = () => toast("Address successfully deleted!");
 
@@ -33,8 +27,14 @@ function ManageAddress() {
     setCurrentPage(pageNum);
   };
 
-  const toggleEdit = (data?: IAddress) => {
-    setShowEdit((prevEdit) => !prevEdit);
+  const editOff = () => {
+    setShowEdit(false);
+    getAddressData();
+  };
+
+  const editOn = (id: number) => {
+    setCurrentSelectedId(id);
+    setShowEdit(true);
   };
 
   const getAddressData = async () => {
@@ -70,8 +70,6 @@ function ManageAddress() {
 
       const addressResult = await addressResponse.json();
 
-      console.log(addressResult.addressList);
-
       const updatedAddressList = addressResult.addressList.filter(
         (data: any) => {
           return data.id !== id;
@@ -94,7 +92,11 @@ function ManageAddress() {
   return (
     <>
       {showEdit ? (
-        <EditAddress exitEditFunction={toggleEdit} /> // Need addressId, the current element id. Take the data and populate the fields
+        <EditAddress
+          exitEditFunction={editOff}
+          addressId={currentAddressId}
+          selectedId={currentSelectedId}
+        /> // Need addressId, the current element id. Take the data and populate the fields
       ) : (
         <div>
           <UserNav currentPage="address" />
@@ -122,7 +124,7 @@ function ManageAddress() {
                           city={data.city}
                           province={data.province}
                           zip={data.zip}
-                          editFunction={toggleEdit}
+                          editFunction={editOn}
                           deleteFunction={deleteAddress}
                         />
                       ))}

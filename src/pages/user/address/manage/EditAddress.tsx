@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IAddress } from "@/types/types";
 
 interface IProvince {
   province_id: string;
@@ -20,22 +21,30 @@ interface IProvince {
 
 interface EditAddressProps {
   exitEditFunction: () => void;
+  addressId: string;
+  selectedId: number;
 }
 
 function EditAddress(props: EditAddressProps) {
+  const [editData, setEditData] = useState<IAddress>({
+    id: 0,
+    address: "",
+    province: "",
+    city: "",
+    zip: "",
+  });
   const [provinceList, setProvinceList] = useState<IProvince[]>([]);
-  const [provinceId, setProvinceId] = useState<string>("");
+  const [provinceId, setProvinceId] = useState<string>("1");
   const [cityList, setCityList] = useState<string[]>([]);
   const [zipCodeList, setZipCodeList] = useState<string[]>([]);
-  const [currentAddress, setCurrentAddress] = useState<string>("");
-  const [currentProvince, setCurrentProvince] = useState<string>("");
   const [currentCity, setCurrentCity] = useState<string>("");
   const [currentZipCode, setCurrentZipCode] = useState<string>("");
 
   const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
 
-  const successMessage = () => toast("Address has been successfully edited!");
+  const editSuccessMessage = () =>
+    toast("Address has been successfully edited!");
 
   const getProvinceData = () => {
     setProvinceList(provinces.provinces);
@@ -43,7 +52,10 @@ function EditAddress(props: EditAddressProps) {
 
   const provinceChange = (newId: string) => {
     setProvinceId(newId);
-    setCurrentProvince(provinces.provinces[parseInt(newId) - 1].province);
+    setEditData({
+      ...editData,
+      province: provinces.provinces[parseInt(newId) - 1].province,
+    });
 
     let firstTime = false;
 
@@ -67,13 +79,40 @@ function EditAddress(props: EditAddressProps) {
     setZipCodeList(newZipCodeList);
   };
 
+  const getAddressData = async () => {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/userAddress/${props.addressId}`
+      );
+      const result = await response.json();
+
+      // PROBLEM: EDITDATA WAS NEVER SET SOMEHOW
+      for (let i = 0; i < result.addressList.length; i++) {
+        if (result.addressList[i].id === props.selectedId) {
+          for (let j = 0; j < provinces.provinces.length; j++) {
+            if (
+              provinces.provinces[j].province === result.addressList[i].province
+            ) {
+              provinceChange(provinces.provinces[j].province_id);
+              break;
+            }
+          }
+          setEditData(result.addressList[i]);
+          break;
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     if (stateLoginPersist.id === 0 || stateLoginPersist.isAdmin) {
       router.push("/error");
     }
 
-    if (provinceId === "") {
-      provinceChange("1");
+    if (editData.id === 0) {
+      getAddressData();
     }
     getProvinceData();
   }, [provinceId]);
@@ -82,26 +121,23 @@ function EditAddress(props: EditAddressProps) {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
-      const result = await response.json();
-
       const addressResponse = await fetch(
-        `${BASE_URL}/userAddress/${result.addressId}`
+        `${BASE_URL}/userAddress/${props.addressId}`
       );
       const addressResult = await addressResponse.json();
 
-      addressResult.addressList.push({
-        id: addressResult.addressList.length + 1,
-        address: currentAddress,
-        city: currentCity,
-        province: currentProvince,
-        zip: currentZipCode,
-      });
+      for (let i = 0; i < addressResult.addressList.length; i++) {
+        if (addressResult.addressList[i].id === props.selectedId) {
+          addressResult.addressList[i] = editData;
+          break;
+        }
+      }
 
       axios
-        .patch(`${BASE_URL}/userAddress/${result.addressId}`, addressResult)
+        .patch(`${BASE_URL}/userAddress/${props.addressId}`, addressResult)
         .then(() => {
-          successMessage();
+          //   props.exitEditFunction();
+          editSuccessMessage();
         });
     } catch (e) {
       console.log(e);
@@ -123,7 +159,10 @@ function EditAddress(props: EditAddressProps) {
               type="text"
               name="addressLine"
               width="w-[1150px] mobile:w-[350px]"
-              onChange={(e) => setCurrentAddress(e.target.value)}
+              value={editData.address}
+              onChange={(e) =>
+                setEditData({ ...editData, address: e.target.value })
+              }
               required
             />
           </div>
@@ -133,6 +172,7 @@ function EditAddress(props: EditAddressProps) {
               labelStyle="font-bold pb-2"
               width="w-[300px] mobile:w-full"
               options={provinceList}
+              value={provinceId}
               provinceChange={provinceChange}
             />
             <Dropdown
@@ -140,24 +180,26 @@ function EditAddress(props: EditAddressProps) {
               labelStyle="font-bold pb-2"
               width="w-[300px] mobile:w-full"
               options={cityList}
-              onChange={(e) => setCurrentCity(e)}
+              value={editData.city}
+              onChange={(e) => setEditData({ ...editData, city: e })}
             />
             <Dropdown
               label="Zip Code"
               labelStyle="font-bold pb-2"
               width="w-[300px] mobile:w-full"
               options={zipCodeList}
-              onChange={(e) => setCurrentZipCode(e)}
+              value={editData.zip}
+              onChange={(e) => setEditData({ ...editData, zip: e })}
             />
           </div>
           <div className="submit-btn flex justify-center pt-[100px] gap-8">
             <Button
-              text="Cancel"
+              text="Back"
               styling="p-4 mb-[50px] bg-amber-400 rounded-[10px] w-[200px] hover:bg-amber-500"
               onClick={props.exitEditFunction}
             />
             <Button
-              text="Add New Address"
+              text="Edit Address"
               styling="p-4 mb-[50px] bg-amber-400 rounded-[10px] w-[200px] hover:bg-amber-500"
             />
           </div>

@@ -238,10 +238,10 @@
         },
         {
           "id": 3,
-          "address": "This is my address test",
-          "province": "Jambi",
-          "city": "Kerinci",
-          "zip": "37319"
+          "address": "This is a toast test",
+          "province": "Bali",
+          "city": "Jembrana",
+          "zip": "80519"
         },
         {
           "id": 4,
@@ -308,10 +308,10 @@
         },
         {
           "id": 14,
-          "address": "This is my address test",
-          "province": "Jambi",
-          "city": "Kerinci",
-          "zip": "37319"
+          "address": "This is my address test third update success!",
+          "province": "Lampung",
+          "city": "Metro",
+          "zip": "34516"
         }
       ]
     },

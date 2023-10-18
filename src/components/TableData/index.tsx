@@ -11,7 +11,7 @@ interface TableDataProps {
   city: string;
   province: string;
   zip: string;
-  editFunction?: () => void;
+  editFunction?: (id: number) => void;
   deleteFunction?: (id: number) => void;
 }
 
@@ -71,7 +71,14 @@ function TableData(props: TableDataProps) {
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
         >
           <div className="button-area flex justify-around mobile:gap-6">
-            <button className="text-[25px]" onClick={props.editFunction}>
+            <button
+              className="text-[25px]"
+              onClick={() => {
+                if (props.editFunction) {
+                  props.editFunction(props.id);
+                }
+              }}
+            >
               <AiOutlineEdit className="text-[#D84727] hover:text-amber-500" />
             </button>
             <button className="text-[25px]" onClick={showDeleteWarning}>
