@@ -11,12 +11,17 @@ interface TableDataProps {
   city: string;
   province: string;
   zip: string;
+  editFunction?: () => void;
+  deleteFunction?: (id: number) => void;
 }
 
 function TableData(props: TableDataProps) {
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
 
-  const deleteAddress = async () => {
+  const deleteAddress = () => {
+    if (props.deleteFunction) {
+      props.deleteFunction(props.id);
+    }
     setShowDeleteModal(false);
   };
 
@@ -31,7 +36,9 @@ function TableData(props: TableDataProps) {
           solution="There's no going back. Are you sure you want to proceed?"
           solutionBtn="Delete Address"
           redirectFunction={deleteAddress}
-          exitFunction={() => setShowDeleteModal(false)}
+          exitFunction={() => {
+            setShowDeleteModal(false);
+          }}
         />
       )}
       <tr className={`${props.index % 2 === 0 ? "bg-white" : "bg-amber-100"}`}>
@@ -63,8 +70,8 @@ function TableData(props: TableDataProps) {
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
         >
-          <div className="button-area flex justify-around">
-            <button className="text-[25px]">
+          <div className="button-area flex justify-around mobile:gap-6">
+            <button className="text-[25px]" onClick={props.editFunction}>
               <AiOutlineEdit className="text-[#D84727] hover:text-amber-500" />
             </button>
             <button className="text-[25px]" onClick={showDeleteWarning}>
