@@ -202,15 +202,6 @@ function UserRegister() {
             required={true}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
-          <Input
-            label="Referral code"
-            type="text"
-            name="registerReferralCode"
-            width="w-[300px]"
-            styling="pb-5"
-            placeholder="Leave it blank if you don't have one"
-            onChange={(e) => setReferralCode(e.target.value)}
-          />
           <Button
             text="Register"
             styling="bg-blue-400 p-3 rounded-[8px] w-full my-6 hover:bg-blue-600"
