@@ -31,6 +31,7 @@ function TableData(props: TableDataProps) {
           solution="There's no going back. Are you sure you want to proceed?"
           solutionBtn="Delete Address"
           redirectFunction={deleteAddress}
+          exitFunction={() => setShowDeleteModal(false)}
         />
       )}
       <tr className={`${props.index % 2 === 0 ? "bg-white" : "bg-amber-100"}`}>

@@ -11,7 +11,7 @@ function ManageAddress() {
       <div className="header-section pb-8">
         <UserHeader title="Manage Address" />
       </div>
-      <div className="table-section mx-[350px]">
+      <div className="table-section mx-[350px] mobile:mx-auto mobile:overflow-scroll">
         <table className="table-area w-full">
           <tbody>
             <TableHead />

@@ -7,12 +7,13 @@ interface WarningModalProps {
   solution: string;
   solutionBtn: string;
   redirectFunction?: () => void;
+  exitFunction?: () => void;
 }
 
 function WarningModal(props: WarningModalProps) {
   return (
     <div className={`${styles.modal}`}>
-      <div className={`${styles.overlay}`}></div>
+      <div className={`${styles.overlay}`} onClick={props.exitFunction}></div>
       <div className={`${styles.modalContent} ${styles.popout}`}>
         <div className="header-confirm pt-[10px] pl-[23px] pb-[8px] flex justify-between">
           <div className="title-area">
