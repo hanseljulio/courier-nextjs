@@ -7,11 +7,10 @@ import { useRouter } from "next/router";
 import { BASE_URL } from "@/constants/constants";
 import PackageDimensions from "./PackageDimensions";
 import SelectionModal from "@/components/SelectionModal";
-import { IAddress } from "@/types/types";
+import { DeepPartial, IAddress, IShippingData } from "@/types/types";
 import PackageAddress from "./PackageAddress";
 import { useMultiStepForm } from "./UseMultiform";
 import Button from "@/components/Button";
-import Input from "@/components/Input";
 
 function CreateShipping() {
   const [showEmptyAddress, setShowEmptyAddress] = useState<boolean>(false);
@@ -23,6 +22,21 @@ function CreateShipping() {
     city: "",
     province: "",
     zip: "",
+  });
+  const [shippingData, setShippingData] = useState<IShippingData>({
+    length: 0,
+    width: 0,
+    height: 0,
+    weight: 0,
+    start: selectedAddress,
+    destAddress: "",
+    destCity: "",
+    destProvince: "",
+    destZip: "",
+    category: "",
+    insurance: false,
+    sameDay: false,
+    twoDay: false,
   });
 
   const selectStartingAddress = (address: IAddress) => {
@@ -63,14 +77,24 @@ function CreateShipping() {
     checkAddress();
   }, []);
 
-  const { step, isFirstStep, back, next } = useMultiStepForm([
-    <PackageDimensions key={1} />,
-    <PackageAddress key={2} />,
+  const updateFields = (fields: Partial<IShippingData>) => {
+    setShippingData((prevData) => {
+      return { ...prevData, ...fields };
+    });
+  };
+
+  const { step, isFirstStep, back, next, isLastStep } = useMultiStepForm([
+    <PackageDimensions key={1} {...shippingData} updateFields={updateFields} />,
+    <PackageAddress key={2} {...shippingData} updateFields={updateFields} />,
   ]);
 
   const submit = async (e: any) => {
     e.preventDefault();
-    next();
+    if (!isLastStep) {
+      return next();
+    }
+
+    console.log(shippingData);
   };
 
   return (
@@ -109,7 +133,7 @@ function CreateShipping() {
                 />
               )}
               <Button
-                text="Next"
+                text={`${!isLastStep ? "Next" : "Submit"}`}
                 styling="p-3 rounded-[8px] w-[100px] my-6 bg-amber-400  hover:bg-amber-500"
               />
             </div>

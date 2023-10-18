@@ -4,7 +4,18 @@ import UserHeader from "@/components/HeaderSection";
 import Input from "@/components/Input";
 import Image from "next/image";
 
-function PackageDimensions() {
+interface PackageDimensionsData {
+  length: number;
+  width: number;
+  height: number;
+  weight: number;
+}
+
+type PackageDimensionsProps = PackageDimensionsData & {
+  updateFields: (fields: Partial<PackageDimensionsData>) => void;
+};
+
+function PackageDimensions(props: PackageDimensionsProps) {
   return (
     <div>
       <div className="header-section pb-8">
@@ -31,6 +42,8 @@ function PackageDimensions() {
               name="createShippingLength"
               styling="pb-6"
               width="w-[300px]"
+              value={props.length.toString()}
+              onChange={(e) => props.updateFields({ length: e.target.value })}
               required
             />
             <h1 className="font-bold text-[20px]">CM</h1>
@@ -42,6 +55,8 @@ function PackageDimensions() {
               name="createShippingWidth"
               styling="pb-6"
               width="w-[300px]"
+              value={props.width.toString()}
+              onChange={(e) => props.updateFields({ width: e.target.value })}
               required
             />
             <h1 className="font-bold text-[20px]">CM</h1>
@@ -53,6 +68,8 @@ function PackageDimensions() {
               name="createShippingHeight"
               styling="pb-6"
               width="w-[300px]"
+              value={props.height.toString()}
+              onChange={(e) => props.updateFields({ height: e.target.value })}
               required
             />
             <h1 className="font-bold text-[20px]">CM</h1>
@@ -64,6 +81,8 @@ function PackageDimensions() {
               name="createShippingWeight"
               styling="pb-6"
               width="w-[300px]"
+              value={props.weight.toString()}
+              onChange={(e) => props.updateFields({ weight: e.target.value })}
               required
             />
             <h1 className="font-bold text-[20px]">KG</h1>

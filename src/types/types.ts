@@ -48,3 +48,23 @@ export interface IAddress {
   province: string;
   zip: string;
 }
+
+export type DeepPartial<K> = {
+  [attr in keyof K]?: K[attr] extends object ? DeepPartial<K[attr]> : K[attr];
+};
+
+export interface IShippingData {
+  length: number;
+  width: number;
+  height: number;
+  weight: number;
+  start: IAddress;
+  destAddress: string;
+  destCity: string;
+  destProvince: string;
+  destZip: string;
+  category: string;
+  insurance: boolean;
+  sameDay: boolean;
+  twoDay: boolean;
+}

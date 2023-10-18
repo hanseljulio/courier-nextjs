@@ -13,6 +13,7 @@ interface InputProps {
   disabled?: boolean;
   required?: boolean;
   pattern?: string;
+  checked?: boolean;
 }
 
 function Input(props: InputProps) {
@@ -40,6 +41,7 @@ function Input(props: InputProps) {
           disabled={props.disabled ? true : false}
           required={!props.required ? false : true}
           pattern={props.pattern}
+          checked={props.checked}
         />
       </div>
     </div>
