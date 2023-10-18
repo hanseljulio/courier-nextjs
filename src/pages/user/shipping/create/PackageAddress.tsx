@@ -6,8 +6,6 @@ import cities from "@/database/cities.json";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import UserHeader from "@/components/HeaderSection";
-import { IAddress } from "@/types/types";
-import { DeepPartial } from "@/types/types";
 
 interface IProvince {
   province_id: string;

@@ -14,6 +14,10 @@ function UserAddress() {
     router.push("/user/address/create");
   };
 
+  const redirectManageAddress = () => {
+    router.push("/user/address/manage");
+  };
+
   return (
     <div>
       <UserNav currentPage="address" />
@@ -33,6 +37,7 @@ function UserAddress() {
           picture="bg-view-address"
           title="Manage Address"
           description="View or edit your addresses here"
+          onClick={redirectManageAddress}
         />
       </div>
     </div>
