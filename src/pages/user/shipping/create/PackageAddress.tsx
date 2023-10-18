@@ -113,7 +113,13 @@ function PackageAddress(props: PackageAddressProps) {
 
     if (provinceId === "") {
       provinceChange("1");
+      props.updateFields({
+        destProvince: "Bali",
+        destCity: "Badung",
+        destZip: "80351",
+      });
     }
+
     getProvinceData();
   }, [provinceId]);
   return (
@@ -142,23 +148,21 @@ function PackageAddress(props: PackageAddressProps) {
             width="w-[300px] mobile:w-full"
             options={provinceList}
             provinceChange={provinceChange}
-            onChange={() =>
-              props.updateFields({ destProvince: currentProvince })
-            }
+            onChange={(e) => props.updateFields({ destProvince: e })}
           />
           <Dropdown
             label="City"
             labelStyle="font-bold pb-2"
             width="w-[300px] mobile:w-full"
             options={cityList}
-            onChange={() => props.updateFields({ destCity: currentCity })}
+            onChange={(e) => props.updateFields({ destCity: e })}
           />
           <Dropdown
             label="Zip Code"
             labelStyle="font-bold pb-2"
             width="w-[300px] mobile:w-full"
             options={zipCodeList}
-            onChange={() => props.updateFields({ destZip: currentZipCode })}
+            onChange={(e) => props.updateFields({ destZip: e })}
           />
         </div>
         <div className="category-addon-section mobile:mx-[30px]">

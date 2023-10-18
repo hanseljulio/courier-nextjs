@@ -41,6 +41,10 @@ function CreateShipping() {
 
   const selectStartingAddress = (address: IAddress) => {
     setSelectedAddress(address);
+    setShippingData({
+      ...shippingData,
+      start: address,
+    });
     setAddressSelection(false);
   };
 
