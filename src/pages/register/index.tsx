@@ -52,6 +52,7 @@ function UserRegister() {
         referralSelfId: `referral-${referralId}`,
         walletId: `wallet-${referralId}`,
         addressId: `address-${referralId}`,
+        shippingId: `shipping-${referralId}`,
         role: "user",
       }),
     };
@@ -93,6 +94,18 @@ function UserRegister() {
       }),
     };
 
+    const newShipping = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: `shipping-${referralId}`,
+        userId: randomId,
+        shippingList: [],
+      }),
+    };
+
     try {
       const response = await fetch(`${BASE_URL}/users`, newUser);
 
@@ -121,6 +134,15 @@ function UserRegister() {
       );
 
       if (!addressResponse.ok) {
+        throw new Error(response.statusText);
+      }
+
+      const shippingResponse = await fetch(
+        `${BASE_URL}/userShipping`,
+        newShipping
+      );
+
+      if (!shippingResponse.ok) {
         throw new Error(response.statusText);
       }
 

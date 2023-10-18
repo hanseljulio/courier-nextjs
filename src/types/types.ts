@@ -19,6 +19,7 @@ export interface IUser {
   referralSelfId: string;
   walletId: string;
   addressId: string;
+  shippingId: string;
   role: string;
 }
 

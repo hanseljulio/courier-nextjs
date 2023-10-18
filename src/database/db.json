@@ -20,6 +20,7 @@
       "referralSelfId": "referral-1",
       "walletId": "wallet-1",
       "addressId": "address-1",
+      "shippingId": "shipping-1",
       "role": "user"
     },
     {
@@ -32,6 +33,7 @@
       "referralSelfId": "referral-2",
       "walletId": "wallet-2",
       "addressId": "address-2",
+      "shippingId": "shipping-2",
       "role": "user",
       "id": 3
     },
@@ -46,6 +48,7 @@
       "referralSelfId": "referral-89475",
       "walletId": "wallet-89475",
       "addressId": "address-89475",
+      "shippingId": "shipping-89475",
       "role": "user"
     },
     {
@@ -59,6 +62,7 @@
       "referralSelfId": "referral-91486",
       "walletId": "wallet-91486",
       "addressId": "address-91486",
+      "shippingId": "shipping-91486",
       "role": "user"
     },
     {
@@ -72,6 +76,21 @@
       "referralSelfId": "referral-39271",
       "walletId": "wallet-39271",
       "addressId": "address-39271",
+      "shippingId": "shipping-39271",
+      "role": "user"
+    },
+    {
+      "id": 20474,
+      "email": "shippingtest@mail.com",
+      "password": "password",
+      "fullname": "Shipping Test",
+      "phone": "+621234567890",
+      "photo": "",
+      "referral": "",
+      "referralSelfId": "referral-43773",
+      "walletId": "wallet-43773",
+      "addressId": "address-43773",
+      "shippingId": "shipping-43773",
       "role": "user"
     }
   ],
@@ -100,6 +119,11 @@
       "id": "referral-39271",
       "userId": 12796,
       "referral": "28z481"
+    },
+    {
+      "id": "referral-43773",
+      "userId": 20474,
+      "referral": "d2nweg"
     }
   ],
   "userWallet": [
@@ -185,12 +209,18 @@
       "userId": 12796,
       "balance": 0,
       "history": []
+    },
+    {
+      "id": "wallet-43773",
+      "userId": 20474,
+      "balance": 0,
+      "history": []
     }
   ],
   "userAddress": [
     {
       "id": "address-1",
-      "userId": 1,
+      "userId": 2,
       "addressList": [
         {
           "id": 1,
@@ -251,6 +281,66 @@
           "zip": "55812"
         }
       ]
+    },
+    {
+      "id": "address-43773",
+      "userId": 20474,
+      "addressList": []
+    }
+  ],
+  "userShipping": [
+    {
+      "id": "shipping-1",
+      "userId": 2,
+      "shippingList": [
+        {
+          "id": 1,
+          "length": "100",
+          "width": "200",
+          "height": "300",
+          "weight": "400",
+          "start": {
+            "id": 1,
+            "address": "This is my address test",
+            "province": "Jambi",
+            "city": "Kerinci",
+            "zip": "37319"
+          },
+          "destAddress": "Address-Test",
+          "destCity": "Bengkulu Utara",
+          "destProvince": "4",
+          "destZip": "38519",
+          "category": "Test",
+          "insurance": true,
+          "sameDay": true,
+          "twoDay": false
+        }
+      ]
+    },
+    {
+      "id": "shipping-2",
+      "userId": 3,
+      "shippingList": []
+    },
+    {
+      "id": "shipping-89475",
+      "userId": 12667,
+      "shippingList": []
+    },
+    {
+      "id": "shipping-91486",
+      "userId": 2575,
+      "shippingList": []
+    },
+    {
+      "id": "shipping-39271",
+      "userId": 12796,
+      "shippingList": []
+    },
+    {
+      "id": "shipping-43773",
+      "userId": 20474,
+      "shippingList": []
     }
   ]
 }
