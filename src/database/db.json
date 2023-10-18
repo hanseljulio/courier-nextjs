@@ -285,7 +285,15 @@
     {
       "id": "address-43773",
       "userId": 20474,
-      "addressList": []
+      "addressList": [
+        {
+          "id": 1,
+          "address": "Jalan Mega Kuningan Barat III Lot 10.1-6, RT.3/RW.3",
+          "city": "Jakarta Selatan",
+          "province": "DKI Jakarta",
+          "zip": "12230"
+        }
+      ]
     }
   ],
   "userShipping": [
@@ -340,7 +348,29 @@
     {
       "id": "shipping-43773",
       "userId": 20474,
-      "shippingList": []
+      "shippingList": [
+        {
+          "length": "100",
+          "width": "200",
+          "height": "300",
+          "weight": "400",
+          "start": {
+            "id": 1,
+            "address": "Jalan Mega Kuningan Barat III Lot 10.1-6, RT.3/RW.3",
+            "city": "Jakarta Selatan",
+            "province": "DKI Jakarta",
+            "zip": "12230"
+          },
+          "destAddress": "Lapangan Medan Merdeka RT.5/RW.2, Kelurahan Gambir, Kecamatan Gambir,",
+          "destCity": "Jakarta Pusat",
+          "destProvince": "6",
+          "destZip": "10540",
+          "category": "Bomb",
+          "insurance": true,
+          "sameDay": true,
+          "twoDay": false
+        }
+      ]
     }
   ]
 }

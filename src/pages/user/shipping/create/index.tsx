@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import UserNav from "@/components/UserNav";
-import UserHeader from "@/components/HeaderSection";
 import WarningModal from "@/components/WarningModal";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import { BASE_URL } from "@/constants/constants";
 import PackageDimensions from "./PackageDimensions";
 import SelectionModal from "@/components/SelectionModal";
-import { DeepPartial, IAddress, IShippingData } from "@/types/types";
+import { IAddress, IShippingData } from "@/types/types";
 import PackageAddress from "./PackageAddress";
 import { useMultiStepForm } from "./UseMultiform";
 import Button from "@/components/Button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 function CreateShipping() {
   const [showEmptyAddress, setShowEmptyAddress] = useState<boolean>(false);
@@ -92,13 +94,57 @@ function CreateShipping() {
     <PackageAddress key={2} {...shippingData} updateFields={updateFields} />,
   ]);
 
+  const lengthMessage = () => toast("Length must be greater than 0!");
+  const widthMessage = () => toast("Width must be greater than 0!");
+  const heightMessage = () => toast("Height must be greater than 0!");
+  const weightMessage = () => toast("Weight must be greater than 0!");
+  const successMessage = () =>
+    toast("Shipping created! Redirecting you to your shipping list...");
+
   const submit = async (e: any) => {
     e.preventDefault();
     if (!isLastStep) {
+      if (shippingData.length <= 0) {
+        lengthMessage();
+        return;
+      }
+      if (shippingData.width <= 0) {
+        widthMessage();
+        return;
+      }
+      if (shippingData.height <= 0) {
+        heightMessage();
+        return;
+      }
+      if (shippingData.weight <= 0) {
+        weightMessage();
+        return;
+      }
+
       return next();
     }
 
     console.log(shippingData);
+
+    try {
+      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
+      const result = await response.json();
+
+      const shippingResponse = await fetch(
+        `${BASE_URL}/userShipping/${result.shippingId}`
+      );
+      const shippingResult = await shippingResponse.json();
+
+      shippingResult.shippingList.push(shippingData);
+
+      axios
+        .patch(`${BASE_URL}/userShipping/${result.shippingId}`, shippingResult)
+        .then(() => {
+          successMessage();
+        });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -121,7 +167,7 @@ function CreateShipping() {
 
       <div>
         <UserNav currentPage="shipping" />
-
+        <ToastContainer />
         <div className="create-shipping-div">
           <form action="" onSubmit={submit}>
             {step}

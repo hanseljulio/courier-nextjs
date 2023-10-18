@@ -1,5 +1,4 @@
 import React from "react";
-import UserNav from "@/components/UserNav";
 import UserHeader from "@/components/HeaderSection";
 import Input from "@/components/Input";
 import Image from "next/image";
