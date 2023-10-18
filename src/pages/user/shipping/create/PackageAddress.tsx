@@ -20,6 +20,7 @@ interface PackageAddressData {
   destProvince: string;
   destZip: string;
   category: string;
+  description: string;
   insurance: boolean;
   sameDay: boolean;
   twoDay: boolean;
@@ -166,14 +167,23 @@ function PackageAddress(props: PackageAddressProps) {
           />
         </div>
         <div className="category-addon-section mobile:mx-[30px]">
-          <div className="category-section pb-8 mobile:flex mobile:justify-center">
+          <div className="flex justify-around category-section pb-8 mobile:flex-col mobile:justify-center">
+            <Dropdown
+              label="Category"
+              labelStyle="font-bold pb-2"
+              width="w-[350px] mobile:w-full"
+              options={["Personal Items", "Medical Supplies", "Food", "Others"]}
+              spacing="pb-8"
+              onChange={(e) => props.updateFields({ category: e })}
+            />
             <Input
-              label="Brief description of item:"
+              label="Item Description"
               type="text"
               name="sendCategory"
-              width="w-[1150px] mobile:w-[350px]"
-              onChange={(e) => props.updateFields({ category: e.target.value })}
-              required
+              width="w-[350px] mobile:w-full"
+              onChange={(e) =>
+                props.updateFields({ description: e.target.value })
+              }
             />
           </div>
         </div>

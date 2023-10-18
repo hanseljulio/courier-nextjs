@@ -26,6 +26,7 @@ function CreateShipping() {
     zip: "",
   });
   const [shippingData, setShippingData] = useState<IShippingData>({
+    id: 0,
     length: 0,
     width: 0,
     height: 0,
@@ -36,9 +37,11 @@ function CreateShipping() {
     destProvince: "",
     destZip: "",
     category: "",
+    description: "",
     insurance: false,
     sameDay: false,
     twoDay: false,
+    alreadyPaid: false,
   });
 
   const selectStartingAddress = (address: IAddress) => {
@@ -124,8 +127,6 @@ function CreateShipping() {
       return next();
     }
 
-    console.log(shippingData);
-
     try {
       const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
       const result = await response.json();
@@ -134,6 +135,11 @@ function CreateShipping() {
         `${BASE_URL}/userShipping/${result.shippingId}`
       );
       const shippingResult = await shippingResponse.json();
+
+      setShippingData({
+        ...shippingData,
+        id: shippingResult.shippingList.length + 1,
+      });
 
       shippingResult.shippingList.push(shippingData);
 

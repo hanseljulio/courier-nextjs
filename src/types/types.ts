@@ -55,6 +55,7 @@ export type DeepPartial<K> = {
 };
 
 export interface IShippingData {
+  id: number;
   length: number;
   width: number;
   height: number;
@@ -65,7 +66,9 @@ export interface IShippingData {
   destProvince: string;
   destZip: string;
   category: string;
+  description: string;
   insurance: boolean;
   sameDay: boolean;
   twoDay: boolean;
+  alreadyPaid: boolean;
 }
