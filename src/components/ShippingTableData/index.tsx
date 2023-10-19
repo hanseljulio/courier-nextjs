@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styles from "@/styles/Table.module.css";
-import { BsTrash, BsTypeH1 } from "react-icons/bs";
-import { AiOutlineEdit } from "react-icons/ai";
+import Payment from "@/pages/user/shipping/manage/Payment";
 
-interface TableDataProps {
+interface ShippingTableDataProps {
   index: number;
   id: number;
   startAddress: string;
@@ -11,11 +10,29 @@ interface TableDataProps {
   date: string;
   description: string;
   status: boolean;
+  shippingId: string;
 }
 
-function ShippingTableData(props: TableDataProps) {
+function ShippingTableData(props: ShippingTableDataProps) {
+  const [showPayment, setShowPayment] = useState<boolean>(false);
+
+  const paymentOn = () => {
+    setShowPayment(true);
+  };
+
+  const paymentOff = () => {
+    setShowPayment(false);
+  };
+
   return (
     <>
+      {showPayment && (
+        <Payment
+          shippingId={props.shippingId}
+          selectedId={props.id}
+          exitPayment={paymentOff}
+        />
+      )}
       <tr className={`${props.index % 2 === 0 ? "bg-white" : "bg-amber-100"}`}>
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
@@ -48,7 +65,7 @@ function ShippingTableData(props: TableDataProps) {
           {!props.status ? (
             <h1
               className="text-red-500 hover:cursor-pointer"
-              onClick={() => alert("Pay up!")}
+              onClick={paymentOn}
             >
               UNPAID
             </h1>

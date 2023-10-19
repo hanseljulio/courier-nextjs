@@ -21,6 +21,23 @@
       "walletId": "wallet-1",
       "addressId": "address-1",
       "shippingId": "shipping-1",
+      "vouchers": [
+        {
+          "id": 1,
+          "code": "50-xab-200000",
+          "description": "50% discount if total is above Rp. 200.000,00"
+        },
+        {
+          "id": 2,
+          "code": "10-xab-150000",
+          "description": "10% discount if total is above Rp. 150.000,00"
+        },
+        {
+          "id": 3,
+          "code": "100-shp-250000",
+          "description": "Free shipping if total is above Rp. 250.000,00"
+        }
+      ],
       "role": "user"
     },
     {
@@ -130,7 +147,7 @@
     {
       "id": "wallet-1",
       "userId": 2,
-      "balance": 150000,
+      "balance": 200000,
       "history": [
         {
           "id": 1,
@@ -141,6 +158,11 @@
           "id": 2,
           "date": "Tue Oct 17 2023 15:21:27 GMT+0700 (Western Indonesia Time)",
           "amount": 100000
+        },
+        {
+          "id": 3,
+          "date": "Thu Oct 19 2023 14:51:46 GMT+0700 (Western Indonesia Time)",
+          "amount": 50000
         }
       ]
     },
@@ -537,6 +559,23 @@
           "alreadyPaid": false
         }
       ]
+    }
+  ],
+  "userVouchers": [
+    {
+      "id": 1,
+      "code": "50-xab-200000",
+      "description": "50% discount if total is above Rp. 200.000,00"
+    },
+    {
+      "id": 2,
+      "code": "10-xab-150000",
+      "description": "10% discount if total is above Rp. 150.000,00"
+    },
+    {
+      "id": 3,
+      "code": "100-shp-250000",
+      "description": "Free shipping if total is above Rp. 250.000,00"
     }
   ]
 }

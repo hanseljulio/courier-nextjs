@@ -17,7 +17,6 @@ function ManageShipping() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [count, setCount] = useState<number>(0);
   const [currentShippingId, setCurrentShippingId] = useState<string>("");
-  const [currentSelectedId, setCurrentSelectedId] = useState<number>(0);
 
   const movePage = (pageNum: number) => {
     setCurrentPage(pageNum);
@@ -116,6 +115,7 @@ function ManageShipping() {
                           data.description ? data.description : "No description"
                         }`}
                         status={data.alreadyPaid}
+                        shippingId={currentShippingId}
                       />
                     ))}
                   </tbody>

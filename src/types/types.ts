@@ -100,3 +100,9 @@ export function useDebounce<Func extends (...args: any[]) => void>(
 
   return debouncedFunction;
 }
+
+export interface IVouchers {
+  id: number;
+  code: string;
+  description: string;
+}
