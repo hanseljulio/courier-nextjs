@@ -46,7 +46,12 @@ function ShippingTableData(props: TableDataProps) {
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
         >
           {!props.status ? (
-            <h1 className="text-red-500">UNPAID</h1>
+            <h1
+              className="text-red-500 hover:cursor-pointer"
+              onClick={() => alert("Pay up!")}
+            >
+              UNPAID
+            </h1>
           ) : (
             <h1 className="text-green-500">PAID</h1>
           )}

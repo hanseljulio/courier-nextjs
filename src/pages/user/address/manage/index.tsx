@@ -53,7 +53,7 @@ function ManageAddress() {
 
       const filteredArray = addressResult.addressList.filter(
         (data: IAddress) => {
-          return data.address.includes(search);
+          return data.address.toLowerCase().includes(search);
         }
       );
 

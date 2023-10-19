@@ -38,6 +38,7 @@ function CreateShipping() {
     destZip: "",
     category: "",
     description: "",
+    date: "",
     insurance: false,
     sameDay: false,
     twoDay: false,
@@ -139,6 +140,7 @@ function CreateShipping() {
       setShippingData({
         ...shippingData,
         id: shippingResult.shippingList.length + 1,
+        date: new Date().toString(),
       });
 
       shippingResult.shippingList.push(shippingData);

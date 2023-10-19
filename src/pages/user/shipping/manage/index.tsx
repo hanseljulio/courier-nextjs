@@ -8,6 +8,7 @@ import ShippingTableData from "@/components/ShippingTableData";
 import Pagination from "@/components/Pagination";
 import { useStoreLoginPersist } from "@/store/store";
 import { BASE_URL } from "@/constants/constants";
+import provinces from "@/database/provinces.json";
 
 function ManageShipping() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -44,7 +45,8 @@ function ManageShipping() {
 
       const filteredArray = shippingResult.shippingList.filter(
         (data: IShippingData) => {
-          return data.description.includes(search);
+          const mergedDescription = `${data.category} - ${data.description}`;
+          return mergedDescription.toLowerCase().includes(search);
         }
       );
 
@@ -66,19 +68,26 @@ function ManageShipping() {
     getShippingData();
   }, [currentPage, search]);
 
+  const getProvince = (id: string) => {
+    return provinces.provinces[parseInt(id) - 1].province;
+  };
+
   return (
     <>
       <div>
         <UserNav currentPage="shipping" />
         <div className="header-section flex items-center pb-8 mobile:flex-col">
-          <UserHeader title="Manage Shipping" />
+          <UserHeader
+            title="Manage Shipping"
+            description="To pay for a shipping, click on the word 'UNPAID'. Otherwise you're good!"
+          />
           <Input
             label=""
             type="text"
             name="search"
-            styling="mt-8 ml-[340px] mobile:mx-auto"
+            styling="mt-8 ml-[40px] mobile:mx-auto"
             width="w-[300px]"
-            placeholder="Search shipping here"
+            placeholder="Search shipping description here"
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
@@ -93,32 +102,22 @@ function ManageShipping() {
                 <table className="table-area w-full">
                   <tbody>
                     <ShippingTableHead />
-                    <ShippingTableData
-                      id={1}
-                      index={1}
-                      startAddress="Jalan Mega Kuningan Barat III Lot 10.1-6, RT.3/RW.3"
-                      destAddress="Lapangan Medan Merdeka RT.5/RW.2, Kelurahan Gambir, Kecamatan Gambir"
-                      date={dateConverter(
-                        new Date(
-                          "Mon Oct 19 2023 13:43:55 GMT+0700 (Western Indonesia Time)"
-                        )
-                      )}
-                      description="Other - Bomb"
-                      status={false}
-                    />
-                    <ShippingTableData
-                      id={2}
-                      index={2}
-                      startAddress="Jalan Mega Kuningan Barat III Lot 10.1-6, RT.3/RW.3"
-                      destAddress="Lapangan Medan Merdeka RT.5/RW.2, Kelurahan Gambir, Kecamatan Gambir"
-                      date={dateConverter(
-                        new Date(
-                          "Mon Oct 19 2023 13:43:55 GMT+0700 (Western Indonesia Time)"
-                        )
-                      )}
-                      description="Other - Bomb"
-                      status={true}
-                    />
+                    {shippingData.map((data, index) => (
+                      <ShippingTableData
+                        key={index}
+                        id={data.id}
+                        index={data.id}
+                        startAddress={`${data.start.address}, ${data.start.city}, ${data.start.province} ${data.start.zip}`}
+                        destAddress={`${data.destAddress}, ${
+                          data.destCity
+                        }, ${getProvince(data.destProvince)} ${data.destZip}`}
+                        date={dateConverter(new Date(data.date))}
+                        description={`${data.category} - ${
+                          data.description ? data.description : "No description"
+                        }`}
+                        status={data.alreadyPaid}
+                      />
+                    ))}
                   </tbody>
                 </table>
               </div>

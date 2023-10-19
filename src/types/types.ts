@@ -67,6 +67,7 @@ export interface IShippingData {
   destZip: string;
   category: string;
   description: string;
+  date: string;
   insurance: boolean;
   sameDay: boolean;
   twoDay: boolean;
