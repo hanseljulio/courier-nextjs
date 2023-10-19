@@ -91,17 +91,10 @@ function Payment(props: PaymentProps) {
       if (shippingResult.shippingList[props.selectedId - 1].twoDay) {
         setAddonsTotal((prevAddOn) => prevAddOn + 30000);
       }
-
-      //   if (basePrice + shipping + addonsTotal + discount > userBalance) {
-      //     console.log("TRUE");
-      //     balanceNotEnoughMessage();
-      //   }
     } catch (e) {
       console.log(e);
     }
   };
-
-  //   console.log("TOTALCOST: " + totalCost);
 
   useEffect(() => {
     getShippingData();
@@ -154,7 +147,7 @@ function Payment(props: PaymentProps) {
                 }, ${shippingData.destZip}`}</h1>
               </div>
             </div>
-            <div className="order-size-details text-center pb-6 text-slate-900">
+            <div className="order-size-details text-center pb-6 text-slate-900 mobile:text-[14px]">
               <h1>{`Dimensions: ${shippingData.length}cm x ${shippingData.width}cm x ${shippingData.height}cm, Weight: ${shippingData.weight}kg`}</h1>
               <h1>{`Category: ${shippingData.category}, Description: ${
                 shippingData.description
@@ -163,8 +156,8 @@ function Payment(props: PaymentProps) {
               } `}</h1>
             </div>
           </div>
-          <div className="pricing-area flex ">
-            <div className="bill-section p-8 border-r-2 border-slate-300">
+          <div className="pricing-area flex mobile:flex-col mobile:text-[12px]">
+            <div className="bill-section p-8 border-r-2 border-slate-300 mobile:text-center">
               <h1 className="underline text-[30px]">TOTAL PRICE</h1>
               <h1 className="py-3">
                 <pre>Base Price: Rp. {currencyConverter(basePrice)}</pre>
@@ -172,23 +165,23 @@ function Payment(props: PaymentProps) {
               <h1 className="py-3">
                 <pre>Shipping total: Rp. {currencyConverter(shipping)}</pre>
               </h1>
-              <h1 className="py-3">
+              <h1 className="py-3 mobile:hidden">
                 <pre>Addons: Rp. {currencyConverter(addonsTotal)}</pre>
               </h1>
               {shippingData.insurance ? (
-                <h1 className="py-3 ml-3">
+                <h1 className="py-3 ml-3 mobile:ml-0">
                   <pre>Insurance: + Rp 5.000,00</pre>
                 </h1>
               ) : null}
               {shippingData.sameDay ? (
                 <pre>
-                  <h1 className="py-3 ml-3">
+                  <h1 className="py-3 ml-3 mobile:ml-0">
                     <pre>Same-day delivery: + Rp 50.000,00</pre>
                   </h1>
                 </pre>
               ) : null}
               {shippingData.twoDay ? (
-                <h1 className="py-3 ml-3">
+                <h1 className="py-3 ml-3 mobile:ml-0">
                   <pre>Two-day delivery: + Rp. 30.000,00</pre>
                 </h1>
               ) : null}
@@ -201,23 +194,23 @@ function Payment(props: PaymentProps) {
                 </h1>
               ) : null}
               <br />
-              <h1 className="py-3 text-[40px]">
+              <h1 className="py-3 text-[40px] mobile:text-[25px]">
                 Rp. {currencyConverter(totalCost)}
               </h1>
             </div>
-            <div className="referral-voucher-section w-full p-10">
-              <div className="referral-section text-center">
+            <div className="referral-voucher-section w-full p-10 mobile:p-0 ">
+              <div className="referral-section text-center mobile:mx-auto">
                 <Input
                   label="Got a referral?"
                   type="text"
                   name="search"
                   placeholder="Use it here!"
-                  styling="pb-8 mobile:mx-auto"
-                  width="w-[300px]"
+                  styling="pb-8"
+                  width="w-[300px] mobile:w-[250px]"
                 />
               </div>
               <h1 className="text-center pb-4">Available vouchers:</h1>
-              <div className="vouchers-section flex justify-center gap-4">
+              <div className="vouchers-section flex justify-center gap-4 mobile:flex-col">
                 {voucherList.map((voucher, index) => {
                   return (
                     <div key={index} className="text-center">
@@ -229,7 +222,7 @@ function Payment(props: PaymentProps) {
                   );
                 })}
               </div>
-              <div className="pay-section flex items-center justify-center gap-10 mt-[43px]">
+              <div className="pay-section flex items-center justify-center gap-10 mt-[43px] mobile:flex-col">
                 <h1>Your balance: Rp. {currencyConverter(userBalance)}</h1>
                 <Button
                   text="Pay"
