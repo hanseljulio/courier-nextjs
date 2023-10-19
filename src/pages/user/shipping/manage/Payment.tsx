@@ -59,6 +59,8 @@ function Payment(props: PaymentProps) {
   const balanceNotEnoughMessage = () =>
     toast("Insufficient balance! Add some more money then come back here!");
 
+  console.log(basePrice);
+
   const getShippingData = async () => {
     try {
       const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
@@ -77,6 +79,26 @@ function Payment(props: PaymentProps) {
         `${BASE_URL}/userShipping/${props.shippingId}`
       );
       const shippingResult = await shippingResponse.json();
+
+      let base =
+        ((shippingResult.shippingList[props.selectedId - 1].length *
+          shippingResult.shippingList[props.selectedId - 1].weight *
+          shippingResult.shippingList[props.selectedId - 1].height) /
+          6000) *
+        15000;
+
+      setBasePrice(base);
+
+      let max = 15000;
+      let min = 10000;
+
+      if (base < 4) {
+        max = 13000;
+      }
+
+      let shippingPrice = Math.floor(Math.random() * (max - min + 1) + min);
+
+      setShipping(shippingPrice);
 
       setShippingData(shippingResult.shippingList[props.selectedId - 1]);
 
