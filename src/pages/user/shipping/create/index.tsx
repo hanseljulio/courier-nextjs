@@ -36,7 +36,7 @@ function CreateShipping() {
     destCity: "",
     destProvince: "",
     destZip: "",
-    category: "",
+    category: "Personal Items",
     description: "",
     date: "",
     insurance: false,
@@ -137,17 +137,23 @@ function CreateShipping() {
       );
       const shippingResult = await shippingResponse.json();
 
-      setShippingData({
-        ...shippingData,
-        id: shippingResult.shippingList.length + 1,
-        date: new Date().toString(),
-      });
+      const newId = shippingResult.shippingList.length + 1;
+      const newDate = new Date().toString();
+
+      const updatedShippingData = shippingData;
+      updatedShippingData.id = newId;
+      updatedShippingData.date = newDate;
+
+      setShippingData(updatedShippingData);
 
       shippingResult.shippingList.push(shippingData);
 
       axios
         .patch(`${BASE_URL}/userShipping/${result.shippingId}`, shippingResult)
         .then(() => {
+          setTimeout(() => {
+            router.push("/user/shipping/manage");
+          }, 3000);
           successMessage();
         });
     } catch (e) {
