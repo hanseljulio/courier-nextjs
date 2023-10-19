@@ -221,14 +221,18 @@ function Payment(props: PaymentProps) {
               </h1>
             </div>
             <div className="referral-voucher-section w-full p-10 mobile:p-0 ">
-              <div className="referral-section text-center mobile:mx-auto">
+              <div className="referral-section text-center flex items-center gap-8 mobile:flex-col mobile:gap-0 mobile:pb-8 mobile:mx-auto">
                 <Input
                   label="Got a referral?"
                   type="text"
                   name="search"
                   placeholder="Use it here!"
-                  styling="pb-8"
+                  styling="pb-8 text-left mobile:text-center"
                   width="w-[300px] mobile:w-[250px]"
+                />
+                <Button
+                  text="Check"
+                  styling="p-4 bg-amber-400 rounded-[10px] w-[150px] hover:bg-amber-500"
                 />
               </div>
               <h1 className="text-center pb-4">Available vouchers:</h1>
