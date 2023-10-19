@@ -14,6 +14,10 @@ function UserPage() {
     router.push("/user/shipping/create");
   };
 
+  const redirectManageShipping = () => {
+    router.push("/user/shipping/manage");
+  };
+
   useEffect(() => {
     if (stateLoginPersist.id === 0 || stateLoginPersist.isAdmin) {
       router.push("/error");
@@ -39,6 +43,7 @@ function UserPage() {
           picture="bg-view-shipping"
           title="Manage Shipping"
           description="View shipping and make payments"
+          onClick={redirectManageShipping}
         />
       </div>
     </div>

@@ -54,10 +54,6 @@ export interface IAddress {
   zip: string;
 }
 
-export type DeepPartial<K> = {
-  [attr in keyof K]?: K[attr] extends object ? DeepPartial<K[attr]> : K[attr];
-};
-
 export interface IShippingData {
   id: number;
   length: number;
