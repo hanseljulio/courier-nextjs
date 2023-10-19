@@ -1,3 +1,7 @@
+import { useRef, useEffect } from "react";
+
+type Timer = ReturnType<typeof setTimeout>;
+
 export interface IAdmin {
   id: number;
   email: string;
@@ -71,4 +75,31 @@ export interface IShippingData {
   sameDay: boolean;
   twoDay: boolean;
   alreadyPaid: boolean;
+}
+
+export function useDebounce<Func extends (...args: any[]) => void>(
+  func: Func,
+  delay = 1000
+) {
+  const timer = useRef<Timer>();
+
+  useEffect(() => {
+    return () => {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
+    };
+  }, []);
+
+  const debouncedFunction: Func = ((...args) => {
+    const newTimer = setTimeout(() => {
+      func(...args);
+    }, delay);
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+    timer.current = newTimer;
+  }) as Func;
+
+  return debouncedFunction;
 }

@@ -153,7 +153,7 @@ function EditAddress(props: EditAddressProps) {
       </div>
       <div className="address-form flex justify-center">
         <form action="" onSubmit={submit}>
-          <div className="address-section pb-8">
+          <div className="address-section pb-8 mobile:flex mobile:justify-center">
             <Input
               label="Address Line"
               type="text"
@@ -166,11 +166,11 @@ function EditAddress(props: EditAddressProps) {
               required
             />
           </div>
-          <div className="wrapper-section flex justify-between mobile:flex-col mobile: gap-8">
+          <div className="wrapper-section flex justify-between mobile:flex-col mobile:gap-8 mobile:items-center">
             <Dropdown
               label="Province"
               labelStyle="font-bold pb-2"
-              width="w-[300px] mobile:w-full"
+              width="w-[300px] mobile:w-[350px]"
               options={provinceList}
               value={provinceId}
               provinceChange={provinceChange}
@@ -178,7 +178,7 @@ function EditAddress(props: EditAddressProps) {
             <Dropdown
               label="City"
               labelStyle="font-bold pb-2"
-              width="w-[300px] mobile:w-full"
+              width="w-[300px] mobile:w-[350px]"
               options={cityList}
               value={editData.city}
               onChange={(e) => setEditData({ ...editData, city: e })}
@@ -186,13 +186,13 @@ function EditAddress(props: EditAddressProps) {
             <Dropdown
               label="Zip Code"
               labelStyle="font-bold pb-2"
-              width="w-[300px] mobile:w-full"
+              width="w-[300px] mobile:w-[350px]"
               options={zipCodeList}
               value={editData.zip}
               onChange={(e) => setEditData({ ...editData, zip: e })}
             />
           </div>
-          <div className="submit-btn flex justify-center pt-[100px] gap-8">
+          <div className="submit-btn flex justify-center pt-[100px] gap-8 mobile:flex-col mobile:items-center mobile:gap-0">
             <Button
               text="Back"
               styling="p-4 mb-[50px] bg-amber-400 rounded-[10px] w-[200px] hover:bg-amber-500"

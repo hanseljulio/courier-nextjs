@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EditAddress from "./EditAddress";
 import axios from "axios";
+import Input from "@/components/Input";
 
 function ManageAddress() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -20,6 +21,7 @@ function ManageAddress() {
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [currentAddressId, setCurrentAddressId] = useState<string>("");
   const [currentSelectedId, setCurrentSelectedId] = useState<number>(0);
+  const [search, setSearch] = useState<string>("");
 
   const deleteMessage = () => toast("Address successfully deleted!");
 
@@ -45,9 +47,17 @@ function ManageAddress() {
       setCurrentAddressId(result.addressId);
 
       const addressResponse = await fetch(
-        `${BASE_URL}/userAddress/${result.addressId}`
+        `${BASE_URL}/userAddress/${result.addressId}?addressList.address=${search}`
       );
       const addressResult = await addressResponse.json();
+
+      const filteredArray = addressResult.addressList.filter(
+        (data: IAddress) => {
+          return data.address.includes(search);
+        }
+      );
+
+      addressResult.addressList = filteredArray;
       setCount(addressResult.addressList.length);
 
       setAddressData(
@@ -60,7 +70,7 @@ function ManageAddress() {
 
   useEffect(() => {
     getAddressData();
-  }, [currentPage]);
+  }, [currentPage, search]);
 
   const deleteAddress = async (id: number) => {
     try {
@@ -96,18 +106,27 @@ function ManageAddress() {
           exitEditFunction={editOff}
           addressId={currentAddressId}
           selectedId={currentSelectedId}
-        /> // Need addressId, the current element id. Take the data and populate the fields
+        />
       ) : (
         <div>
           <UserNav currentPage="address" />
           <ToastContainer />
-          <div className="header-section pb-8">
+          <div className="header-section flex items-center pb-8 mobile:flex-col">
             <UserHeader title="Manage Address" />
+            <Input
+              label=""
+              type="text"
+              name="search"
+              styling="mt-8 ml-[340px] mobile:mx-auto"
+              width="w-[300px]"
+              placeholder="Search address here"
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </div>
           <div className="content-wrapper">
             {addressData.length === 0 ? (
               <h1 className="text-center font-medium text-[25px]">
-                Nothing to see here! Go and add a new address!
+                Nothing to see here!
               </h1>
             ) : (
               <div className="content">
