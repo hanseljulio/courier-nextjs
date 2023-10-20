@@ -27,7 +27,7 @@ function UserEditProfile() {
     walletId: "",
     addressId: "",
     shippingId: "",
-    vouchers: [],
+    gameCount: 0,
     role: "",
   });
 

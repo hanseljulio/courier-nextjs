@@ -5,7 +5,7 @@ import UserHeader from "@/components/HeaderSection";
 function Games() {
   return (
     <div>
-      <UserNav currentPage="shipping" />
+      <UserNav currentPage="games" />
       <div className="header-section pb-8">
         <UserHeader title="Games" description="Win discount vouchers!" />
       </div>

@@ -24,7 +24,7 @@ export interface IUser {
   walletId: string;
   addressId: string;
   shippingId: string;
-  vouchers: IVouchers[];
+  gameCount: number;
   role: string;
 }
 

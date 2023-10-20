@@ -59,12 +59,30 @@ function Payment(props: PaymentProps) {
 
   const stateLoginPersist = useStoreLoginPersist();
 
+  const getRandomVouchers = async () => {
+    const voucherResponse = await fetch(`${BASE_URL}/userVouchers/`);
+    const voucherResult = await voucherResponse.json();
+
+    if (voucherResult < 4) {
+      setVoucherList(voucherResult);
+      return;
+    }
+
+    const voucherArray = [
+      voucherResult[Math.floor(Math.random() * voucherResult.length)],
+      voucherResult[Math.floor(Math.random() * voucherResult.length)],
+      voucherResult[Math.floor(Math.random() * voucherResult.length)],
+    ];
+
+    setVoucherList(voucherArray);
+  };
+
   const getShippingData = async () => {
     try {
       const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
       const result = await response.json();
 
-      setVoucherList(result.vouchers);
+      getRandomVouchers();
 
       const walletResponse = await fetch(
         `${BASE_URL}/userWallet/${result.walletId}`
@@ -153,7 +171,7 @@ function Payment(props: PaymentProps) {
 
     const referralAbuse = () =>
       toast(
-        "Nice try - we added checks to make sure you can't keep using this feature! Complete a shipment before you can use it again!"
+        "Nice try - we added checks to make sure you can't abuse this feature! Complete a shipment before you can use it again!"
       );
 
     if (referralCode.length < 6 || referralCode.length > 6) {
@@ -252,6 +270,21 @@ function Payment(props: PaymentProps) {
       thresholdFail();
       return;
     }
+
+    let totalDiscount = 0;
+
+    if (discountType === "xab") {
+      totalDiscount = discountAmount * basePrice;
+    } else if (discountType === "shp") {
+      totalDiscount = discountAmount * shipping;
+    }
+
+    totalDiscount = Math.floor(totalDiscount);
+
+    setDiscount(totalDiscount);
+    setShowVoucherPrice(true);
+
+    voucherApplied();
   };
 
   return (
@@ -359,20 +392,26 @@ function Payment(props: PaymentProps) {
               </div>
               <h1 className="text-center pb-4">Available vouchers:</h1>
               <div className="vouchers-section flex justify-center gap-4 mobile:flex-col">
-                {voucherList.map((voucher, index) => {
-                  return (
-                    <div key={index} className="text-center">
-                      <VoucherPill
-                        key={index}
-                        code={voucher.code}
-                        applyVoucher={voucherCheck}
-                      />
-                      <p className="text-[12px] font-normal text-center pt-2">
-                        {voucher.description}
-                      </p>
-                    </div>
-                  );
-                })}
+                {!voucherList && (
+                  <h1 className="text-red-600">
+                    No vouchers - complete a shipment for a chance to get one!
+                  </h1>
+                )}
+                {voucherList &&
+                  voucherList.map((voucher, index) => {
+                    return (
+                      <div key={index} className="text-center">
+                        <VoucherPill
+                          key={index}
+                          code={voucher.code}
+                          applyVoucher={voucherCheck}
+                        />
+                        <p className="text-[12px] font-normal text-center pt-2">
+                          {voucher.description}
+                        </p>
+                      </div>
+                    );
+                  })}
               </div>
               <div className="pay-section flex items-center justify-center gap-10 mt-[43px] mobile:flex-col">
                 <h1>Your balance: Rp. {currencyConverter(userBalance)}</h1>

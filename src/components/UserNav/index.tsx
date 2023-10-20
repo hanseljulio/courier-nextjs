@@ -28,9 +28,9 @@ function UserNav(props: UserNavProps) {
     }
   };
 
-  const redirectUserPayment = () => {
-    if (props.currentPage !== "payment") {
-      router.push("/user/payment");
+  const redirectUserGames = () => {
+    if (props.currentPage !== "games") {
+      router.push("/user/games");
     }
   };
 
@@ -112,6 +112,16 @@ function UserNav(props: UserNavProps) {
                   } px-6 py-3 text-center`}
                 >
                   Address
+                </li>
+                <li
+                  onClick={redirectUserGames}
+                  className={`${
+                    props.currentPage === "games"
+                      ? "bg-orange-400 rounded-full hover:cursor-default"
+                      : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 rounded-full md:hover:bg-transparent"
+                  } px-6 py-3 text-center`}
+                >
+                  Games
                 </li>
 
                 <li
