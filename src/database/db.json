@@ -24,8 +24,8 @@
       "vouchers": [
         {
           "id": 1,
-          "code": "50-xab-200000",
-          "description": "50% discount if total is above Rp. 200.000,00"
+          "code": "20-xab-200000",
+          "description": "20% discount if total is above Rp. 200.000,00"
         },
         {
           "id": 2,
@@ -51,6 +51,7 @@
       "walletId": "wallet-2",
       "addressId": "address-2",
       "shippingId": "shipping-2",
+      "vouchers": [],
       "role": "user",
       "id": 3
     },
@@ -66,6 +67,7 @@
       "walletId": "wallet-89475",
       "addressId": "address-89475",
       "shippingId": "shipping-89475",
+      "vouchers": [],
       "role": "user"
     },
     {
@@ -80,6 +82,7 @@
       "walletId": "wallet-91486",
       "addressId": "address-91486",
       "shippingId": "shipping-91486",
+      "vouchers": [],
       "role": "user"
     },
     {
@@ -94,6 +97,7 @@
       "walletId": "wallet-39271",
       "addressId": "address-39271",
       "shippingId": "shipping-39271",
+      "vouchers": [],
       "role": "user"
     },
     {
@@ -108,6 +112,7 @@
       "walletId": "wallet-43773",
       "addressId": "address-43773",
       "shippingId": "shipping-43773",
+      "vouchers": [],
       "role": "user"
     }
   ],
@@ -147,22 +152,31 @@
     {
       "id": "wallet-1",
       "userId": 2,
-      "balance": 200000,
+      "balance": 300000,
       "history": [
         {
           "id": 1,
           "date": "Mon Oct 16 2023 05:32:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
+          "amount": 50000,
+          "selfReferral": false
         },
         {
           "id": 2,
           "date": "Tue Oct 17 2023 15:21:27 GMT+0700 (Western Indonesia Time)",
-          "amount": 100000
+          "amount": 100000,
+          "selfReferral": false
         },
         {
           "id": 3,
           "date": "Thu Oct 19 2023 14:51:46 GMT+0700 (Western Indonesia Time)",
-          "amount": 50000
+          "amount": 50000,
+          "selfReferral": false
+        },
+        {
+          "id": 4,
+          "date": "Fri Oct 20 2023 10:11:46 GMT+0700 (Western Indonesia Time)",
+          "amount": 100000,
+          "selfReferral": true
         }
       ]
     },
@@ -174,12 +188,14 @@
         {
           "id": 1,
           "date": "Mon Oct 16 2023 05:32:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
+          "amount": 50000,
+          "selfReferral": false
         },
         {
           "id": 2,
           "date": "Mon Oct 16 2023 05:52:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
+          "amount": 50000,
+          "selfReferral": false
         }
       ]
     },
@@ -191,32 +207,38 @@
         {
           "id": 1,
           "date": "Mon Oct 16 2023 05:32:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
+          "amount": 50000,
+          "selfReferral": false
         },
         {
           "id": 2,
           "date": "Mon Oct 16 2023 05:52:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
+          "amount": 50000,
+          "selfReferral": false
         },
         {
           "id": 3,
           "date": "Mon Oct 16 2023 05:56:41 GMT+0000 (Coordinated Universal Time)",
-          "amount": 50000
+          "amount": 50000,
+          "selfReferral": false
         },
         {
           "id": 4,
           "date": "Mon Oct 16 2023 13:37:29 GMT+0700 (Western Indonesia Time)",
-          "amount": 100000
+          "amount": 100000,
+          "selfReferral": false
         },
         {
           "id": 5,
           "date": "Mon Oct 16 2023 13:38:10 GMT+0700 (Western Indonesia Time)",
-          "amount": 100000
+          "amount": 100000,
+          "selfReferral": false
         },
         {
           "id": 6,
           "date": "Mon Oct 16 2023 13:43:55 GMT+0700 (Western Indonesia Time)",
-          "amount": 100000
+          "amount": 100000,
+          "selfReferral": false
         }
       ]
     },
@@ -589,8 +611,8 @@
   "userVouchers": [
     {
       "id": 1,
-      "code": "50-xab-200000",
-      "description": "50% discount if total is above Rp. 200.000,00"
+      "code": "20-xab-200000",
+      "description": "20% discount if total is above Rp. 200.000,00"
     },
     {
       "id": 2,

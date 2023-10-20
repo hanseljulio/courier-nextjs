@@ -24,6 +24,7 @@ export interface IUser {
   walletId: string;
   addressId: string;
   shippingId: string;
+  vouchers: IVouchers[];
   role: string;
 }
 
@@ -38,6 +39,7 @@ export interface IWalletHistory {
   id: number;
   date: string;
   amount: number;
+  selfReferral: boolean;
 }
 
 export interface IUserAddress {

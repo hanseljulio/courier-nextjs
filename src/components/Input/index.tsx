@@ -32,7 +32,9 @@ function Input(props: InputProps) {
           </span>
         </p>
         <input
-          className={`${styles.inputArea} ${props.width ? props.width : ""}`}
+          className={`${styles.inputArea} ${props.width ? props.width : ""} ${
+            props.disabled ? "bg-slate-400" : ""
+          }`}
           type={props.type}
           name={props.name}
           placeholder={props.placeholder ? props.placeholder : ""}

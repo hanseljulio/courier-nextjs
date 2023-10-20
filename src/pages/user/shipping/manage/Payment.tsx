@@ -10,7 +10,7 @@ import { useStoreLoginPersist } from "@/store/store";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VoucherPill from "@/components/VoucherPill";
-import { BsTypeH1 } from "react-icons/bs";
+import axios from "axios";
 
 interface PaymentProps {
   shippingId: string;
@@ -53,13 +53,11 @@ function Payment(props: PaymentProps) {
   const [addonsTotal, setAddonsTotal] = useState<number>(0);
   const [totalCost, setTotalCost] = useState<number>(0);
   const [userBalance, setUserBalance] = useState<number>(0);
+  const [referralCode, setReferralCode] = useState<string>("");
+  const [referralUserId, setReferralUserId] = useState<number>(0);
+  const [disableReferral, setDisableReferral] = useState<boolean>(false);
 
   const stateLoginPersist = useStoreLoginPersist();
-
-  const balanceNotEnoughMessage = () =>
-    toast("Insufficient balance! Add some more money then come back here!");
-
-  console.log(basePrice);
 
   const getShippingData = async () => {
     try {
@@ -123,7 +121,7 @@ function Payment(props: PaymentProps) {
   }, []);
 
   useEffect(() => {
-    let total = basePrice + shipping + addonsTotal + discount;
+    let total = basePrice + shipping + addonsTotal - discount;
     setTotalCost(total);
   }, [basePrice, shipping, addonsTotal, discount]);
 
@@ -135,8 +133,130 @@ function Payment(props: PaymentProps) {
     return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ",00";
   };
 
+  const referralCheck = async () => {
+    const lengthError = () =>
+      toast(
+        "Referral codes have a length of six characters. Please check again!"
+      );
+
+    const successSelfReferral = () =>
+      toast(
+        "Wait you're not supposed to - oh well. You just earned 50% of your balance. How desperate are you to use your own referral code?"
+      );
+
+    const selfReferralFail = () =>
+      toast("Your own referral code? You can't do that! Unless...");
+
+    const successReferral = () => toast("Referral sucessfully used!");
+
+    const notFound = () => toast("Referral is not valid. Please check again!");
+
+    const referralAbuse = () =>
+      toast(
+        "Nice try - we added checks to make sure you can't keep using this feature! Complete a shipment before you can use it again!"
+      );
+
+    if (referralCode.length < 6 || referralCode.length > 6) {
+      lengthError();
+      return;
+    }
+
+    try {
+      const response = await fetch(`${BASE_URL}/referralCodes`);
+      const result = await response.json();
+
+      for (let i = 0; i < result.length; i++) {
+        if (
+          referralCode.toLowerCase() === result[i].referral.toLowerCase() &&
+          result[i].userId === stateLoginPersist.id &&
+          totalCost > 350000
+        ) {
+          const response = await fetch(
+            `${BASE_URL}/users/${stateLoginPersist.id}`
+          );
+          const result = await response.json();
+
+          const walletResponse = await fetch(
+            `${BASE_URL}/userWallet/${result.walletId}`
+          );
+          const walletResult = await walletResponse.json();
+
+          if (
+            walletResult.history[walletResult.history.length - 1].selfReferral
+          ) {
+            referralAbuse();
+            return;
+          }
+
+          let addedMoney = Math.floor(userBalance / 2);
+
+          let newBalance = userBalance + addedMoney;
+
+          walletResult.balance = newBalance;
+
+          setUserBalance(newBalance);
+
+          const newTransaction = {
+            id: walletResult.history.length + 1,
+            date: new Date().toString(),
+            amount: addedMoney,
+            selfReferral: true,
+          };
+
+          walletResult.history.push(newTransaction);
+
+          axios
+            .patch(`${BASE_URL}/userWallet/${result.walletId}`, walletResult)
+            .then(() => {
+              setDisableReferral(true);
+              successSelfReferral();
+            });
+
+          return;
+        } else if (
+          referralCode.toLowerCase() === result[i].referral.toLowerCase() &&
+          result[i].userId !== stateLoginPersist.id
+        ) {
+          setReferralUserId(result[i].userId);
+          successReferral();
+          return;
+        } else if (
+          referralCode.toLowerCase() === result[i].referral.toLowerCase() &&
+          result[i].userId === stateLoginPersist.id
+        ) {
+          selfReferralFail();
+          return;
+        }
+      }
+
+      notFound();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const voucherCheck = (code: string) => {
+    const codeArray = code.split("-");
+    const discountAmount = parseInt(codeArray[0]) / 100;
+    const discountType = codeArray[1];
+    const discountMinimum = parseInt(codeArray[2]);
+
+    const thresholdFail = () =>
+      toast(
+        "You do not seem to meet the minimum amount needed for this voucher - try selecting another one!"
+      );
+
+    const voucherApplied = () => toast("Voucher successfully applied!");
+
+    if (totalCost < discountMinimum) {
+      thresholdFail();
+      return;
+    }
+  };
+
   return (
     <div className={`${styles.modal}`}>
+      <ToastContainer />
       <div className={`${styles.overlay}`}></div>
       <div className={`${styles.modalContent} ${styles.popout}`}>
         <div className="header-confirm pt-[10px] pl-[23px] pb-[8px]">
@@ -210,9 +330,7 @@ function Payment(props: PaymentProps) {
 
               {showVoucherPrice ? (
                 <h1>
-                  <pre>
-                    Voucher discount: - Rp. {currencyConverter(voucher)}
-                  </pre>
+                  <pre>Discounts: - Rp. {currencyConverter(discount)}</pre>
                 </h1>
               ) : null}
               <br />
@@ -229,10 +347,14 @@ function Payment(props: PaymentProps) {
                   placeholder="Use it here!"
                   styling="pb-8 text-left mobile:text-center"
                   width="w-[300px] mobile:w-[250px]"
+                  onChange={(e) => setReferralCode(e.target.value)}
+                  disabled={disableReferral}
                 />
                 <Button
                   text="Check"
                   styling="p-4 bg-amber-400 rounded-[10px] w-[150px] hover:bg-amber-500"
+                  onClick={referralCheck}
+                  disabled={disableReferral}
                 />
               </div>
               <h1 className="text-center pb-4">Available vouchers:</h1>
@@ -240,7 +362,11 @@ function Payment(props: PaymentProps) {
                 {voucherList.map((voucher, index) => {
                   return (
                     <div key={index} className="text-center">
-                      <VoucherPill key={index} code={voucher.code} />
+                      <VoucherPill
+                        key={index}
+                        code={voucher.code}
+                        applyVoucher={voucherCheck}
+                      />
                       <p className="text-[12px] font-normal text-center pt-2">
                         {voucher.description}
                       </p>
@@ -253,7 +379,9 @@ function Payment(props: PaymentProps) {
                 <Button
                   text="Pay"
                   styling="p-4 bg-amber-400 rounded-[10px] w-[150px] hover:bg-amber-500"
-                  onClick={() => alert("Paid!")}
+                  onClick={() =>
+                    alert(`Remaining money: ${userBalance - totalCost}`)
+                  }
                   disabled={totalCost > userBalance}
                 />
               </div>

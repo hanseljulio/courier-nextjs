@@ -27,6 +27,7 @@ function UserEditProfile() {
     walletId: "",
     addressId: "",
     shippingId: "",
+    vouchers: [],
     role: "",
   });
 
