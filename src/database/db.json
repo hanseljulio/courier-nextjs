@@ -624,5 +624,6 @@
       "code": "30-shp-150000",
       "description": "30% shipping discount if total is above Rp. 150.000,00"
     }
-  ]
+  ],
+  "adminEarnings": []
 }

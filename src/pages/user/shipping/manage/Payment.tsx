@@ -320,6 +320,16 @@ function Payment(props: PaymentProps) {
 
       walletResult.history.push(newTransaction);
 
+      const newAdminEarnings = {
+        date: new Date().toString(),
+        amount: totalCost,
+        fromUserId: stateLoginPersist.id,
+        fromShippingId: props.shippingId,
+        shippingNum: props.selectedId,
+      };
+
+      await axios.post(`${BASE_URL}/adminEarnings`, newAdminEarnings);
+
       await axios.patch(
         `${BASE_URL}/userWallet/${result.walletId}`,
         walletResult

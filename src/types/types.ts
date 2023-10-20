@@ -108,3 +108,12 @@ export interface IVouchers {
   code: string;
   description: string;
 }
+
+export interface IEarnings {
+  id: number;
+  date: string;
+  amount: number;
+  fromUserId: number;
+  fromShippingId: string;
+  shippingNum: number;
+}
