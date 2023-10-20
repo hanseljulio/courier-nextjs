@@ -116,6 +116,7 @@ function ManageShipping() {
                         }`}
                         status={data.alreadyPaid}
                         shippingId={currentShippingId}
+                        refresh={getShippingData}
                       />
                     ))}
                   </tbody>

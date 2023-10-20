@@ -16,6 +16,7 @@ interface PaymentProps {
   shippingId: string;
   selectedId: number;
   exitPayment: () => void;
+  paymentSubmit: () => void;
 }
 
 function Payment(props: PaymentProps) {
@@ -287,6 +288,58 @@ function Payment(props: PaymentProps) {
     voucherApplied();
   };
 
+  const submit = async () => {
+    const submitBalance = userBalance - totalCost;
+
+    try {
+      const response = await fetch(`${BASE_URL}/users/${stateLoginPersist.id}`);
+      const result = await response.json();
+
+      result.gameCount++;
+
+      const walletResponse = await fetch(
+        `${BASE_URL}/userWallet/${result.walletId}`
+      );
+      const walletResult = await walletResponse.json();
+
+      const shippingResponse = await fetch(
+        `${BASE_URL}/userShipping/${result.shippingId}`
+      );
+      const shippingResult = await shippingResponse.json();
+
+      shippingResult.shippingList[props.selectedId - 1].alreadyPaid = true;
+
+      walletResult.balance = submitBalance;
+
+      const newTransaction = {
+        id: walletResult.history.length + 1,
+        date: new Date().toString(),
+        amount: totalCost * -1,
+        selfReferral: false,
+      };
+
+      walletResult.history.push(newTransaction);
+
+      await axios.patch(
+        `${BASE_URL}/userWallet/${result.walletId}`,
+        walletResult
+      );
+
+      await axios.patch(
+        `${BASE_URL}/userShipping/${result.shippingId}`,
+        shippingResult
+      );
+
+      await axios
+        .patch(`${BASE_URL}/users/${stateLoginPersist.id}`, result)
+        .then(() => {
+          props.paymentSubmit();
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className={`${styles.modal}`}>
       <ToastContainer />
@@ -418,9 +471,7 @@ function Payment(props: PaymentProps) {
                 <Button
                   text="Pay"
                   styling="p-4 bg-amber-400 rounded-[10px] w-[150px] hover:bg-amber-500"
-                  onClick={() =>
-                    alert(`Remaining money: ${userBalance - totalCost}`)
-                  }
+                  onClick={submit}
                   disabled={totalCost > userBalance}
                 />
               </div>

@@ -49,9 +49,15 @@ function TransactionHistory(props: TransactionHistoryProps) {
               <h1 className="bg-amber-200 py-3 w-[40%] mobile:text-[12px]">
                 {dateConverter(new Date(data.date))}
               </h1>
-              <h1 className="bg-amber-200 py-3 w-[50%] text-green-600 mobile:text-[12px]">
-                +Rp. {currencyConverter(data.amount)}
-              </h1>
+              {data.amount >= 0 ? (
+                <h1 className="bg-amber-200 py-3 w-[50%] text-green-600 mobile:text-[12px]">
+                  +Rp. {currencyConverter(data.amount)}
+                </h1>
+              ) : (
+                <h1 className="bg-amber-200 py-3 w-[50%] text-red-600 mobile:text-[12px]">
+                  -Rp. {currencyConverter(data.amount * -1)}
+                </h1>
+              )}
             </div>
           ))}
         </div>

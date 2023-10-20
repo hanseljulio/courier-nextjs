@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "@/styles/Table.module.css";
 import Payment from "@/pages/user/shipping/manage/Payment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ShippingTableDataProps {
   index: number;
@@ -11,10 +13,15 @@ interface ShippingTableDataProps {
   description: string;
   status: boolean;
   shippingId: string;
+  refresh: () => void;
 }
 
 function ShippingTableData(props: ShippingTableDataProps) {
   const [showPayment, setShowPayment] = useState<boolean>(false);
+  const paidMessage = () =>
+    toast(
+      "Payment sucessful! Go to the games section for a chance to win prizes!"
+    );
 
   const paymentOn = () => {
     setShowPayment(true);
@@ -24,6 +31,12 @@ function ShippingTableData(props: ShippingTableDataProps) {
     setShowPayment(false);
   };
 
+  const paymentSubmit = () => {
+    setShowPayment(false);
+    props.refresh();
+    paidMessage();
+  };
+
   return (
     <>
       {showPayment && (
@@ -31,8 +44,10 @@ function ShippingTableData(props: ShippingTableDataProps) {
           shippingId={props.shippingId}
           selectedId={props.id}
           exitPayment={paymentOff}
+          paymentSubmit={paymentSubmit}
         />
       )}
+      <ToastContainer />
       <tr className={`${props.index % 2 === 0 ? "bg-white" : "bg-amber-100"}`}>
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
