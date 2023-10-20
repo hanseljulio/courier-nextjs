@@ -260,7 +260,7 @@ function UserEditProfile() {
             </h1>
           </div>
 
-          <div className="flex submit-btn justify-center pt-[50px]">
+          <div className="flex submit-btn justify-center pt-[50px] mobile:pb-[50px]">
             {showLoading ? (
               <AiOutlineLoading3Quarters className="animate-spin text-3xl" />
             ) : (

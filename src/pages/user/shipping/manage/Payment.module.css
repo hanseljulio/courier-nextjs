@@ -56,12 +56,12 @@
   .modalContent {
     position: absolute;
     top: 5%;
-    left: 8%;
+    left: 6%;
     line-height: 1.4;
     background: #f1f1f1;
     padding: 10px 10px;
     border-radius: 3px;
-    width: 85%;
-    height: 80%;
+    width: 88%;
+    height: 90%;
   }
 }
