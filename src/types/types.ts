@@ -118,3 +118,12 @@ export interface IEarnings {
   fromShippingId: string;
   shippingNum: number;
 }
+
+export interface IAdminAddress {
+  id: number;
+  userId: number;
+  address: string;
+  province: string;
+  city: string;
+  zip: string;
+}

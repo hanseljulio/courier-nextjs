@@ -13,14 +13,14 @@ function TableHead(props: TableHeadProps) {
       <th
         className={`${styles.thArea} px-[20px] py-[10px] text-left w-[58px] h-[69px]`}
       >
-        {props.adminMode ? "User ID" : "ID"}
+        ID
       </th>
       <th
         className={`${styles.thArea} ${
           !props.adminMode ? "hidden" : ""
         } px-[20px] py-[10px] text-left w-[58px] h-[69px]`}
       >
-        ID
+        User ID
       </th>
 
       <th

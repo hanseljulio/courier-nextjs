@@ -2,28 +2,27 @@ import React, { useState, useEffect } from "react";
 import AdminNav from "@/components/AdminNav";
 import TableHead from "@/components/TableHead";
 import TableData from "@/components/TableData";
-import { IUserAddress } from "@/types/types";
+import { IAdminAddress, IUserAddress } from "@/types/types";
 import { BASE_URL } from "@/constants/constants";
 import Pagination from "@/components/Pagination";
+import Input from "@/components/Input";
 
 function AdminViewAddress() {
-  const [addressData, setAddressData] = useState<IUserAddress[]>([]);
+  const [addressData, setAddressData] = useState<IAdminAddress[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [count, setCount] = useState<number>(0);
+  const [search, setSearch] = useState<string>("");
 
   const getAddressData = async () => {
-    const response = await fetch(`${BASE_URL}/userAddress`);
+    const response = await fetch(`${BASE_URL}/adminAddress`);
     const result = await response.json();
 
-    let totalLength = 0;
+    const filteredArray = result.filter((data: IAdminAddress) => {
+      return data.address.toLowerCase().includes(search.toLowerCase());
+    });
 
-    for (let i = 0; i < result.length; i++) {
-      totalLength += result[i].addressList.length;
-    }
-
-    setCount(totalLength);
-
-    setAddressData(result.slice((currentPage - 1) * 5, currentPage * 5));
+    setCount(filteredArray.length);
+    setAddressData(filteredArray.slice((currentPage - 1) * 5, currentPage * 5));
   };
 
   const movePage = (pageNum: number) => {
@@ -32,13 +31,22 @@ function AdminViewAddress() {
 
   useEffect(() => {
     getAddressData();
-  }, [currentPage]);
+  }, [currentPage, search]);
 
   return (
     <div className="view-earnings-div min-h-screen bg-slate-200">
       <AdminNav />
-      <div className="flex justify-between view-earnings-header mx-[200px] py-[18px] pt-[50px]">
+      <div className="flex justify-between items-center view-earnings-header mx-[200px] py-[18px] pt-[50px]">
         <h1 className="text-[30px] font-medium">View Adresses</h1>
+        <Input
+          label=""
+          type="text"
+          name="search"
+          styling="mr-[115px]"
+          width="w-[300px]"
+          placeholder="Search address here"
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
       <div className="view-earnings-content pt-[30px]">
         <div className="table-section ml-[200px] mr-[315px]">
@@ -46,29 +54,18 @@ function AdminViewAddress() {
             <tbody>
               <TableHead adminMode />
 
-              {addressData.map((data) => {
-                const userId = data.userId;
-                const addressList = data.addressList;
-
-                return (
-                  <>
-                    {addressList.map((addressData, index) => {
-                      return (
-                        <TableData
-                          key={index}
-                          index={1}
-                          id={userId}
-                          address={addressData.id.toString()}
-                          city={addressData.address}
-                          province={addressData.city}
-                          zip={addressData.province}
-                          extra={addressData.zip}
-                        />
-                      );
-                    })}
-                  </>
-                );
-              })}
+              {addressData.map((data, index) => (
+                <TableData
+                  key={index}
+                  index={index}
+                  id={data.id}
+                  address={data.userId.toString()}
+                  city={data.address}
+                  province={data.city}
+                  zip={data.province}
+                  extra={data.zip}
+                />
+              ))}
             </tbody>
           </table>
         </div>
