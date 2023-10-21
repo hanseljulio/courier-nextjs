@@ -46,6 +46,10 @@ function AdminPage() {
     router.push("/admin/editProfile");
   };
 
+  const redirectViewEarnings = () => {
+    router.push("/admin/viewEarnings");
+  };
+
   const redirectLogout = () => {
     stateLoginPersist.setId(0);
     stateLoginPersist.setIsAdmin(false);
@@ -79,7 +83,12 @@ function AdminPage() {
             </li>
             <li className="pb-3 hover:cursor-pointer">Manage addresses</li>
             <li className="pb-3 hover:cursor-pointer">Manage shippings</li>
-            <li className="pb-3 hover:cursor-pointer">View earnings</li>
+            <li
+              onClick={redirectViewEarnings}
+              className="pb-3 hover:cursor-pointer"
+            >
+              View earnings
+            </li>
             <li className="pb-3 hover:cursor-pointer">Manage promos</li>
             <li onClick={redirectLogout} className="pb-3 hover:cursor-pointer">
               Logout

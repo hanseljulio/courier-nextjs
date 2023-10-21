@@ -24,7 +24,7 @@ function Pagination(props: PaginationProps) {
       : [props.page - 1, props.page, props.page + 1];
 
   return (
-    <div className="pagination-div flex">
+    <div className="pagination-div flex mobile:scale-75">
       <button
         className={`${styles.firstBtn} text-primary ${
           firstDisabled ? "bg-[#b4b4b4]" : ""

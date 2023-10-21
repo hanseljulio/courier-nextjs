@@ -7,6 +7,7 @@ interface DropdownProps {
   value?: string;
   provinceChange?: (newId: string) => void;
   onChange?: (e: any) => void;
+  flexLabel?: string;
 }
 
 interface IProvince {
@@ -16,7 +17,11 @@ interface IProvince {
 
 function Dropdown(props: DropdownProps) {
   return (
-    <div className={`dropdown-div ${props.spacing ? props.spacing : ""}`}>
+    <div
+      className={`dropdown-div ${props.flexLabel} ${
+        props.spacing ? props.spacing : ""
+      }`}
+    >
       <p className={props.labelStyle}>{props.label}</p>
       <select
         className={`p-4 ${props.width} rounded bg-amber-100`}

@@ -77,7 +77,7 @@ function UserEditProfile() {
       setAdminData(result);
 
       const referralResponse = await fetch(
-        `http://localhost:2000/referralCodes/${result.referralSelfId}`
+        `${BASE_URL}/referralCodes/${result.referralSelfId}`
       );
       const referralResult = await referralResponse.json();
 
@@ -135,7 +135,7 @@ function UserEditProfile() {
     const submitData = adminData;
 
     axios
-      .patch(`http://localhost:2000/users/${stateLoginPersist.id}`, submitData)
+      .patch(`${BASE_URL}/users/${stateLoginPersist.id}`, submitData)
       .then(() => {
         setShowLoading(false);
         successMessage();

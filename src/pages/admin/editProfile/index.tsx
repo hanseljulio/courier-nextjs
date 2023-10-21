@@ -112,7 +112,7 @@ function AdminEditProfile() {
     const submitData = adminData;
 
     axios
-      .patch(`http://localhost:2000/users/${stateLoginPersist.id}`, submitData)
+      .patch(`${BASE_URL}/users/${stateLoginPersist.id}`, submitData)
       .then(() => {
         setShowLoading(false);
         successMessage();

@@ -123,7 +123,7 @@ function Games() {
           />
         </div>
         <div className="games-section">
-          <p className="text-[18px] pb-[50px] text-center mobile:pb-[30px]">
+          <p className="text-[18px] pb-[50px] text-center mobile:pb-[30px] mobile:mx-[20px] mobile: text-[14px]">
             {chances > 0
               ? `You have ${chances} chance(s) left.`
               : `You seem to be out of chances to play. Come back when you have paid for a shipment!`}

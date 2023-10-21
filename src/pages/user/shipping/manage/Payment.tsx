@@ -358,7 +358,10 @@ function Payment(props: PaymentProps) {
         <div className="header-confirm pt-[10px] pl-[23px] pb-[8px]">
           <div className="title-area flex justify-between items-center py-1">
             <h2 className="text-2xl">Payment</h2>
-            <button className="pr-[43px]" onClick={props.exitPayment}>
+            <button
+              className="pr-[43px] mobile:pr-[23px]"
+              onClick={props.exitPayment}
+            >
               X
             </button>
           </div>
@@ -395,7 +398,7 @@ function Payment(props: PaymentProps) {
             </div>
           </div>
           <div className="pricing-area flex mobile:flex-col mobile:text-[12px]">
-            <div className="bill-section p-8 border-r-2 border-slate-300 mobile:text-center">
+            <div className="bill-section p-8 border-r-2 mobile:border-b-2 mobile:border-r-0 border-slate-300 mobile:text-center mobile:p-4">
               <h1 className="underline text-[30px]">TOTAL PRICE</h1>
               <h1 className="py-3">
                 <pre>Base Price: Rp. {currencyConverter(basePrice)}</pre>
@@ -434,7 +437,7 @@ function Payment(props: PaymentProps) {
                 Rp. {currencyConverter(totalCost)}
               </h1>
             </div>
-            <div className="referral-voucher-section w-full p-10 mobile:p-0 ">
+            <div className="referral-voucher-section w-full p-10 mobile:p-0 mobile:pt-6">
               <div className="referral-section text-center flex items-center gap-8 mobile:flex-col mobile:gap-0 mobile:pb-8 mobile:mx-auto">
                 <Input
                   label="Got a referral?"
