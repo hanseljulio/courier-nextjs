@@ -80,6 +80,15 @@ function ManageAddress() {
 
       const addressResult = await addressResponse.json();
 
+      let adminIdToDelete = 0;
+
+      for (let i = 0; i < addressResult.addressList.length; i++) {
+        if (addressResult.addressList[i].id === id) {
+          adminIdToDelete = addressResult.addressList[i].adminId;
+          break;
+        }
+      }
+
       const updatedAddressList = addressResult.addressList.filter(
         (data: any) => {
           return data.id !== id;
@@ -88,12 +97,15 @@ function ManageAddress() {
 
       addressResult.addressList = updatedAddressList;
 
-      axios
-        .patch(`${BASE_URL}/userAddress/${currentAddressId}`, addressResult)
-        .then(() => {
-          deleteMessage();
-          getAddressData();
-        });
+      await axios.patch(
+        `${BASE_URL}/userAddress/${currentAddressId}`,
+        addressResult
+      );
+
+      await axios.delete(`${BASE_URL}/adminAddress/${adminIdToDelete}`);
+
+      deleteMessage();
+      getAddressData();
     } catch (e) {
       console.log(e);
     }

@@ -261,91 +261,112 @@
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 1
         },
         {
           "id": 2,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 2
         },
         {
           "id": 3,
           "address": "This is a toast test",
           "province": "Bali",
           "city": "Jembrana",
-          "zip": "80519"
+          "zip": "80519",
+          "adminId": 3
         },
         {
           "id": 4,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 4
         },
         {
           "id": 5,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 5
         },
         {
           "id": 6,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 6
         },
         {
           "id": 7,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 7
         },
         {
           "id": 8,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 8
         },
         {
           "id": 9,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 9
         },
         {
           "id": 10,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 10
         },
         {
           "id": 11,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 11
         },
         {
           "id": 12,
           "address": "This is my address test",
           "province": "Jambi",
           "city": "Kerinci",
-          "zip": "37319"
+          "zip": "37319",
+          "adminId": 12
         },
         {
           "id": 14,
           "address": "This is my address test third update success!",
           "province": "Lampung",
           "city": "Metro",
-          "zip": "34516"
+          "zip": "34516",
+          "adminId": 14
+        },
+        {
+          "id": 15,
+          "address": "Admin Address Test Success",
+          "city": "Sleman",
+          "province": "DI Yogyakarta",
+          "zip": "55611",
+          "adminId": 20
         }
       ]
     },
@@ -358,14 +379,16 @@
           "address": "This is my new address test",
           "province": "Bengkulu",
           "city": "Bengkulu Tengah",
-          "zip": "38319"
+          "zip": "38319",
+          "adminId": 15
         },
         {
           "id": 2,
           "address": "Banten address",
           "province": "Banten",
           "city": "Lebak",
-          "zip": "42111"
+          "zip": "42111",
+          "adminId": 16
         }
       ]
     },
@@ -383,7 +406,8 @@
           "address": "Jalan Mega Kuningan Barat III Lot 10.1-6, RT.3/RW.3",
           "city": "Jakarta Selatan",
           "province": "DKI Jakarta",
-          "zip": "12230"
+          "zip": "12230",
+          "adminId": 17
         }
       ]
     },
@@ -396,7 +420,8 @@
           "address": "Address-Test",
           "city": "Gunung Kidul",
           "province": "DI Yogyakarta",
-          "zip": "55812"
+          "zip": "55812",
+          "adminId": 18
         }
       ]
     },
@@ -409,7 +434,8 @@
           "address": "Jalan Mega Kuningan Barat III Lot 10.1-6, RT.3/RW.3",
           "city": "Jakarta Selatan",
           "province": "DKI Jakarta",
-          "zip": "12230"
+          "zip": "12230",
+          "adminId": 19
         }
       ]
     }
@@ -650,5 +676,159 @@
       "description": "30% shipping discount if total is above Rp. 150.000,00"
     }
   ],
-  "adminEarnings": []
+  "adminEarnings": [],
+  "adminAddress": [
+    {
+      "id": 1,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "address": "This is a toast test",
+      "province": "Bali",
+      "city": "Jembrana",
+      "zip": "80519"
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 5,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 6,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 7,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 8,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 9,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 10,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 11,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 12,
+      "userId": 2,
+      "address": "This is my address test",
+      "province": "Jambi",
+      "city": "Kerinci",
+      "zip": "37319"
+    },
+    {
+      "id": 14,
+      "userId": 2,
+      "address": "This is my address test third update success!",
+      "province": "Lampung",
+      "city": "Metro",
+      "zip": "34516"
+    },
+    {
+      "id": 15,
+      "userId": 3,
+      "address": "This is my new address test",
+      "province": "Bengkulu",
+      "city": "Bengkulu Tengah",
+      "zip": "38319"
+    },
+    {
+      "id": 16,
+      "userId": 3,
+      "address": "Banten address",
+      "province": "Banten",
+      "city": "Lebak",
+      "zip": "42111"
+    },
+    {
+      "id": 17,
+      "userId": 3,
+      "address": "Jalan Mega Kuningan Barat III Lot 10.1-6, RT.3/RW.3",
+      "city": "Jakarta Selatan",
+      "province": "DKI Jakarta",
+      "zip": "12230"
+    },
+    {
+      "id": 18,
+      "userId": 12796,
+      "address": "Address-Test",
+      "city": "Gunung Kidul",
+      "province": "DI Yogyakarta",
+      "zip": "55812"
+    },
+    {
+      "id": 19,
+      "userId": 20474,
+      "address": "Jalan Mega Kuningan Barat III Lot 10.1-6, RT.3/RW.3",
+      "city": "Jakarta Selatan",
+      "province": "DKI Jakarta",
+      "zip": "12230"
+    },
+    {
+      "id": 20,
+      "userId": 2,
+      "address": "Admin Address Test Success",
+      "province": "DI Yogyakarta",
+      "city": "Sleman",
+      "zip": "55611"
+    }
+  ]
 }

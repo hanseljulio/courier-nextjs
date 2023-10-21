@@ -50,6 +50,10 @@ function AdminPage() {
     router.push("/admin/viewEarnings");
   };
 
+  const redirectViewAddress = () => {
+    router.push("/admin/viewAddress");
+  };
+
   const redirectLogout = () => {
     stateLoginPersist.setId(0);
     stateLoginPersist.setIsAdmin(false);
@@ -81,7 +85,12 @@ function AdminPage() {
             >
               Edit Profile
             </li>
-            <li className="pb-3 hover:cursor-pointer">Manage addresses</li>
+            <li
+              onClick={redirectViewAddress}
+              className="pb-3 hover:cursor-pointer"
+            >
+              View addresses
+            </li>
             <li className="pb-3 hover:cursor-pointer">Manage shippings</li>
             <li
               onClick={redirectViewEarnings}

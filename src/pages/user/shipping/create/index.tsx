@@ -24,6 +24,7 @@ function CreateShipping() {
     city: "",
     province: "",
     zip: "",
+    adminId: 0,
   });
   const [shippingData, setShippingData] = useState<IShippingData>({
     id: 0,

@@ -32,6 +32,7 @@ function EditAddress(props: EditAddressProps) {
     province: "",
     city: "",
     zip: "",
+    adminId: 0,
   });
   const [provinceList, setProvinceList] = useState<IProvince[]>([]);
   const [provinceId, setProvinceId] = useState<string>("1");
@@ -86,7 +87,6 @@ function EditAddress(props: EditAddressProps) {
       );
       const result = await response.json();
 
-      // PROBLEM: EDITDATA WAS NEVER SET SOMEHOW
       for (let i = 0; i < result.addressList.length; i++) {
         if (result.addressList[i].id === props.selectedId) {
           for (let j = 0; j < provinces.provinces.length; j++) {
@@ -126,6 +126,8 @@ function EditAddress(props: EditAddressProps) {
       );
       const addressResult = await addressResponse.json();
 
+      let adminIdToEdit = editData.adminId;
+
       for (let i = 0; i < addressResult.addressList.length; i++) {
         if (addressResult.addressList[i].id === props.selectedId) {
           addressResult.addressList[i] = editData;
@@ -133,12 +135,23 @@ function EditAddress(props: EditAddressProps) {
         }
       }
 
-      axios
-        .patch(`${BASE_URL}/userAddress/${props.addressId}`, addressResult)
-        .then(() => {
-          //   props.exitEditFunction();
-          editSuccessMessage();
-        });
+      const adminAddressNewData = {
+        address: editData.address,
+        province: editData.province,
+        city: editData.city,
+        zip: editData.zip,
+      };
+
+      await axios.patch(
+        `${BASE_URL}/userAddress/${props.addressId}`,
+        addressResult
+      );
+      await axios.patch(
+        `${BASE_URL}/adminAddress/${adminIdToEdit}`,
+        adminAddressNewData
+      );
+
+      editSuccessMessage();
     } catch (e) {
       console.log(e);
     }

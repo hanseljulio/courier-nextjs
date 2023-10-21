@@ -86,19 +86,37 @@ function CreateAddress() {
       );
       const addressResult = await addressResponse.json();
 
+      const adminResponse = await fetch(`${BASE_URL}/adminAddress`);
+      const adminResult = await adminResponse.json();
+
       addressResult.addressList.push({
-        id: addressResult.addressList.length + 1,
+        id:
+          addressResult.addressList[addressResult.addressList.length - 1].id +
+          1,
         address: currentAddress,
         city: currentCity,
         province: currentProvince,
         zip: currentZipCode,
+        adminId: adminResult[adminResult.length - 1].id + 1,
       });
 
-      axios
-        .patch(`${BASE_URL}/userAddress/${result.addressId}`, addressResult)
-        .then(() => {
-          successMessage();
-        });
+      const newAdminAddress = {
+        id: adminResult[adminResult.length - 1].id + 1,
+        userId: stateLoginPersist.id,
+        address: currentAddress,
+        province: currentProvince,
+        city: currentCity,
+        zip: currentZipCode,
+      };
+
+      await axios.patch(
+        `${BASE_URL}/userAddress/${result.addressId}`,
+        addressResult
+      );
+
+      await axios.post(`${BASE_URL}/adminAddress`, newAdminAddress);
+
+      successMessage();
     } catch (e) {
       console.log(e);
     }

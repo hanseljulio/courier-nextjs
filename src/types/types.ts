@@ -54,6 +54,7 @@ export interface IAddress {
   city: string;
   province: string;
   zip: string;
+  adminId: number;
 }
 
 export interface IShippingData {

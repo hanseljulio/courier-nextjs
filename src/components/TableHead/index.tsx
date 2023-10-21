@@ -1,14 +1,28 @@
 import React from "react";
 import styles from "@/styles/Table.module.css";
 
-function TableHead() {
+interface TableHeadProps {
+  adminMode?: boolean;
+}
+
+function TableHead(props: TableHeadProps) {
   return (
-    <tr className={`${styles.tableHeadArea}`}>
+    <tr
+      className={`${styles.tableHeadArea} ${props.adminMode ? "bg-white" : ""}`}
+    >
       <th
         className={`${styles.thArea} px-[20px] py-[10px] text-left w-[58px] h-[69px]`}
       >
+        {props.adminMode ? "User ID" : "ID"}
+      </th>
+      <th
+        className={`${styles.thArea} ${
+          !props.adminMode ? "hidden" : ""
+        } px-[20px] py-[10px] text-left w-[58px] h-[69px]`}
+      >
         ID
       </th>
+
       <th
         className={`${styles.thArea} px-[20px] py-[10px] text-left w-[380px] h-[69px]`}
       >
@@ -30,7 +44,9 @@ function TableHead() {
         Zip
       </th>
       <th
-        className={`${styles.thArea} px-[20px] py-[10px] text-left w-[156px] h-[69px]`}
+        className={`${styles.thArea} ${
+          props.adminMode ? "hidden" : ""
+        } px-[20px] py-[10px] text-left w-[156px] h-[69px]`}
       >
         Options
       </th>
