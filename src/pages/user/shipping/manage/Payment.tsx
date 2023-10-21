@@ -32,6 +32,7 @@ function Payment(props: PaymentProps) {
       city: "",
       province: "",
       zip: "",
+      adminId: 0,
     },
     destAddress: "",
     destCity: "",

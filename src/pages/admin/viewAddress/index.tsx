@@ -14,15 +14,21 @@ function AdminViewAddress() {
   const [search, setSearch] = useState<string>("");
 
   const getAddressData = async () => {
-    const response = await fetch(`${BASE_URL}/adminAddress`);
-    const result = await response.json();
+    try {
+      const response = await fetch(`${BASE_URL}/adminAddress`);
+      const result = await response.json();
 
-    const filteredArray = result.filter((data: IAdminAddress) => {
-      return data.address.toLowerCase().includes(search.toLowerCase());
-    });
+      const filteredArray = result.filter((data: IAdminAddress) => {
+        return data.address.toLowerCase().includes(search.toLowerCase());
+      });
 
-    setCount(filteredArray.length);
-    setAddressData(filteredArray.slice((currentPage - 1) * 5, currentPage * 5));
+      setCount(filteredArray.length);
+      setAddressData(
+        filteredArray.slice((currentPage - 1) * 5, currentPage * 5)
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const movePage = (pageNum: number) => {

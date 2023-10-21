@@ -46,6 +46,14 @@ function AdminPage() {
     router.push("/admin/editProfile");
   };
 
+  const redirectManageShippings = () => {
+    router.push("/admin/manageShippings");
+  };
+
+  const redirectManagePromos = () => {
+    router.push("/admin/managePromo");
+  };
+
   const redirectViewEarnings = () => {
     router.push("/admin/viewEarnings");
   };
@@ -91,14 +99,24 @@ function AdminPage() {
             >
               View addresses
             </li>
-            <li className="pb-3 hover:cursor-pointer">Manage shippings</li>
+            <li
+              onClick={redirectManageShippings}
+              className="pb-3 hover:cursor-pointer"
+            >
+              Manage shippings
+            </li>
             <li
               onClick={redirectViewEarnings}
               className="pb-3 hover:cursor-pointer"
             >
               View earnings
             </li>
-            <li className="pb-3 hover:cursor-pointer">Manage promos</li>
+            <li
+              onClick={redirectManagePromos}
+              className="pb-3 hover:cursor-pointer"
+            >
+              Manage promos
+            </li>
             <li onClick={redirectLogout} className="pb-3 hover:cursor-pointer">
               Logout
             </li>
