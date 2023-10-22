@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { BASE_URL } from "@/constants/constants";
 import PackageDimensions from "./PackageDimensions";
 import SelectionModal from "@/components/SelectionModal";
-import { IAddress, IShippingData } from "@/types/types";
+import { IAddress, IAdminShipping, IShippingData } from "@/types/types";
 import PackageAddress from "./PackageAddress";
 import { useMultiStepForm } from "./UseMultiform";
 import Button from "@/components/Button";
@@ -28,6 +28,7 @@ function CreateShipping() {
   });
   const [shippingData, setShippingData] = useState<IShippingData>({
     id: 0,
+    adminId: 0,
     length: 0,
     width: 0,
     height: 0,
@@ -138,6 +139,9 @@ function CreateShipping() {
       );
       const shippingResult = await shippingResponse.json();
 
+      const adminResponse = await fetch(`${BASE_URL}/adminShipping`);
+      const adminResult = await adminResponse.json();
+
       const newId = shippingResult.shippingList.length + 1;
       const newDate = new Date().toString();
 
@@ -145,18 +149,31 @@ function CreateShipping() {
       updatedShippingData.id = newId;
       updatedShippingData.date = newDate;
 
+      const { adminId, ...rest } = updatedShippingData;
+
+      const newAdminShipping = {
+        ...rest,
+        id: adminResult[adminResult.length - 1].id + 1,
+        userId: stateLoginPersist.id,
+      };
+
+      updatedShippingData.adminId = adminResult[adminResult.length - 1].id + 1;
+
       setShippingData(updatedShippingData);
 
       shippingResult.shippingList.push(shippingData);
 
-      axios
-        .patch(`${BASE_URL}/userShipping/${result.shippingId}`, shippingResult)
-        .then(() => {
-          setTimeout(() => {
-            router.push("/user/shipping/manage");
-          }, 3000);
-          successMessage();
-        });
+      await axios.patch(
+        `${BASE_URL}/userShipping/${result.shippingId}`,
+        shippingResult
+      );
+      await axios.post(`${BASE_URL}/adminShipping/`, newAdminShipping);
+
+      setTimeout(() => {
+        router.push("/user/shipping/manage");
+      }, 3000);
+
+      successMessage();
     } catch (e) {
       console.log(e);
     }

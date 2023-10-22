@@ -88,16 +88,4 @@ function AdminViewAddress() {
   );
 }
 
-{
-  /* <TableData
-  index={1}
-  id={1}
-  address="1"
-  city="Istana Merdeka"
-  province="Jakarta Pusat"
-  zip="DKI Jakarta"
-  extra="12345"
-/> */
-}
-
 export default AdminViewAddress;

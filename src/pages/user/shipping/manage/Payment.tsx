@@ -22,6 +22,7 @@ interface PaymentProps {
 function Payment(props: PaymentProps) {
   const [shippingData, setShippingData] = useState<IShippingData>({
     id: 0,
+    adminId: 0,
     length: 0,
     width: 0,
     height: 0,

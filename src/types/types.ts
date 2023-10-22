@@ -59,6 +59,7 @@ export interface IAddress {
 
 export interface IShippingData {
   id: number;
+  adminId: number;
   length: number;
   width: number;
   height: number;
@@ -127,4 +128,25 @@ export interface IAdminAddress {
   province: string;
   city: string;
   zip: string;
+}
+
+export interface IAdminShipping {
+  id: number;
+  userId: number;
+  length: number;
+  width: number;
+  height: number;
+  weight: number;
+  start: IAddress;
+  destAddress: string;
+  destCity: string;
+  destProvince: string;
+  destZip: string;
+  category: string;
+  description: string;
+  date: string;
+  insurance: boolean;
+  sameDay: boolean;
+  twoDay: boolean;
+  alreadyPaid: boolean;
 }
