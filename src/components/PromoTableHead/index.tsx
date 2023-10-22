@@ -30,7 +30,7 @@ function PromoTableHead() {
         Quantity
       </th> */}
       <th
-        className={`${styles.thArea} px-[20px] py-[10px] text-left w-[125px] h-[69px]`}
+        className={`${styles.thArea} px-[20px] py-[10px] text-left w-[5px] h-[69px]`}
       >
         Options
       </th>

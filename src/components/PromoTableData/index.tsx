@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "@/styles/Table.module.css";
-import WarningModal from "@/components/WarningModal";
+import EditPromo from "@/pages/admin/managePromo/EditPromo";
+import { AiOutlineEdit } from "react-icons/ai";
 
 interface TableDataProps {
   index: number;
@@ -8,9 +9,21 @@ interface TableDataProps {
   code: string;
   description: string;
   expirationDate: string;
+  refreshFunction: () => void;
 }
 
 function PromoTableData(props: TableDataProps) {
+  const [showEdit, setShowEdit] = useState<boolean>(false);
+
+  const editOn = () => {
+    setShowEdit(true);
+  };
+
+  const editOff = () => {
+    setShowEdit(false);
+    props.refreshFunction();
+  };
+
   const dateConverter = (date: Date) => {
     const time = date.toTimeString().substring(0, 5);
 
@@ -21,6 +34,8 @@ function PromoTableData(props: TableDataProps) {
 
   return (
     <>
+      {showEdit && <EditPromo exitFunction={editOff} promoId={props.id} />}
+
       <tr className={`${props.index % 2 === 0 ? "bg-white" : "bg-amber-100"}`}>
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
@@ -45,7 +60,9 @@ function PromoTableData(props: TableDataProps) {
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
         >
-          EDIT
+          <button className="text-[25px]" onClick={editOn}>
+            <AiOutlineEdit className="text-[#D84727] hover:text-amber-500" />
+          </button>
         </td>
       </tr>
     </>
