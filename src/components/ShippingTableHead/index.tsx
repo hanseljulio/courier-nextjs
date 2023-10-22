@@ -1,15 +1,9 @@
 import React from "react";
 import styles from "@/styles/Table.module.css";
 
-interface ShippingTableHeadProps {
-  adminMode?: boolean;
-}
-
-function ShippingTableHead(props: ShippingTableHeadProps) {
+function ShippingTableHead() {
   return (
-    <tr
-      className={`${styles.tableHeadArea} ${props.adminMode ? "bg-white" : ""}`}
-    >
+    <tr className={`${styles.tableHeadArea}`}>
       <th
         className={`${styles.thArea} px-[20px] py-[10px] text-left w-[58px] h-[69px]`}
       >

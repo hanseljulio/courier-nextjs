@@ -894,7 +894,7 @@
       "insurance": true,
       "sameDay": true,
       "twoDay": false,
-      "alreadyPaid": false
+      "alreadyPaid": true
     },
     {
       "id": 2,
@@ -946,7 +946,7 @@
       "insurance": false,
       "sameDay": false,
       "twoDay": false,
-      "alreadyPaid": false
+      "alreadyPaid": true
     },
     {
       "id": 4,
