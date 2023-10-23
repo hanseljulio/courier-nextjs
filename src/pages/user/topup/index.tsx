@@ -107,12 +107,6 @@ function TopUp() {
 
   return (
     <>
-      {showHistory && (
-        <TransactionHistory
-          historyData={walletData.history}
-          exitFunction={toggleHistoryOff}
-        />
-      )}
       <div>
         <UserNav currentPage="topup" />
         <ToastContainer />
@@ -158,6 +152,12 @@ function TopUp() {
           />
         </div>
       </div>
+      {showHistory && (
+        <TransactionHistory
+          historyData={walletData.history}
+          exitFunction={toggleHistoryOff}
+        />
+      )}
     </>
   );
 }
