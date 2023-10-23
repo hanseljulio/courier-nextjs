@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "@/styles/Table.module.css";
-import EditPromo from "@/pages/admin/managePromo/EditPromo";
+import EditPromo from "../EditPromo";
 import { AiOutlineEdit } from "react-icons/ai";
 
 interface TableDataProps {

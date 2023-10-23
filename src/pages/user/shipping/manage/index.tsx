@@ -11,7 +11,7 @@ import { BASE_URL } from "@/constants/constants";
 import provinces from "@/database/provinces.json";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Payment from "./Payment";
+import Payment from "@/components/Payment";
 
 function ManageShipping() {
   const stateLoginPersist = useStoreLoginPersist();

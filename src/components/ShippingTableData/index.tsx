@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "@/styles/Table.module.css";
-import Payment from "@/pages/user/shipping/manage/Payment";
 
 interface ShippingTableDataProps {
   index: number;
