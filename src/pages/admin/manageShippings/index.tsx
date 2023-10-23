@@ -169,7 +169,6 @@ function AdminManageShipping() {
     return provinces.provinces[parseInt(id) - 1].province;
   };
 
-  // Modify shipping array in userShipping and delete the id in adminShipping
   const deleteShipping = async (adminId: number, userId: number) => {
     try {
       await axios.delete(`${BASE_URL}/adminShipping/${adminId}`);

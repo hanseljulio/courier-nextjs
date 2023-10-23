@@ -9,6 +9,9 @@ import Pagination from "@/components/Pagination";
 import { useStoreLoginPersist } from "@/store/store";
 import { BASE_URL } from "@/constants/constants";
 import provinces from "@/database/provinces.json";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Payment from "./Payment";
 
 function ManageShipping() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -71,10 +74,34 @@ function ManageShipping() {
     return provinces.provinces[parseInt(id) - 1].province;
   };
 
+  const [showPayment, setShowPayment] = useState<boolean>(false);
+  const paidMessage = () =>
+    toast(
+      "Payment sucessful! Go to the games section for a chance to win prizes!"
+    );
+
+  const [selectedId, setSelectedId] = useState<number>(1);
+
+  const paymentOn = (selectedId: number) => {
+    setSelectedId(selectedId);
+    setShowPayment(true);
+  };
+
+  const paymentOff = () => {
+    setShowPayment(false);
+  };
+
+  const paymentSubmit = () => {
+    setShowPayment(false);
+    getShippingData();
+    paidMessage();
+  };
+
   return (
     <>
       <div>
         <UserNav currentPage="shipping" />
+        <ToastContainer />
         <div className="header-section flex items-center pb-8 mobile:flex-col">
           <UserHeader
             title="Manage Shipping"
@@ -116,6 +143,7 @@ function ManageShipping() {
                         currentStatus={data.status}
                         shippingId={currentShippingId}
                         refresh={getShippingData}
+                        paymentOn={paymentOn}
                       />
                     ))}
                   </tbody>
@@ -133,6 +161,15 @@ function ManageShipping() {
           )}
         </div>
       </div>
+
+      {showPayment && (
+        <Payment
+          shippingId={currentShippingId}
+          selectedId={selectedId}
+          exitPayment={paymentOff}
+          paymentSubmit={paymentSubmit}
+        />
+      )}
     </>
   );
 }
