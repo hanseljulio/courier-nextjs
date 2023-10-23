@@ -97,7 +97,7 @@ function ManageShipping() {
             </h1>
           ) : (
             <div className="content">
-              <div className="table-section mx-[350px] mobile:mx-auto mobile:overflow-scroll">
+              <div className="table-section mx-[350px] mobile:scale-[0.95] mobile:mx-auto mobile:overflow-scroll">
                 <table className="table-area w-full">
                   <tbody>
                     <ShippingTableHead />
@@ -107,9 +107,7 @@ function ManageShipping() {
                         id={data.id}
                         index={data.id}
                         startAddress={`${data.start.address}, ${data.start.city}, ${data.start.province} ${data.start.zip}`}
-                        destAddress={`${data.destAddress}, ${
-                          data.destCity
-                        }, ${getProvince(data.destProvince)} ${data.destZip}`}
+                        destAddress={`${data.destAddress}, ${data.destCity}, ${data.destProvince} ${data.destZip}`}
                         date={dateConverter(new Date(data.date))}
                         description={`${data.category} - ${
                           data.description ? data.description : "No description"

@@ -123,7 +123,7 @@ function Games() {
           />
         </div>
         <div className="games-section">
-          <p className="text-[18px] pb-[50px] text-center mobile:pb-[30px] mobile:mx-[20px] mobile: text-[14px]">
+          <p className="text-[18px] pb-[50px] text-center mobile:pb-[30px] mobile:mx-[20px] mobile:text-[14px]">
             {chances > 0
               ? `You have ${chances} chance(s) left.`
               : `You seem to be out of chances to play. Come back when you have paid for a shipment!`}
@@ -133,7 +133,7 @@ function Games() {
               Out of boxes. Refresh the page to continue playing!
             </p>
           ) : null}
-          <div className="cards-section grid justify-center pb-[100px] grid-cols-[repeat(3,_180px)] grid-rows-[repeat(3,_180px)] mobile:grid-cols-[repeat(2,_180px)] mobile:grid-rows-[repeat(5,_180px)] mobile:mr-6">
+          <div className="cards-section grid justify-center pb-[100px] grid-cols-[repeat(3,_180px)] grid-rows-[repeat(3,_180px)] mobile:scale-[0.8] mobile:grid-cols-[repeat(3,_150px)] mobile:grid-rows-[repeat(3,_150px)] mobile:mr-9">
             {moneyArray.map((money, index) => (
               <GameCard
                 key={index}

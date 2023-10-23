@@ -121,6 +121,11 @@ function PackageAddress(props: PackageAddressProps) {
 
     getProvinceData();
   }, [provinceId]);
+
+  const getProvince = (id: string) => {
+    return provinces.provinces[parseInt(id) - 1].province;
+  };
+
   return (
     <div>
       <div className="header-section pb-8">
@@ -147,7 +152,9 @@ function PackageAddress(props: PackageAddressProps) {
             width="w-[300px] mobile:w-full"
             options={provinceList}
             provinceChange={provinceChange}
-            onChange={(e) => props.updateFields({ destProvince: e })}
+            onChange={(e) =>
+              props.updateFields({ destProvince: getProvince(e) })
+            }
           />
           <Dropdown
             label="City"

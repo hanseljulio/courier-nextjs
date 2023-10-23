@@ -52,7 +52,7 @@ function GreetUser() {
         </h1>
         <h1>What would you like to do today?</h1>
       </div>
-      <div className="edit-profile-div mr-[25px] pt-2">
+      <div className="edit-profile-div mr-[25px] mobile:mr-0 pt-2">
         <h1
           onClick={redirectEditProfile}
           className="text-[20px] hover:text-amber-600 hover:cursor-pointer"

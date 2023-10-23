@@ -132,7 +132,7 @@ function TopUp() {
         </div>
         <div className="top-up-form pt-8">
           <form action="" onSubmit={submit}>
-            <div className="form-section items-center flex justify-center gap-5">
+            <div className="form-section items-center flex justify-center gap-5 mobile:scale-[0.9]">
               <h1 className="font-bold mt-2 text-[20px]">IDR</h1>
               <Input
                 label=""

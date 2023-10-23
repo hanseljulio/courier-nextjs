@@ -40,7 +40,7 @@ function GameCard(props: GameCardProps) {
   }
 
   return (
-    <div className={`${styles.gamecardDiv}`}>
+    <div className={`${styles.gamecardDiv} mobile:scale-[0.9]`}>
       <div
         style={{
           border:

@@ -136,11 +136,7 @@ function ShippingInfo(props: ShippingInfoProps) {
             </h1>
             <h1>
               Destination address:{" "}
-              {`${shippingData.destAddress}, ${
-                shippingData.destCity
-              }, ${getProvince(shippingData.destProvince)} ${
-                shippingData.destZip
-              }`}
+              {`${shippingData.destAddress}, ${shippingData.destCity}, ${shippingData.destProvince} ${shippingData.destZip}`}
               <h1>Date: {shippingData.date}</h1>
             </h1>
           </div>

@@ -322,6 +322,8 @@ function Payment(props: PaymentProps) {
       );
       const shippingResult = await shippingResponse.json();
 
+      console.log(shippingResult);
+      console.log(props.selectedId - 1);
       shippingResult.shippingList[props.selectedId - 1].alreadyPaid = true;
       shippingResult.shippingList[props.selectedId - 1].status = "Processing";
 
@@ -354,12 +356,18 @@ function Payment(props: PaymentProps) {
       adminShippingResult.alreadyPaid = true;
       adminShippingResult.status = "Processing";
 
-      const voucherResponse = await fetch(
-        `${BASE_URL}/userVouchers/${voucherId}`
-      );
-      const voucherResult = await voucherResponse.json();
+      if (voucherId !== 0) {
+        const voucherResponse = await fetch(
+          `${BASE_URL}/userVouchers/${voucherId}`
+        );
+        const voucherResult = await voucherResponse.json();
 
-      voucherResult.quantity--;
+        voucherResult.quantity--;
+        await axios.patch(
+          `${BASE_URL}/userVouchers/${voucherId}`,
+          voucherResult
+        );
+      }
 
       await axios.post(`${BASE_URL}/adminEarnings`, newAdminEarnings);
 
@@ -379,8 +387,6 @@ function Payment(props: PaymentProps) {
         }`,
         adminShippingResult
       );
-
-      await axios.patch(`${BASE_URL}/userVouchers/${voucherId}`, voucherResult);
 
       await axios
         .patch(`${BASE_URL}/users/${stateLoginPersist.id}`, result)
@@ -421,13 +427,7 @@ function Payment(props: PaymentProps) {
               </div>
               <div className="dest-address bg-amber-200 p-4 rounded-[10px] w-[250px]">
                 <h1>{shippingData.destAddress}</h1>
-                <h1 className="mobile:text-[12px]">{`${
-                  shippingData.destCity
-                }, ${
-                  shippingData.destProvince
-                    ? getProvince(shippingData.destProvince)
-                    : shippingData.destProvince
-                }, ${shippingData.destZip}`}</h1>
+                <h1 className="mobile:text-[12px]">{`${shippingData.destCity}, ${shippingData.destProvince}, ${shippingData.destZip}`}</h1>
               </div>
             </div>
             <div className="order-size-details text-center pb-6 text-slate-900 mobile:text-[14px]">

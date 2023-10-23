@@ -247,9 +247,7 @@ function AdminManageShipping() {
                   id={data.id}
                   userId={data.userId}
                   startAddress={`${data.start.address}, ${data.start.city}, ${data.start.province} ${data.start.zip}`}
-                  destAddress={`${data.destAddress}, ${
-                    data.destCity
-                  }, ${getProvince(data.destProvince)} ${data.destZip}`}
+                  destAddress={`${data.destAddress}, ${data.destCity}, ${data.destAddress} ${data.destZip}`}
                   description={`${data.category} - ${
                     data.description ? data.description : "No description"
                   }`}

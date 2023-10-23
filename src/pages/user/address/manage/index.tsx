@@ -142,7 +142,7 @@ function ManageAddress() {
               </h1>
             ) : (
               <div className="content">
-                <div className="table-section mx-[350px] mobile:mx-auto mobile:overflow-scroll">
+                <div className="table-section mx-[350px] mobile:scale-[0.95] mobile:mx-auto mobile:overflow-scroll">
                   <table className="table-area w-full">
                     <tbody>
                       <TableHead />

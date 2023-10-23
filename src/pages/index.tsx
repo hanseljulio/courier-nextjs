@@ -64,7 +64,7 @@ export default function Home() {
   };
 
   return (
-    <div className="admin-login-div min-h-screen ">
+    <div className="admin-login-div min-h-screen mobile:overflow-y-hidden">
       <div className="admin-login-titles pb-8 text-center py-[200px]">
         <h1 className="text-2xl font-3xl">Courier Login</h1>
       </div>
