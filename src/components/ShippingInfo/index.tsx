@@ -186,13 +186,15 @@ function ShippingInfo(props: ShippingInfoProps) {
             ) : null}
           </div>
 
-          <div className="buttons-section flex justify-center gap-6 pt-[150px]">
-            <Button
-              onClick={modifyShippingStatus}
-              text="Edit"
-              styling="p-4 mb-[50px] bg-amber-400 rounded-[10px] w-[200px] hover:bg-amber-500"
-            />
-          </div>
+          {shippingData.alreadyPaid && (
+            <div className="buttons-section flex justify-center gap-6 pt-[100px]">
+              <Button
+                onClick={modifyShippingStatus}
+                text="Edit"
+                styling="p-4 mb-[50px] bg-amber-400 rounded-[10px] w-[200px] hover:bg-amber-500"
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

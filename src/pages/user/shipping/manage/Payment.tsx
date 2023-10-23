@@ -332,6 +332,18 @@ function Payment(props: PaymentProps) {
         shippingNum: props.selectedId,
       };
 
+      const adminShippingResponse = await fetch(
+        `${BASE_URL}/adminShipping/${
+          shippingResult.shippingList[props.selectedId - 1].adminId
+        }`
+      );
+      const adminShippingResult = await adminShippingResponse.json();
+
+      console.log(adminShippingResult);
+
+      adminShippingResult.alreadyPaid = true;
+      adminShippingResult.status = "Processing";
+
       await axios.post(`${BASE_URL}/adminEarnings`, newAdminEarnings);
 
       await axios.patch(
@@ -342,6 +354,13 @@ function Payment(props: PaymentProps) {
       await axios.patch(
         `${BASE_URL}/userShipping/${result.shippingId}`,
         shippingResult
+      );
+
+      await axios.patch(
+        `${BASE_URL}/adminShipping/${
+          shippingResult.shippingList[props.selectedId - 1].adminId
+        }`,
+        adminShippingResult
       );
 
       await axios

@@ -469,8 +469,8 @@
           "insurance": true,
           "sameDay": true,
           "twoDay": false,
-          "alreadyPaid": true,
-          "status": "Processing"
+          "alreadyPaid": false,
+          "status": ""
         },
         {
           "id": 2,
@@ -523,8 +523,8 @@
           "insurance": false,
           "sameDay": false,
           "twoDay": false,
-          "alreadyPaid": true,
-          "status": "Processing"
+          "alreadyPaid": false,
+          "status": ""
         },
         {
           "id": 4,
@@ -909,8 +909,8 @@
       "insurance": true,
       "sameDay": true,
       "twoDay": false,
-      "alreadyPaid": true,
-      "status": "Processing"
+      "alreadyPaid": false,
+      "status": ""
     },
     {
       "id": 2,
@@ -963,8 +963,8 @@
       "insurance": false,
       "sameDay": false,
       "twoDay": false,
-      "alreadyPaid": true,
-      "status": "Processing"
+      "alreadyPaid": false,
+      "status": ""
     },
     {
       "id": 4,
