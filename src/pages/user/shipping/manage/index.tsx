@@ -149,7 +149,7 @@ function ManageShipping() {
                   </tbody>
                 </table>
               </div>
-              <div className="flex justify-center pagination-section mx-[350px] pt-[100px] pb-[50px] mobile:mx-auto">
+              <div className="flex justify-center pagination-section mx-[350px] pt-[50px] pb-[150px] mobile:mx-auto">
                 <Pagination
                   page={currentPage}
                   count={count}

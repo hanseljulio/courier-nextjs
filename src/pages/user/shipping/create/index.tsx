@@ -183,26 +183,10 @@ function CreateShipping() {
 
   return (
     <>
-      {showEmptyAddress && (
-        <WarningModal
-          problem="It seems you don't have any addresses registered!"
-          solution="Click the button below to add an address first, then come back here!"
-          solutionBtn="Create a new address"
-          redirectFunction={redirectCreateAddress}
-        />
-      )}
-
-      {addressSelection && (
-        <SelectionModal
-          addressList={addressList}
-          selectAddressFunction={selectStartingAddress}
-        />
-      )}
-
       <div>
         <UserNav currentPage="shipping" />
         <ToastContainer />
-        <div className="create-shipping-div">
+        <div className="create-shipping-div pb-12">
           <form action="" onSubmit={submit}>
             {step}
             <div className="button-section flex justify-center pt-8 gap-8">
@@ -224,6 +208,22 @@ function CreateShipping() {
           </form>
         </div>
       </div>
+
+      {showEmptyAddress && (
+        <WarningModal
+          problem="It seems you don't have any addresses registered!"
+          solution="Click the button below to add an address first, then come back here!"
+          solutionBtn="Create a new address"
+          redirectFunction={redirectCreateAddress}
+        />
+      )}
+
+      {addressSelection && (
+        <SelectionModal
+          addressList={addressList}
+          selectAddressFunction={selectStartingAddress}
+        />
+      )}
     </>
   );
 }

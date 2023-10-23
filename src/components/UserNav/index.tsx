@@ -132,7 +132,7 @@ function UserNav(props: UserNavProps) {
                       : "hover:cursor-pointer hover:bg-amber-500 md:hover:text-amber-500 rounded-full md:hover:bg-transparent"
                   } px-6 py-3 text-center`}
                 >
-                  Topup
+                  Top Up
                 </li>
                 <li
                   onClick={redirectLogout}

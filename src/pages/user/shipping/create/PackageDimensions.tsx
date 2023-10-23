@@ -17,7 +17,7 @@ type PackageDimensionsProps = PackageDimensionsData & {
 function PackageDimensions(props: PackageDimensionsProps) {
   return (
     <div>
-      <div className="header-section pb-8">
+      <div className="header-section pb-8 mobile:scale-[0.85]">
         <UserHeader title="Create Shipping - Package Dimensions" />
       </div>
       <div className="package-form-wrapper flex justify-center items-center gap-[150px]">
@@ -33,7 +33,7 @@ function PackageDimensions(props: PackageDimensionsProps) {
             }}
           />
         </div>
-        <div className="package-form-section">
+        <div className="package-form-section mobile:scale-[0.85]">
           <div className="length-input flex gap-5 items-center">
             <Input
               label="Length"

@@ -144,7 +144,7 @@ function TopUp() {
             </div>
           </form>
         </div>
-        <div className="submit-btn items-center flex justify-center pt-2">
+        <div className="submit-btn items-center flex justify-center pt-2 pb-12">
           <Button
             text="Show Topup History"
             styling="p-3 rounded-[8px] w-[300px] my-6 bg-amber-400  hover:bg-amber-500"
