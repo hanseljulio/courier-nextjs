@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import provinces from "@/database/provinces.json";
+import Dropdown from "../Dropdown/Dropdown";
 
 interface ShippingInfoProps {
   adminShippingId: number;
@@ -41,9 +42,10 @@ function ShippingInfo(props: ShippingInfoProps) {
     sameDay: false,
     twoDay: false,
     alreadyPaid: false,
+    status: "",
   });
 
-  //   console.log(shippingData);
+  const shippingStatusMessage = () => toast("Shipping status changed!");
 
   const getShippingData = async () => {
     try {
@@ -53,6 +55,38 @@ function ShippingInfo(props: ShippingInfoProps) {
       const result = await response.json();
 
       setShippingData(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const modifyShippingStatus = async () => {
+    try {
+      await axios.patch(
+        `${BASE_URL}/adminShipping/${props.adminShippingId}`,
+        shippingData
+      );
+
+      const response = await fetch(`${BASE_URL}/users/${shippingData.userId}`);
+      const result = await response.json();
+
+      const shippingResponse = await fetch(
+        `${BASE_URL}/userShipping/${result.shippingId}`
+      );
+      const shippingResult = await shippingResponse.json();
+
+      for (let i = 0; i < shippingResult.shippingList.length; i++) {
+        if (shippingResult.shippingList[i].adminId === props.adminShippingId) {
+          shippingResult.shippingList[i].status = shippingData.status;
+          break;
+        }
+      }
+
+      await axios.patch(
+        `${BASE_URL}/userShipping/${result.shippingId}`,
+        shippingResult
+      );
+      shippingStatusMessage();
     } catch (e) {
       console.log(e);
     }
@@ -132,11 +166,29 @@ function ShippingInfo(props: ShippingInfoProps) {
             <h1>{shippingData.twoDay ? "- Two Day Delivery" : ""}</h1>
           </div>
           <div className="status-content">
-            <h1>Status: {shippingData.alreadyPaid ? "Paid" : "Unpaid"}</h1>
+            <h1>
+              {shippingData.alreadyPaid
+                ? "User has paid for this shipment"
+                : "User has not paid for this shipment"}
+            </h1>
+            {shippingData.alreadyPaid ? (
+              <Dropdown
+                label="Shipment status"
+                flexLabel="flex items-center gap-8 mt-3"
+                labelStyle="pb-2 pt-2"
+                width="w-[300px] mobile:w-full"
+                value={shippingData.status}
+                onChange={(e) =>
+                  setShippingData({ ...shippingData, status: e })
+                }
+                options={["Processing", "Shipped", "Delivered"]}
+              />
+            ) : null}
           </div>
 
           <div className="buttons-section flex justify-center gap-6 pt-[150px]">
             <Button
+              onClick={modifyShippingStatus}
               text="Edit"
               styling="p-4 mb-[50px] bg-amber-400 rounded-[10px] w-[200px] hover:bg-amber-500"
             />

@@ -45,6 +45,7 @@ function CreateShipping() {
     sameDay: false,
     twoDay: false,
     alreadyPaid: false,
+    status: "",
   });
 
   const selectStartingAddress = (address: IAddress) => {
@@ -155,6 +156,7 @@ function CreateShipping() {
         ...rest,
         id: adminResult[adminResult.length - 1].id + 1,
         userId: stateLoginPersist.id,
+        status: "",
       };
 
       updatedShippingData.adminId = adminResult[adminResult.length - 1].id + 1;

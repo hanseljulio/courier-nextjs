@@ -14,6 +14,7 @@ interface ShippingTableDataProps {
   destAddress: string;
   description: string;
   status: boolean;
+  currentStatus: string;
   adminShippingId: number;
   deleteFunction: (adminId: number, userId: number) => void;
   refresh: () => void;
@@ -29,6 +30,7 @@ function AdminShippingTableData(props: ShippingTableDataProps) {
 
   const editOff = () => {
     setShowEdit(false);
+    props.refresh();
   };
 
   const hideDeleteWarning = () => {
@@ -92,7 +94,7 @@ function AdminShippingTableData(props: ShippingTableDataProps) {
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
         >
-          {props.status ? "Paid - Processing" : "Unpaid"}
+          {props.status ? `Paid - ${props.currentStatus}` : "Unpaid"}
         </td>
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}

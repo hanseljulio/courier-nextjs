@@ -12,6 +12,7 @@ interface ShippingTableDataProps {
   date: string;
   description: string;
   status: boolean;
+  currentStatus: string;
   shippingId: string;
   refresh: () => void;
 }
@@ -85,7 +86,7 @@ function ShippingTableData(props: ShippingTableDataProps) {
               UNPAID
             </h1>
           ) : (
-            <h1 className="text-green-500">PAID</h1>
+            <h1 className="text-green-500">PAID - {props.currentStatus}</h1>
           )}
         </td>
       </tr>

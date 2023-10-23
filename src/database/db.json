@@ -469,7 +469,8 @@
           "insurance": true,
           "sameDay": true,
           "twoDay": false,
-          "alreadyPaid": false
+          "alreadyPaid": true,
+          "status": "Processing"
         },
         {
           "id": 2,
@@ -495,7 +496,8 @@
           "insurance": true,
           "sameDay": false,
           "twoDay": true,
-          "alreadyPaid": false
+          "alreadyPaid": false,
+          "status": ""
         },
         {
           "id": 3,
@@ -521,7 +523,8 @@
           "insurance": false,
           "sameDay": false,
           "twoDay": false,
-          "alreadyPaid": false
+          "alreadyPaid": true,
+          "status": "Processing"
         },
         {
           "id": 4,
@@ -547,7 +550,8 @@
           "insurance": true,
           "sameDay": true,
           "twoDay": false,
-          "alreadyPaid": false
+          "alreadyPaid": false,
+          "status": ""
         },
         {
           "id": 5,
@@ -573,7 +577,8 @@
           "insurance": true,
           "sameDay": true,
           "twoDay": false,
-          "alreadyPaid": false
+          "alreadyPaid": false,
+          "status": ""
         },
         {
           "id": 6,
@@ -599,7 +604,8 @@
           "insurance": true,
           "sameDay": false,
           "twoDay": false,
-          "alreadyPaid": false
+          "alreadyPaid": false,
+          "status": ""
         },
         {
           "id": 7,
@@ -626,7 +632,8 @@
           "insurance": true,
           "sameDay": false,
           "twoDay": false,
-          "alreadyPaid": false
+          "alreadyPaid": false,
+          "status": ""
         }
       ]
     },
@@ -678,7 +685,8 @@
           "insurance": true,
           "sameDay": true,
           "twoDay": false,
-          "alreadyPaid": false
+          "alreadyPaid": false,
+          "status": ""
         }
       ]
     }
@@ -901,7 +909,8 @@
       "insurance": true,
       "sameDay": true,
       "twoDay": false,
-      "alreadyPaid": true
+      "alreadyPaid": true,
+      "status": "Processing"
     },
     {
       "id": 2,
@@ -927,7 +936,8 @@
       "insurance": true,
       "sameDay": false,
       "twoDay": true,
-      "alreadyPaid": false
+      "alreadyPaid": false,
+      "status": ""
     },
     {
       "id": 3,
@@ -953,7 +963,8 @@
       "insurance": false,
       "sameDay": false,
       "twoDay": false,
-      "alreadyPaid": true
+      "alreadyPaid": true,
+      "status": "Processing"
     },
     {
       "id": 4,
@@ -979,7 +990,8 @@
       "insurance": true,
       "sameDay": true,
       "twoDay": false,
-      "alreadyPaid": false
+      "alreadyPaid": false,
+      "status": ""
     },
     {
       "id": 5,
@@ -1005,7 +1017,8 @@
       "insurance": true,
       "sameDay": true,
       "twoDay": false,
-      "alreadyPaid": false
+      "alreadyPaid": false,
+      "status": ""
     },
     {
       "id": 6,
@@ -1031,7 +1044,8 @@
       "insurance": true,
       "sameDay": false,
       "twoDay": false,
-      "alreadyPaid": false
+      "alreadyPaid": false,
+      "status": ""
     },
     {
       "id": 7,
@@ -1057,7 +1071,8 @@
       "insurance": true,
       "sameDay": true,
       "twoDay": false,
-      "alreadyPaid": false
+      "alreadyPaid": false,
+      "status": ""
     },
     {
       "id": 8,
@@ -1084,7 +1099,8 @@
       "sameDay": false,
       "twoDay": false,
       "alreadyPaid": false,
-      "userId": 2
+      "userId": 2,
+      "status": ""
     }
   ]
 }

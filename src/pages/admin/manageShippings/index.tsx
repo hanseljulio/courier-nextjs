@@ -254,6 +254,7 @@ function AdminManageShipping() {
                     data.description ? data.description : "No description"
                   }`}
                   status={data.alreadyPaid}
+                  currentStatus={data.status}
                   adminShippingId={data.id}
                   deleteFunction={deleteShipping}
                   refresh={getShippingData}

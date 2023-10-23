@@ -46,6 +46,7 @@ function Payment(props: PaymentProps) {
     sameDay: false,
     twoDay: false,
     alreadyPaid: false,
+    status: "",
   });
   const [voucher, setVoucher] = useState<number>(0);
   const [showVoucherPrice, setShowVoucherPrice] = useState<boolean>(false);
@@ -310,6 +311,7 @@ function Payment(props: PaymentProps) {
       const shippingResult = await shippingResponse.json();
 
       shippingResult.shippingList[props.selectedId - 1].alreadyPaid = true;
+      shippingResult.shippingList[props.selectedId - 1].status = "Processing";
 
       walletResult.balance = submitBalance;
 

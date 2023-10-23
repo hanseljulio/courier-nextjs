@@ -115,6 +115,7 @@ function ManageShipping() {
                           data.description ? data.description : "No description"
                         }`}
                         status={data.alreadyPaid}
+                        currentStatus={data.status}
                         shippingId={currentShippingId}
                         refresh={getShippingData}
                       />
