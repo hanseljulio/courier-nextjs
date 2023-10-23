@@ -1,40 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS Assignment - Courier
 
-## Getting Started
+## Available Scripts
 
-First, run the development server:
+To set up the project:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. `npm install` or `bun install` to install all the dependencies.
+2. Once installed, open a terminal and run `npm run dev` or `bun run dev` to run the client.
+3. Open another terminal and run `npm run db` or `bun run db` to run the database.
+4. All set!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Endpoints
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Users
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Users - Contains all users from all roles (admin and user).
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Register User (POST): `/users`
+- Get user data (GET): `/users/id`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<br />
 
-## Learn More
+2. Referral Codes - Contains all the referral codes. Automatically created upon the creation of a new user. Referral ID is in the user's database.
 
-To learn more about Next.js, take a look at the following resources:
+- Get referral (GET): `/referralCodes/referralId`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br />
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Wallet - Contains the user's balance and top up history. Automatically created upon the creation of a new user. Wallet ID is in the user's database.
 
-## Deploy on Vercel
+- Get wallet (GET): `/userWallet/walletId`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<br />
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. Address - Contains the user's list of addresses. Automatically created upon the creation of a new user. Address ID is in the user's database.
+
+- Get address (GET): `/userAddress/addressId`
+- Delete Address (DELETE): `/userAddress/addressId`
+
+<br />
+
+5. Shipping - Contains the user's list of shipping. Automatically created upon the creation of a new user. Shipping ID is in the user's database.
+
+- Get address (GET): `/userShipping/shippingId`
+
+<br />
+
+### Admin
+
+Note: Every address and shipping have an adminId. The adminId in this part refers to this.
+
+6. Vouchers - Contains a list of all the vouchers.
+
+- Add voucher (POST): `/userVouchers`
+- Get voucher (GET): `/userVouchers/voucherId`
+
+<br />
+
+7. Admin Earnings - Contains a list of all earnings. Automatically added upon a successful payment.
+
+- Get earnings (GET): `/adminEarnings`
+
+<br />
+
+8. Admin Addresses - Contains a list of all the addresses. Automatically added upon the creation of a new address by a user.
+
+- Get address (GET): `/adminAddress/adminId`
+
+<br />
+
+9. Admin Shipping - Contains a list of all the shippings. Automatically added upon the creation of a new shipping by a user.
+
+- Get address (GET): `/adminShipping/adminId`
