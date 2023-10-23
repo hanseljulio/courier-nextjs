@@ -3,7 +3,8 @@ import styles from "@/styles/Table.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsTrash, BsInfoCircle } from "react-icons/bs";
-import { AiOutlineEdit } from "react-icons/ai";
+import WarningModal from "../WarningModal";
+import ShippingInfo from "../ShippingInfo";
 
 interface ShippingTableDataProps {
   index: number;
@@ -13,16 +14,14 @@ interface ShippingTableDataProps {
   destAddress: string;
   description: string;
   status: boolean;
-  shippingId: string;
+  adminShippingId: number;
   refresh: () => void;
 }
 
 function AdminShippingTableData(props: ShippingTableDataProps) {
   const [showEdit, setShowEdit] = useState<boolean>(false);
-  const paidMessage = () =>
-    toast(
-      "Payment sucessful! Go to the games section for a chance to win prizes!"
-    );
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const deleteMessage = () => toast("Shipment successfully deleted!");
 
   const editOn = () => {
     setShowEdit(true);
@@ -32,8 +31,40 @@ function AdminShippingTableData(props: ShippingTableDataProps) {
     setShowEdit(false);
   };
 
+  const hideDeleteWarning = () => {
+    setShowDeleteModal(false);
+  };
+
+  const deleteShipping = () => {
+    // if (props.deleteFunction) {
+    //   props.deleteFunction(props.id);
+    // }
+    setShowDeleteModal(false);
+  };
+
+  const showDeleteWarning = () => {
+    setShowDeleteModal(true);
+  };
+
   return (
     <>
+      {showEdit && (
+        <ShippingInfo
+          adminShippingId={props.adminShippingId}
+          exitFunction={editOff}
+        />
+      )}
+
+      {showDeleteModal && (
+        <WarningModal
+          problem="This shipping will be deleted permanently."
+          solution="There's no going back. Are you sure you want to proceed?"
+          solutionBtn="Delete Shipping"
+          redirectFunction={deleteShipping}
+          exitFunction={hideDeleteWarning}
+        />
+      )}
+
       <tr className={`${props.index % 2 === 0 ? "bg-white" : "bg-amber-100"}`}>
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
@@ -69,13 +100,10 @@ function AdminShippingTableData(props: ShippingTableDataProps) {
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
         >
           <div className="button-area flex justify-around mobile:gap-6">
-            <button className="text-[25px]">
+            <button className="text-[25px]" onClick={editOn}>
               <BsInfoCircle className="text-[#D84727] hover:text-amber-500" />
             </button>
-            <button className="text-[25px]">
-              <AiOutlineEdit className="text-[#D84727] hover:text-amber-500" />
-            </button>
-            <button className="text-[25px]">
+            <button className="text-[25px]" onClick={showDeleteWarning}>
               <BsTrash className="text-[#D84727] hover:text-amber-500" />
             </button>
           </div>

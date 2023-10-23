@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminNav from "@/components/AdminNav";
 import Input from "@/components/Input";
 import AdminShippingTableHead from "@/components/AdminShippingTableHead";
-import { IAdmin, IAdminShipping, IShippingData } from "@/types/types";
-import ShippingTableData from "@/components/ShippingTableData";
+import { IAdminShipping } from "@/types/types";
 import Pagination from "@/components/Pagination";
 import { useStoreLoginPersist } from "@/store/store";
 import { BASE_URL } from "@/constants/constants";
@@ -157,24 +156,9 @@ function AdminManageShipping() {
     }
   };
 
-  //   const sortingShippingData = async () => {
-  //     try {
-  //       const shippingResponse = await fetch(`${BASE_URL}/adminShipping`);
-  //       const shippingResult = await shippingResponse.json();
-
-  //       }
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
-
   useEffect(() => {
     getShippingData();
   }, [search, currentPage, sortBy]);
-
-  //   useEffect(() => {
-  //     sortingShippingData();
-  //   }, [sortBy, currentPage]);
 
   const getProvince = (id: string) => {
     return provinces.provinces[parseInt(id) - 1].province;
@@ -232,7 +216,7 @@ function AdminManageShipping() {
                     data.description ? data.description : "No description"
                   }`}
                   status={data.alreadyPaid}
-                  shippingId={currentShippingId}
+                  adminShippingId={data.id}
                   refresh={getShippingData}
                 />
               ))}
