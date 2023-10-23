@@ -84,7 +84,7 @@ function ManageShipping() {
             label=""
             type="text"
             name="search"
-            styling="mt-8 ml-[40px] mobile:mx-auto"
+            styling="mt-8 ml-[28px] mobile:mx-auto"
             width="w-[300px]"
             placeholder="Search shipping description here"
             onChange={(e) => setSearch(e.target.value)}

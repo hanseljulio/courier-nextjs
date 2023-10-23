@@ -85,6 +85,7 @@ function ManagePromo() {
                   code={voucher.code}
                   description={voucher.description}
                   expirationDate={voucher.expirationDate}
+                  quantity={voucher.quantity}
                   refreshFunction={getVoucherData}
                 />
               ))}

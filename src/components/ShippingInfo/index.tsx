@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ShippingInfo.module.css";
-import { IAdminShipping, IVouchers } from "@/types/types";
+import { IAdminShipping } from "@/types/types";
 import { BASE_URL } from "@/constants/constants";
-import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

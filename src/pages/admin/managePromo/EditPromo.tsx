@@ -19,6 +19,7 @@ function EditPromo(props: EditPromoProps) {
     code: "",
     description: "",
     expirationDate: "",
+    quantity: 0,
   });
 
   const [newDate, setNewDate] = useState<string>("1970-01-01");
@@ -171,6 +172,20 @@ function EditPromo(props: EditPromoProps) {
                 onChange={(e) => {
                   setNewTime(e.target.value);
                 }}
+              />
+              <Input
+                label="Quantity"
+                type="number"
+                name="promoQuantity"
+                value={promoData.quantity.toString()}
+                styling="pb-5 text-left"
+                width="w-[400px]"
+                onChange={(e) =>
+                  setPromoData({
+                    ...promoData,
+                    quantity: parseInt(e.target.value),
+                  })
+                }
               />
               <div className="submit-btn pt-10">
                 <Button

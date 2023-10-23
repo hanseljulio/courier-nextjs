@@ -24,11 +24,11 @@ function PromoTableHead() {
       >
         Expiration Date
       </th>
-      {/* <th
-        className={`${styles.thArea} px-[20px] py-[10px] text-left w-[125px] h-[69px]`}
+      <th
+        className={`${styles.thArea} px-[20px] py-[10px] text-left w-[55px] h-[69px]`}
       >
         Quantity
-      </th> */}
+      </th>
       <th
         className={`${styles.thArea} px-[20px] py-[10px] text-left w-[5px] h-[69px]`}
       >

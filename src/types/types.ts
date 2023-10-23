@@ -111,6 +111,7 @@ export interface IVouchers {
   code: string;
   description: string;
   expirationDate: string;
+  quantity: number;
 }
 
 export interface IEarnings {

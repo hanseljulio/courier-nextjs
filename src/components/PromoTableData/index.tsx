@@ -9,6 +9,7 @@ interface TableDataProps {
   code: string;
   description: string;
   expirationDate: string;
+  quantity: number;
   refreshFunction: () => void;
 }
 
@@ -56,6 +57,11 @@ function PromoTableData(props: TableDataProps) {
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
         >
           {dateConverter(new Date(props.expirationDate))}
+        </td>
+        <td
+          className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
+        >
+          {props.quantity}
         </td>
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}

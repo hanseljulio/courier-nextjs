@@ -48,7 +48,7 @@ function Payment(props: PaymentProps) {
     alreadyPaid: false,
     status: "",
   });
-  const [voucher, setVoucher] = useState<number>(0);
+
   const [showVoucherPrice, setShowVoucherPrice] = useState<boolean>(false);
   const [voucherList, setVoucherList] = useState<IVouchers[]>([]);
   const [discount, setDiscount] = useState<number>(0);
@@ -58,7 +58,7 @@ function Payment(props: PaymentProps) {
   const [totalCost, setTotalCost] = useState<number>(0);
   const [userBalance, setUserBalance] = useState<number>(0);
   const [referralCode, setReferralCode] = useState<string>("");
-  const [referralUserId, setReferralUserId] = useState<number>(0);
+  const [voucherId, setVoucherId] = useState<number>(0);
   const [disableReferral, setDisableReferral] = useState<boolean>(false);
 
   const stateLoginPersist = useStoreLoginPersist();
@@ -72,11 +72,23 @@ function Payment(props: PaymentProps) {
       return;
     }
 
-    const voucherArray = [
-      voucherResult[Math.floor(Math.random() * voucherResult.length)],
-      voucherResult[Math.floor(Math.random() * voucherResult.length)],
-      voucherResult[Math.floor(Math.random() * voucherResult.length)],
-    ];
+    let firstIndex = Math.floor(Math.random() * voucherResult.length);
+    let secondIndex = Math.floor(Math.random() * voucherResult.length);
+    let thirdIndex = Math.floor(Math.random() * voucherResult.length);
+
+    const voucherArray: IVouchers[] = [];
+
+    if (voucherResult[firstIndex].quantity !== 0) {
+      voucherArray.push(voucherResult[firstIndex]);
+    }
+
+    if (voucherResult[secondIndex].quantity !== 0) {
+      voucherArray.push(voucherResult[secondIndex]);
+    }
+
+    if (voucherResult[thirdIndex].quantity !== 0) {
+      voucherArray.push(voucherResult[thirdIndex]);
+    }
 
     setVoucherList(voucherArray);
   };
@@ -239,7 +251,6 @@ function Payment(props: PaymentProps) {
           referralCode.toLowerCase() === result[i].referral.toLowerCase() &&
           result[i].userId !== stateLoginPersist.id
         ) {
-          setReferralUserId(result[i].userId);
           successReferral();
           return;
         } else if (
@@ -257,7 +268,7 @@ function Payment(props: PaymentProps) {
     }
   };
 
-  const voucherCheck = (code: string) => {
+  const voucherCheck = (code: string, id: number) => {
     const codeArray = code.split("-");
     const discountAmount = parseInt(codeArray[0]) / 100;
     const discountType = codeArray[1];
@@ -287,6 +298,7 @@ function Payment(props: PaymentProps) {
 
     setDiscount(totalDiscount);
     setShowVoucherPrice(true);
+    setVoucherId(id);
 
     voucherApplied();
   };
@@ -339,10 +351,15 @@ function Payment(props: PaymentProps) {
       );
       const adminShippingResult = await adminShippingResponse.json();
 
-      console.log(adminShippingResult);
-
       adminShippingResult.alreadyPaid = true;
       adminShippingResult.status = "Processing";
+
+      const voucherResponse = await fetch(
+        `${BASE_URL}/userVouchers/${voucherId}`
+      );
+      const voucherResult = await voucherResponse.json();
+
+      voucherResult.quantity--;
 
       await axios.post(`${BASE_URL}/adminEarnings`, newAdminEarnings);
 
@@ -362,6 +379,8 @@ function Payment(props: PaymentProps) {
         }`,
         adminShippingResult
       );
+
+      await axios.patch(`${BASE_URL}/userVouchers/${voucherId}`, voucherResult);
 
       await axios
         .patch(`${BASE_URL}/users/${stateLoginPersist.id}`, result)
@@ -481,17 +500,18 @@ function Payment(props: PaymentProps) {
               </div>
               <h1 className="text-center pb-4">Available vouchers:</h1>
               <div className="vouchers-section flex justify-center gap-4 mobile:flex-col">
-                {!voucherList && (
+                {voucherList.length === 0 && (
                   <h1 className="text-red-600">
-                    No vouchers - complete a shipment for a chance to get one!
+                    No vouchers at the moment. Come back again later!
                   </h1>
                 )}
-                {voucherList &&
+                {voucherList.length > 0 &&
                   voucherList.map((voucher, index) => {
                     return (
                       <div key={index} className="text-center">
                         <VoucherPill
                           key={index}
+                          id={voucher.id}
                           code={voucher.code}
                           applyVoucher={voucherCheck}
                         />

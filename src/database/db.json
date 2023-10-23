@@ -696,37 +696,43 @@
       "id": 1,
       "code": "20-xab-200000",
       "description": "20% discount if total is above Rp. 200.000,00",
-      "expirationDate": "Wed Dec 31 2025 23:59:00 GMT+0700 (Western Indonesia Time)"
+      "expirationDate": "Wed Dec 31 2025 23:59:00 GMT+0700 (Western Indonesia Time)",
+      "quantity": 3
     },
     {
       "id": 2,
       "code": "10-xab-150000",
       "description": "10% discount if total is above Rp. 150.000,00",
-      "expirationDate": "Sat Oct 19 2024 13:43:55 GMT+0700 (Western Indonesia Time)"
+      "expirationDate": "Sat Oct 19 2024 13:43:55 GMT+0700 (Western Indonesia Time)",
+      "quantity": 2
     },
     {
       "id": 3,
       "code": "100-shp-250000",
       "description": "Free shipping if total is above Rp. 250.000,00",
-      "expirationDate": "Sat Dec 30 2023 13:43:55 GMT+0700 (Western Indonesia Time)"
+      "expirationDate": "Sat Dec 30 2023 13:43:00 GMT+0700 (Western Indonesia Time)",
+      "quantity": 1
     },
     {
       "id": 4,
       "code": "10-xab-100000",
       "description": "10% discount if total is above Rp. 100.000,00",
-      "expirationDate": "Mon Mar 25 2024 13:43:55 GMT+0700 (Western Indonesia Time)"
+      "expirationDate": "Mon Mar 25 2024 13:43:55 GMT+0700 (Western Indonesia Time)",
+      "quantity": 4
     },
     {
       "id": 5,
       "code": "30-shp-150000",
       "description": "30% shipping discount if total is above Rp. 150.000,00",
-      "expirationDate": "Sat May 17 2025 13:43:55 GMT+0700 (Western Indonesia Time)"
+      "expirationDate": "Sat May 17 2025 13:43:55 GMT+0700 (Western Indonesia Time)",
+      "quantity": 3
     },
     {
       "id": 6,
       "code": "15-xab-150000",
       "description": "15% discount if total is above Rp. 150.000,00",
-      "expirationDate": "Wed Jan 1 2025 13:43:55 GMT+0700 (Western Indonesia Time)"
+      "expirationDate": "Wed Jan 1 2025 13:43:55 GMT+0700 (Western Indonesia Time)",
+      "quantity": 2
     }
   ],
   "adminEarnings": [],
