@@ -173,7 +173,6 @@ function AdminManageShipping() {
   const deleteShipping = async (adminId: number, userId: number) => {
     try {
       await axios.delete(`${BASE_URL}/adminShipping/${adminId}`);
-      console.log(adminId);
 
       const userResponse = await fetch(`${BASE_URL}/users/${userId}`);
       const userResult = await userResponse.json();

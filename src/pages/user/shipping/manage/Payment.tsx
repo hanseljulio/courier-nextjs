@@ -322,8 +322,6 @@ function Payment(props: PaymentProps) {
       );
       const shippingResult = await shippingResponse.json();
 
-      console.log(shippingResult);
-      console.log(props.selectedId - 1);
       shippingResult.shippingList[props.selectedId - 1].alreadyPaid = true;
       shippingResult.shippingList[props.selectedId - 1].status = "Processing";
 

@@ -41,8 +41,6 @@ function PackageAddress(props: PackageAddressProps) {
   const [twoDay, setTwoDay] = useState<boolean>(false);
   const [regular, setRegular] = useState<boolean>(true);
 
-  // console.log(insurance, sameDay, twoDay);
-
   const toggleRegular = () => {
     setRegular((prevRegular) => !prevRegular);
     setSameDay(false);
