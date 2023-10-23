@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import AdminNav from "@/components/AdminNav";
 import Input from "@/components/Input";
 import AdminShippingTableHead from "@/components/AdminShippingTableHead";
-import { IAdminShipping } from "@/types/types";
+import { IAdminShipping, IShippingData } from "@/types/types";
 import Pagination from "@/components/Pagination";
 import { useStoreLoginPersist } from "@/store/store";
 import { BASE_URL } from "@/constants/constants";
 import provinces from "@/database/provinces.json";
 import AdminShippingTableData from "@/components/AdminShippingTableData";
 import Dropdown from "@/components/Dropdown/Dropdown";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AdminManageShipping() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -18,6 +21,8 @@ function AdminManageShipping() {
   const [count, setCount] = useState<number>(0);
   const [currentShippingId, setCurrentShippingId] = useState<string>("");
   const [sortBy, setSortBy] = useState<string>("");
+
+  const deleteMessage = () => toast("Shipment successfully deleted!");
 
   const movePage = (pageNum: number) => {
     setCurrentPage(pageNum);
@@ -164,9 +169,42 @@ function AdminManageShipping() {
     return provinces.provinces[parseInt(id) - 1].province;
   };
 
+  // Modify shipping array in userShipping and delete the id in adminShipping
+  const deleteShipping = async (adminId: number, userId: number) => {
+    try {
+      await axios.delete(`${BASE_URL}/adminShipping/${adminId}`);
+      console.log(adminId);
+
+      const userResponse = await fetch(`${BASE_URL}/users/${userId}`);
+      const userResult = await userResponse.json();
+
+      const response = await fetch(
+        `${BASE_URL}/userShipping/${userResult.shippingId}`
+      );
+      const result = await response.json();
+
+      const updatedArray = result.shippingList.filter((data: IShippingData) => {
+        return data.adminId !== adminId;
+      });
+
+      result.shippingList = updatedArray;
+
+      await axios.patch(
+        `${BASE_URL}/userShipping/${userResult.shippingId}`,
+        result
+      );
+
+      getShippingData();
+      deleteMessage();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className="view-earnings-div min-h-screen bg-slate-200">
       <AdminNav />
+      <ToastContainer />
       <div className="flex justify-between items-center view-earnings-header mx-[200px] py-[18px] pt-[50px]">
         <h1 className="text-[30px] font-medium mt-2">Manage Shipping</h1>
         <Dropdown
@@ -217,6 +255,7 @@ function AdminManageShipping() {
                   }`}
                   status={data.alreadyPaid}
                   adminShippingId={data.id}
+                  deleteFunction={deleteShipping}
                   refresh={getShippingData}
                 />
               ))}

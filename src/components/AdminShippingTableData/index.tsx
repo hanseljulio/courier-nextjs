@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styles from "@/styles/Table.module.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { BsTrash, BsInfoCircle } from "react-icons/bs";
 import WarningModal from "../WarningModal";
 import ShippingInfo from "../ShippingInfo";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ShippingTableDataProps {
   index: number;
@@ -15,13 +15,13 @@ interface ShippingTableDataProps {
   description: string;
   status: boolean;
   adminShippingId: number;
+  deleteFunction: (adminId: number, userId: number) => void;
   refresh: () => void;
 }
 
 function AdminShippingTableData(props: ShippingTableDataProps) {
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
-  const deleteMessage = () => toast("Shipment successfully deleted!");
 
   const editOn = () => {
     setShowEdit(true);
@@ -36,9 +36,7 @@ function AdminShippingTableData(props: ShippingTableDataProps) {
   };
 
   const deleteShipping = () => {
-    // if (props.deleteFunction) {
-    //   props.deleteFunction(props.id);
-    // }
+    props.deleteFunction(props.adminShippingId, props.userId);
     setShowDeleteModal(false);
   };
 
