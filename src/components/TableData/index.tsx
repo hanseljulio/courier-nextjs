@@ -15,34 +15,12 @@ interface TableDataProps {
   extra?: string;
   editFunction?: (id: number) => void;
   deleteFunction?: (id: number) => void;
+  showDelete?: (id: number) => void;
 }
 
 function TableData(props: TableDataProps) {
-  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
-
-  const deleteAddress = () => {
-    if (props.deleteFunction) {
-      props.deleteFunction(props.id);
-    }
-    setShowDeleteModal(false);
-  };
-
-  const showDeleteWarning = () => {
-    setShowDeleteModal(true);
-  };
   return (
     <>
-      {showDeleteModal && (
-        <WarningModal
-          problem="This address will be deleted permanently."
-          solution="There's no going back. Are you sure you want to proceed?"
-          solutionBtn="Delete Address"
-          redirectFunction={deleteAddress}
-          exitFunction={() => {
-            setShowDeleteModal(false);
-          }}
-        />
-      )}
       <tr className={`${props.index % 2 === 0 ? "bg-white" : "bg-amber-100"}`}>
         <td
           className={`${styles.tdArea} px-[20px] py-[10px] text-left font-medium`}
@@ -86,7 +64,14 @@ function TableData(props: TableDataProps) {
               >
                 <AiOutlineEdit className="text-[#D84727] hover:text-amber-500" />
               </button>
-              <button className="text-[25px]" onClick={showDeleteWarning}>
+              <button
+                className="text-[25px]"
+                onClick={() => {
+                  if (props.showDelete) {
+                    props.showDelete(props.id);
+                  }
+                }}
+              >
                 <BsTrash className="text-[#D84727] hover:text-amber-500" />
               </button>
             </div>

@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import EditAddress from "./EditAddress";
 import axios from "axios";
 import Input from "@/components/Input";
+import WarningModal from "@/components/WarningModal";
 
 function ManageAddress() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -72,6 +73,18 @@ function ManageAddress() {
     getAddressData();
   }, [currentPage, search]);
 
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [addressIdToDelete, setAddressIdToDelete] = useState<number>(0);
+
+  const showDeleteWarning = (id: number) => {
+    setAddressIdToDelete(id);
+    setShowDeleteModal(true);
+  };
+
+  const deleteAddressHelper = async () => {
+    await deleteAddress(addressIdToDelete);
+  };
+
   const deleteAddress = async (id: number) => {
     try {
       const addressResponse = await fetch(
@@ -105,6 +118,7 @@ function ManageAddress() {
       await axios.delete(`${BASE_URL}/adminAddress/${adminIdToDelete}`);
 
       deleteMessage();
+      setShowDeleteModal(false);
       getAddressData();
     } catch (e) {
       console.log(e);
@@ -157,6 +171,7 @@ function ManageAddress() {
                           zip={data.zip}
                           editFunction={editOn}
                           deleteFunction={deleteAddress}
+                          showDelete={showDeleteWarning}
                         />
                       ))}
                     </tbody>
@@ -174,6 +189,18 @@ function ManageAddress() {
             )}
           </div>
         </div>
+      )}
+
+      {showDeleteModal && (
+        <WarningModal
+          problem="This address will be deleted permanently."
+          solution="There's no going back. Are you sure you want to proceed?"
+          solutionBtn="Delete Address"
+          redirectFunction={deleteAddressHelper}
+          exitFunction={() => {
+            setShowDeleteModal(false);
+          }}
+        />
       )}
     </>
   );
