@@ -8,6 +8,7 @@ import { BASE_URL } from "@/constants/constants";
 import Pagination from "@/components/Pagination";
 import Button from "@/components/Button";
 import AddPromo from "@/components/AddPromo";
+import axios from "axios";
 
 function ManagePromo() {
   const [voucherData, setVoucherData] = useState<IVouchers[]>([]);
@@ -70,6 +71,10 @@ function ManagePromo() {
     getVoucherData();
   }, [currentPage, sortBy]);
 
+  const deletePromo = async (voucherId: number) => {
+    await axios.delete(`${BASE_URL}/userVouchers/${voucherId}`);
+  };
+
   return (
     <>
       {showAdd && <AddPromo exitFunction={addPromoOff} />}
@@ -111,6 +116,7 @@ function ManagePromo() {
                     expirationDate={voucher.expirationDate}
                     quantity={voucher.quantity}
                     refreshFunction={getVoucherData}
+                    deleteFunction={deletePromo}
                   />
                 ))}
               </tbody>
