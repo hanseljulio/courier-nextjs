@@ -214,7 +214,7 @@ function UserEditProfile() {
               />
             </div>
             <div
-              className={`${styles.formImageArea} flex-col justify-center items-center admin-edit-photo p-4 mobile:mx-auto`}
+              className={`flex-col justify-center items-center admin-edit-photo p-4 mobile:mx-auto`}
             >
               <Image
                 src={`${
@@ -225,7 +225,7 @@ function UserEditProfile() {
                 alt="Nothing"
                 width={200}
                 height={200}
-                className={`${styles.imgArea} w-[200px] h-[200px]`}
+                className={`w-[200px] h-[200px]`}
                 style={{
                   objectFit: "cover",
                   borderRadius: "100%",

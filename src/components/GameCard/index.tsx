@@ -44,7 +44,7 @@ function GameCard(props: GameCardProps) {
       <div
         style={{
           border:
-            props.chances !== 0 ? "1px solid lightgray;" : "3px solid #EB5757",
+            props.chances !== 0 ? "1px solid lightgray" : "3px solid #EB5757",
         }}
         className={`${styles.gamecardArea} w-[150px] h-[150px] ${
           props.chances === 0 ? "bg-[#939393] hover:cursor-default" : color
