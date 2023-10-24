@@ -130,19 +130,16 @@ function PackageAddress(props: PackageAddressProps) {
         <UserHeader title="Create Shipping - Package Address" />
       </div>
       <div className="package-form-wrapper mx-[350px] flex-col justify-center mobile:mx-auto">
-        <div className="address-section pb-8 mobile:flex mobile:justify-center">
-          <Input
-            label="Address Line"
-            type="text"
-            name="addressLine"
-            width="w-[1150px] mobile:w-[350px]"
-            value={props.destAddress}
-            onChange={(e) =>
-              props.updateFields({ destAddress: e.target.value })
-            }
-            required
-          />
-        </div>
+        <Input
+          label="Address Line"
+          type="text"
+          name="addressLine"
+          width="w-[1150px] mobile:w-full"
+          styling="pb-8 mobile:mx-8"
+          value={props.destAddress}
+          onChange={(e) => props.updateFields({ destAddress: e.target.value })}
+          required
+        />
         <div className="wrapper-section flex pb-8 justify-between mr-[70px] mobile:mx-[30px] mobile:flex-col mobile: gap-8">
           <Dropdown
             label="Province"
