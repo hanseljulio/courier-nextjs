@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { BASE_URL } from "@/constants/constants";
 import PackageDimensions from "../../../../components/PackageDimensions";
 import SelectionModal from "@/components/SelectionModal";
-import { IAddress, IAdminShipping, IShippingData } from "@/types/types";
+import { IAddress, IShippingData } from "@/types/types";
 import PackageAddress from "../../../../components/PackageAddress";
 import { useMultiStepForm } from "../../../../hooks/UseMultiform";
 import Button from "@/components/Button";
