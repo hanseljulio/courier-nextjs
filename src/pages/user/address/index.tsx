@@ -6,6 +6,7 @@ import styles from "../../../styles/UserPage.module.css";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import type { Metadata } from "next";
+import Layout from "@/components/Layout";
 
 export const metadata: Metadata = {
   title: "Address",
@@ -33,6 +34,9 @@ function UserAddress() {
 
   return (
     <div>
+      <Layout>
+        <title>Address</title>
+      </Layout>
       <UserNav currentPage="address" />
       <div className="header-section pb-8">
         <UserHeader title="Address" description="Manage your addresses here!" />

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { ReactNode } from "react";
 
 interface ILayout {
@@ -5,13 +6,7 @@ interface ILayout {
 }
 
 function Layout({ children }: ILayout) {
-  return (
-    <div>
-      <h1>Header</h1>
-      {children}
-      <h1>footer</h1>
-    </div>
-  );
+  return <Head>{children}</Head>;
 }
 
 export default Layout;
