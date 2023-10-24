@@ -64,43 +64,45 @@ export default function Home() {
   };
 
   return (
-    <div className="admin-login-div min-h-screen mobile:overflow-y-hidden">
-      <div className="admin-login-titles pb-8 text-center py-[200px]">
-        <h1 className="text-2xl font-3xl">Courier Login</h1>
+    <div className="admin-login-div min-h-screen">
+      <div className="login-content">
+        <div className="admin-login-titles pb-8 text-center py-[200px]">
+          <h1 className="text-2xl font-3xl">Courier Login</h1>
+        </div>
+        <ToastContainer />
+        <div className="admin-login-form items-center flex justify-center">
+          <form action="" onSubmit={submit}>
+            <Input
+              label="Email"
+              type="email"
+              name="userEmail"
+              styling="pb-5"
+              required={true}
+              width="w-[300px]"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              label="Password"
+              type="password"
+              name="userPassword"
+              styling=""
+              required={true}
+              width="w-[300px]"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button
+              text="Submit"
+              styling="bg-blue-400 p-3 rounded-[8px] w-full my-6 hover:bg-blue-600"
+            />
+          </form>
+        </div>
+        <p className="text-center">
+          Don&apos;t have an account?{" "}
+          <span className="font-bold hover:cursor-pointer">
+            <Link href="/register">Register here</Link>
+          </span>
+        </p>
       </div>
-      <ToastContainer />
-      <div className="admin-login-form items-center flex justify-center">
-        <form action="" onSubmit={submit}>
-          <Input
-            label="Email"
-            type="email"
-            name="userEmail"
-            styling="pb-5"
-            required={true}
-            width="w-[300px]"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            label="Password"
-            type="password"
-            name="userPassword"
-            styling=""
-            required={true}
-            width="w-[300px]"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            text="Submit"
-            styling="bg-blue-400 p-3 rounded-[8px] w-full my-6 hover:bg-blue-600"
-          />
-        </form>
-      </div>
-      <p className="text-center">
-        Don&apos;t have an account?{" "}
-        <span className="font-bold hover:cursor-pointer">
-          <Link href="/register">Register here</Link>
-        </span>
-      </p>
     </div>
   );
 }
