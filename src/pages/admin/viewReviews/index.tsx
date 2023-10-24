@@ -8,14 +8,16 @@ import Pagination from "@/components/Pagination";
 import Input from "@/components/Input";
 import AdminReviewTableHead from "@/components/AdminReviewTableHead";
 import AdminReviewTableData from "@/components/AdminReviewTableData";
+import Dropdown from "@/components/Dropdown/Dropdown";
 
 function AdminViewReviews() {
   const [reviewData, setReviewData] = useState<IReviews[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [count, setCount] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
+  const [sortBy, setSortBy] = useState<string>("");
 
-  const getAddressData = async () => {
+  const getReviewData = async () => {
     try {
       const response = await fetch(`${BASE_URL}/userReviews`);
       const result = await response.json();
@@ -25,9 +27,28 @@ function AdminViewReviews() {
       });
 
       setCount(filteredArray.length);
-      setReviewData(
-        filteredArray.slice((currentPage - 1) * 5, currentPage * 5)
-      );
+
+      if (sortBy === "Least recent") {
+        const sortedArray = result.sort(function (a: IReviews, b: IReviews) {
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+
+        setReviewData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else if (sortBy === "Most recent") {
+        const sortedArray = result.sort(function (a: IReviews, b: IReviews) {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
+
+        setReviewData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else {
+        setReviewData(
+          filteredArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      }
     } catch (e) {
       console.log(e);
     }
@@ -38,19 +59,27 @@ function AdminViewReviews() {
   };
 
   useEffect(() => {
-    getAddressData();
-  }, [currentPage, search]);
+    getReviewData();
+  }, [currentPage, search, sortBy]);
 
   return (
     <div className="view-earnings-div min-h-screen bg-slate-200">
       <AdminNav />
       <div className="flex justify-between items-center view-earnings-header mx-[200px] py-[18px] pt-[50px]">
         <h1 className="text-[30px] font-medium">View Reviews</h1>
+        <Dropdown
+          label="Sort by"
+          flexLabel="flex items-center gap-8"
+          labelStyle="font-bold pb-2 pt-2"
+          width="w-[300px] mobile:w-full"
+          onChange={(e) => setSortBy(e)}
+          options={["None", "Least recent", "Most recent"]}
+        />
         <Input
           label=""
           type="text"
           name="search"
-          styling="mr-[115px]"
+          styling="mr-[115px] pb-2"
           width="w-[300px]"
           placeholder="Search by review here"
           onChange={(e) => setSearch(e.target.value)}
