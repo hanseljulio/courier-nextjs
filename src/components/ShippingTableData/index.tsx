@@ -61,6 +61,14 @@ function ShippingTableData(props: ShippingTableDataProps) {
           ) : (
             <h1 className="text-green-500">PAID - {props.currentStatus}</h1>
           )}
+          {props.currentStatus === "Delivered" && (
+            <h1
+              onClick={() => alert("REVIEW TIME!")}
+              className="text-orange-500 hover:cursor-pointer"
+            >
+              [ REVIEW ]
+            </h1>
+          )}
         </td>
       </tr>
     </>

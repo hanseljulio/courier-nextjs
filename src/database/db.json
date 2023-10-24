@@ -21,7 +21,7 @@
       "walletId": "wallet-1",
       "addressId": "address-1",
       "shippingId": "shipping-1",
-      "gameCount": 0,
+      "gameCount": 1,
       "role": "user"
     },
     {
@@ -136,7 +136,7 @@
     {
       "id": "wallet-1",
       "userId": 2,
-      "balance": 350000,
+      "balance": 203340,
       "history": [
         {
           "id": 1,
@@ -167,6 +167,12 @@
           "date": "Fri Oct 20 2023 11:16:50 GMT+0700 (Western Indonesia Time)",
           "amount": 50000,
           "selfReferral": true
+        },
+        {
+          "id": 6,
+          "date": "Tue Oct 24 2023 15:46:25 GMT+0700 (Western Indonesia Time)",
+          "amount": -146660,
+          "selfReferral": false
         }
       ]
     },
@@ -496,8 +502,8 @@
           "insurance": true,
           "sameDay": false,
           "twoDay": true,
-          "alreadyPaid": false,
-          "status": ""
+          "alreadyPaid": true,
+          "status": "Delivered"
         },
         {
           "id": 3,
@@ -791,7 +797,16 @@
       "quantity": 2
     }
   ],
-  "adminEarnings": [],
+  "adminEarnings": [
+    {
+      "date": "Tue Oct 24 2023 15:46:25 GMT+0700 (Western Indonesia Time)",
+      "amount": 146660,
+      "fromUserId": 2,
+      "fromShippingId": "shipping-1",
+      "shippingNum": 2,
+      "id": 1
+    }
+  ],
   "adminAddress": [
     {
       "id": 1,
@@ -998,8 +1013,8 @@
       "insurance": true,
       "sameDay": false,
       "twoDay": true,
-      "alreadyPaid": false,
-      "status": ""
+      "alreadyPaid": true,
+      "status": "Delivered"
     },
     {
       "id": 3,
