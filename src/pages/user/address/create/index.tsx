@@ -92,8 +92,11 @@ function CreateAddress() {
 
       addressResult.addressList.push({
         id:
-          addressResult.addressList[addressResult.addressList.length - 1].id +
-          1,
+          addressResult.addressList.length === 0
+            ? 1
+            : addressResult.addressList[addressResult.addressList.length - 1]
+                .id + 1,
+
         address: currentAddress,
         city: currentCity,
         province: currentProvince,

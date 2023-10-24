@@ -85,14 +85,17 @@ function TopUp() {
       const walletResult = await walletResponse.json();
 
       walletResult.balance += parseInt(money.toString());
+
       walletResult.history.push({
         id: walletResult.history.length + 1,
         date: new Date().toString(),
         amount: parseInt(money.toString()),
-        selfReferral: walletResult.history[walletResult.history.length - 1]
-          .selfReferral
-          ? true
-          : false,
+        selfReferral:
+          walletResult.history.length === 0
+            ? false
+            : walletResult.history[walletResult.history.length - 1].selfReferral
+            ? true
+            : false,
       });
 
       axios

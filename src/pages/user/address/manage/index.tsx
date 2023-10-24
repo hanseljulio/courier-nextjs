@@ -262,7 +262,7 @@ function ManageAddress() {
               type="text"
               name="search"
               width="w-[300px]"
-              placeholder="Search shipping description here"
+              placeholder="Search address here"
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>

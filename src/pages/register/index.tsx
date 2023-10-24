@@ -67,6 +67,7 @@ function UserRegister() {
         addressId: `address-${referralId}`,
         shippingId: `shipping-${referralId}`,
         role: "user",
+        gameCount: 0,
       }),
     };
 

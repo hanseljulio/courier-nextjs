@@ -98,6 +98,36 @@
       "shippingId": "shipping-43773",
       "gameCount": 0,
       "role": "user"
+    },
+    {
+      "id": 55253,
+      "email": "finalcheck@mail.com",
+      "password": "password",
+      "fullname": "Final Check",
+      "phone": "+621234567890",
+      "photo": "",
+      "referral": "",
+      "referralSelfId": "referral-42832",
+      "walletId": "wallet-42832",
+      "addressId": "address-42832",
+      "shippingId": "shipping-42832",
+      "role": "user",
+      "gameCount": 0
+    },
+    {
+      "id": 643,
+      "email": "quickcheck@mail.com",
+      "password": "password",
+      "fullname": "Quick Check",
+      "phone": "+621234567890",
+      "photo": "",
+      "referral": "",
+      "referralSelfId": "referral-20537",
+      "walletId": "wallet-20537",
+      "addressId": "address-20537",
+      "shippingId": "shipping-20537",
+      "role": "user",
+      "gameCount": 0
     }
   ],
   "referralCodes": [
@@ -130,6 +160,16 @@
       "id": "referral-43773",
       "userId": 20474,
       "referral": "d2nweg"
+    },
+    {
+      "id": "referral-42832",
+      "userId": 55253,
+      "referral": "ka5jdh"
+    },
+    {
+      "id": "referral-20537",
+      "userId": 643,
+      "referral": "2av9k6"
     }
   ],
   "userWallet": [
@@ -255,6 +295,31 @@
       "userId": 20474,
       "balance": 0,
       "history": []
+    },
+    {
+      "id": "wallet-42832",
+      "userId": 55253,
+      "balance": 0,
+      "history": []
+    },
+    {
+      "id": "wallet-20537",
+      "userId": 643,
+      "balance": 3000000,
+      "history": [
+        {
+          "id": 1,
+          "date": "Tue Oct 24 2023 22:36:26 GMT+0700 (Western Indonesia Time)",
+          "amount": 1500000,
+          "selfReferral": false
+        },
+        {
+          "id": 2,
+          "date": "Tue Oct 24 2023 22:36:53 GMT+0700 (Western Indonesia Time)",
+          "amount": 1500000,
+          "selfReferral": false
+        }
+      ]
     }
   ],
   "userAddress": [
@@ -444,6 +509,33 @@
           "adminId": 19
         }
       ]
+    },
+    {
+      "id": "address-42832",
+      "userId": 55253,
+      "addressList": [
+        {
+          "id": 1,
+          "address": "Sopo Del Tower",
+          "city": "Jakarta Selatan",
+          "province": "DKI Jakarta",
+          "zip": "12230",
+          "adminId": 21
+        },
+        {
+          "id": 2,
+          "address": "Sopo Del Tower II",
+          "city": "Belitung",
+          "province": "Bangka Belitung",
+          "zip": "33613",
+          "adminId": 22
+        }
+      ]
+    },
+    {
+      "id": "address-20537",
+      "userId": 643,
+      "addressList": []
     }
   ],
   "userShipping": [
@@ -761,6 +853,16 @@
           "alreadyReviewed": false
         }
       ]
+    },
+    {
+      "id": "shipping-42832",
+      "userId": 55253,
+      "shippingList": []
+    },
+    {
+      "id": "shipping-20537",
+      "userId": 643,
+      "shippingList": []
     }
   ],
   "userVouchers": [
@@ -969,6 +1071,22 @@
       "province": "DI Yogyakarta",
       "city": "Sleman",
       "zip": "55611"
+    },
+    {
+      "id": 21,
+      "userId": 55253,
+      "address": "Sopo Del Tower",
+      "province": "DKI Jakarta",
+      "city": "Jakarta Selatan",
+      "zip": "12230"
+    },
+    {
+      "id": 22,
+      "userId": 55253,
+      "address": "Sopo Del Tower II",
+      "province": "Bangka Belitung",
+      "city": "Belitung",
+      "zip": "33613"
     }
   ],
   "adminShipping": [
