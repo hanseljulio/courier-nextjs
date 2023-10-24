@@ -122,7 +122,7 @@ function AdminEditProfile() {
 
   useEffect(() => {
     if (stateLoginPersist.id === 0 || !stateLoginPersist.isAdmin) {
-      router.push("/error");
+      router.replace("/error");
     }
 
     getAdminData();

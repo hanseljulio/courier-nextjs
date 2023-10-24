@@ -8,6 +8,8 @@ import Pagination from "@/components/Pagination";
 import Input from "@/components/Input";
 import Dropdown from "@/components/Dropdown/Dropdown";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useStoreLoginPersist } from "@/store/store";
 
 function AdminViewAddress() {
   const [addressData, setAddressData] = useState<IAdminAddress[]>([]);
@@ -15,6 +17,9 @@ function AdminViewAddress() {
   const [count, setCount] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
   const [sortBy, setSortBy] = useState<string>("");
+
+  const router = useRouter();
+  const stateLoginPersist = useStoreLoginPersist();
 
   const getAddressData = async () => {
     try {
@@ -134,6 +139,10 @@ function AdminViewAddress() {
   };
 
   useEffect(() => {
+    if (stateLoginPersist.id !== 0 && !stateLoginPersist.isAdmin) {
+      router.replace("/error");
+    }
+
     getAddressData();
   }, [currentPage, search, sortBy]);
 

@@ -8,6 +8,8 @@ import AdminReviewTableHead from "@/components/AdminReviewTableHead";
 import AdminReviewTableData from "@/components/AdminReviewTableData";
 import Dropdown from "@/components/Dropdown/Dropdown";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useStoreLoginPersist } from "@/store/store";
 
 function AdminViewReviews() {
   const [reviewData, setReviewData] = useState<IReviews[]>([]);
@@ -15,6 +17,9 @@ function AdminViewReviews() {
   const [count, setCount] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
   const [sortBy, setSortBy] = useState<string>("");
+
+  const router = useRouter();
+  const stateLoginPersist = useStoreLoginPersist();
 
   const getReviewData = async () => {
     try {
@@ -58,6 +63,10 @@ function AdminViewReviews() {
   };
 
   useEffect(() => {
+    if (stateLoginPersist.id !== 0 && !stateLoginPersist.isAdmin) {
+      router.replace("/error");
+    }
+
     getReviewData();
   }, [currentPage, search, sortBy]);
 

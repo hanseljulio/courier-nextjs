@@ -245,7 +245,7 @@ function UserRegister() {
         <p className="text-center mobile:scale-[0.9]">
           Already have an account?{" "}
           <span className="font-bold hover:cursor-pointer">
-            <Link href="/">Login here</Link>
+            <Link href="/login">Login here</Link>
           </span>
         </p>
       </div>

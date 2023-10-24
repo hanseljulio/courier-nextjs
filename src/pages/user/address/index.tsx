@@ -26,9 +26,8 @@ function UserAddress() {
   };
 
   useEffect(() => {
-    if (stateLoginPersist.id === 0 && stateLoginPersist.isAdmin) {
-      stateLoginPersist.setId(0);
-      stateLoginPersist.setIsAdmin(false);
+    if (stateLoginPersist.id !== 0 && stateLoginPersist.isAdmin) {
+      router.replace("/error");
     }
   }, []);
 

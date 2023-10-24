@@ -10,6 +10,8 @@ import Button from "@/components/Button";
 import AddPromo from "@/components/AddPromo";
 import axios from "axios";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useStoreLoginPersist } from "@/store/store";
 
 function ManagePromo() {
   const [voucherData, setVoucherData] = useState<IVouchers[]>([]);
@@ -17,6 +19,9 @@ function ManagePromo() {
   const [count, setCount] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("");
   const [showAdd, setShowAdd] = useState<boolean>(false);
+
+  const router = useRouter();
+  const stateLoginPersist = useStoreLoginPersist();
 
   const addPromoOn = () => {
     setShowAdd(true);
@@ -85,6 +90,10 @@ function ManagePromo() {
   };
 
   useEffect(() => {
+    if (stateLoginPersist.id !== 0 && !stateLoginPersist.isAdmin) {
+      router.replace("/error");
+    }
+
     getVoucherData();
   }, [currentPage, sortBy]);
 

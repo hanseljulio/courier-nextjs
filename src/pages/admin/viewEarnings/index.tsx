@@ -7,12 +7,16 @@ import EarningsTableData from "@/components/EarningsTableData";
 import Pagination from "@/components/Pagination";
 import { BASE_URL } from "@/constants/constants";
 import Head from "next/head";
+import { useStoreLoginPersist } from "@/store/store";
+import { useRouter } from "next/router";
 
 function ViewEarnings() {
   const [earningsData, setEarningsData] = useState<IEarnings[]>([]);
   const [currentMonth, setCurrentMonth] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [count, setCount] = useState<number>(0);
+  const stateLoginPersist = useStoreLoginPersist();
+  const router = useRouter();
 
   const movePage = (pageNum: number) => {
     setCurrentPage(pageNum);
@@ -40,6 +44,10 @@ function ViewEarnings() {
   };
 
   useEffect(() => {
+    if (stateLoginPersist.id !== 0 && !stateLoginPersist.isAdmin) {
+      router.replace("/error");
+    }
+
     getEarningsData();
   }, [currentPage, currentMonth]);
 

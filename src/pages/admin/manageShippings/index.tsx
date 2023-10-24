@@ -12,6 +12,7 @@ import Dropdown from "@/components/Dropdown/Dropdown";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 function AdminManageShipping() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -21,6 +22,8 @@ function AdminManageShipping() {
   const [count, setCount] = useState<number>(0);
   const [currentShippingId, setCurrentShippingId] = useState<string>("");
   const [sortBy, setSortBy] = useState<string>("");
+
+  const router = useRouter();
 
   const deleteMessage = () => toast("Shipment successfully deleted!");
 
@@ -162,6 +165,10 @@ function AdminManageShipping() {
   };
 
   useEffect(() => {
+    if (stateLoginPersist.id !== 0 && !stateLoginPersist.isAdmin) {
+      router.replace("/error");
+    }
+
     getShippingData();
   }, [search, currentPage, sortBy]);
 
