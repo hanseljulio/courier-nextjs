@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "@/constants/constants";
+import styles from "@/styles/Login.module.css";
 
 function UserRegister() {
   const [email, setEmail] = useState<string>("");
@@ -157,63 +158,67 @@ function UserRegister() {
   };
 
   return (
-    <div className="admin-login-div min-h-screen ">
-      <div className="admin-login-titles pb-8 text-center py-[100px]">
-        <h1 className="text-2xl font-3xl">Courier Register</h1>
+    <div className="admin-login-div min-h-screen relative bg-amber-400">
+      <ToastContainer />
+      <div
+        className={`${styles.popout} w-[500px] h-[700px] bg-slate-200 absolute drop-shadow-lg m-auto top-0 bottom-0 right-0 left-0 rounded-[30px] mobile:w-[350px] mobile:h-[700px]`}
+      >
+        <div className="admin-login-titles pb-8 text-center py-[50px]">
+          <h1 className="text-2xl font-3xl">Courier Register</h1>
+        </div>
+        <div className="admin-login-form items-center flex justify-center">
+          <form action="" onSubmit={submit}>
+            <Input
+              label="Email"
+              type="email"
+              name="registerEmail"
+              styling="pb-5 mobile:scale-[0.9]"
+              width="w-[300px] "
+              required={true}
+              placeholder="email@email.com"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              label="Password"
+              type="password"
+              name="registerPassword"
+              styling="pb-5 mobile:scale-[0.9]"
+              width="w-[300px]"
+              required={true}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Input
+              label="Full Name"
+              type="text"
+              name="registerFullName"
+              styling="pb-5 mobile:scale-[0.9]"
+              width="w-[300px]"
+              required={true}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+            <Input
+              label="Phone Number"
+              type="string"
+              name="registerPhoneNumber"
+              styling="pb-5 mobile:scale-[0.9]"
+              placeholder="+6281291345300"
+              width="w-[300px]"
+              required={true}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <Button
+              text="Register"
+              styling="bg-blue-400 p-3 rounded-[8px] w-full my-6 hover:bg-blue-600 mobile:scale-[0.9]"
+            />
+          </form>
+        </div>
+        <p className="text-center mobile:scale-[0.9]">
+          Already have an account?{" "}
+          <span className="font-bold hover:cursor-pointer">
+            <Link href="/">Login here</Link>
+          </span>
+        </p>
       </div>
-      <div className="admin-login-form items-center flex justify-center">
-        <ToastContainer />
-        <form action="" onSubmit={submit}>
-          <Input
-            label="Email"
-            type="email"
-            name="registerEmail"
-            styling="pb-5"
-            width="w-[300px]"
-            required={true}
-            placeholder="email@email.com"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            label="Password"
-            type="password"
-            name="registerPassword"
-            styling="pb-5"
-            width="w-[300px]"
-            required={true}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Input
-            label="Full Name"
-            type="text"
-            name="registerFullName"
-            styling="pb-5"
-            width="w-[300px]"
-            required={true}
-            onChange={(e) => setFullName(e.target.value)}
-          />
-          <Input
-            label="Phone Number"
-            type="string"
-            name="registerPhoneNumber"
-            styling="pb-5"
-            placeholder="+6281291345300"
-            width="w-[300px]"
-            required={true}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-          <Button
-            text="Register"
-            styling="bg-blue-400 p-3 rounded-[8px] w-full my-6 hover:bg-blue-600"
-          />
-        </form>
-      </div>
-      <p className="text-center">
-        Already have an account?{" "}
-        <span className="font-bold hover:cursor-pointer">
-          <Link href="/">Login here</Link>
-        </span>
-      </p>
     </div>
   );
 }
