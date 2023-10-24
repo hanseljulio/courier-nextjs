@@ -158,6 +158,7 @@ export interface IAdminShipping {
 export interface IReviews {
   id: number;
   userId: number;
-  shppingNum: number;
+  shippingNum: number;
   review: string;
+  date: string;
 }

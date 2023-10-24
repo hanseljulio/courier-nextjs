@@ -34,6 +34,7 @@ function ReviewModal(props: ReviewModalProps) {
       userId: props.userId,
       shippingNum: props.shippingNum,
       review: reviewText,
+      date: new Date().toString(),
     };
 
     try {
@@ -76,9 +77,7 @@ function ReviewModal(props: ReviewModalProps) {
           <div className="edit-form-div flex justify-center text-center pt-10">
             <form action="" onSubmit={submit}>
               <textarea
-                rows={10}
-                cols={56}
-                className="bg-amber-200 px-5 py-5"
+                className="bg-amber-200 px-5 py-5 w-[610px] h-[280px] mobile:h-[500px] mobile:w-[300px]"
                 onChange={(e) => setReviewText(e.target.value)}
               />
 

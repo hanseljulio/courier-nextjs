@@ -62,6 +62,10 @@ function AdminPage() {
     router.push("/admin/viewAddress");
   };
 
+  const redirectViewReviews = () => {
+    router.push("/admin/viewReviews");
+  };
+
   const redirectLogout = () => {
     stateLoginPersist.setId(0);
     stateLoginPersist.setIsAdmin(false);
@@ -110,6 +114,12 @@ function AdminPage() {
               className="pb-3 hover:cursor-pointer"
             >
               View earnings
+            </li>
+            <li
+              onClick={redirectViewReviews}
+              className="pb-3 hover:cursor-pointer"
+            >
+              View reviews
             </li>
             <li
               onClick={redirectManagePromos}
