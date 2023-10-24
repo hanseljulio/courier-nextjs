@@ -29,17 +29,21 @@ export default function Home() {
   return (
     <div className="admin-login-div min-h-screen bg-amber-300 relative">
       <div
-        className={`${styles.popout} text-center main-section w-[600px] h-[450px] m-auto drop-shadow-lg bg-slate-50 rounded-[30px] absolute top-0 right-0 bottom-0 left-0`}
+        className={`${styles.popout} text-center main-section w-[600px] h-[450px] m-auto drop-shadow-lg bg-slate-50 rounded-[30px] absolute top-0 right-0 bottom-0 left-0 mobile:w-[80%] mobile:h-[550px]`}
       >
         <h1 className="font-bold text-[40px] pt-8 pb-5">
           Welcome to <span className="text-amber-500">Courier!</span>
         </h1>
-        <p className="text-[25px] py-2">
+        <p className="text-[25px] mobile:text-[18px] py-2">
           For all your <span className="text-amber-500">shipping</span> needs.
         </p>
-        <p>Need to ship something? Courier is ready to help!</p>
+        <p className="mobile:mx-10">
+          Need to ship something? Courier is ready to help!
+        </p>
 
-        <div className="btn-section flex gap-8 justify-center pt-[150px]">
+        <h1 className="pt-[50px]">To get started, make your choice:</h1>
+
+        <div className="btn-section flex gap-8 justify-center pt-[90px] mobile:flex-col mobile:pt-[40px]">
           <Button
             text="Login"
             onClick={redirectLogin}

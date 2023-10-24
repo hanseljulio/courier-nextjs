@@ -7,9 +7,11 @@ import { BASE_URL } from "@/constants/constants";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 function Games() {
   const stateLoginPersist = useStoreLoginPersist();
+  const router = useRouter();
 
   const [chances, setChances] = useState<number>(0);
   const [moneyArray, setMoneyArray] = useState<number[]>([]);
@@ -96,6 +98,10 @@ function Games() {
   };
 
   useEffect(() => {
+    if (stateLoginPersist.id === 0 || stateLoginPersist.isAdmin) {
+      router.push("/error");
+    }
+
     getChances();
   }, []);
 
