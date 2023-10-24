@@ -70,7 +70,7 @@ function ShippingTableData(props: ShippingTableDataProps) {
                   props.reviewOn(props.id);
                 }
               }}
-              className="text-orange-500 hover:cursor-pointer"
+              className="text-orange-500 hover:cursor-pointer mobile:text-[14.5px]"
             >
               [ REVIEW ]
             </h1>

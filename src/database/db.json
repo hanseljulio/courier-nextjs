@@ -120,7 +120,7 @@
       "password": "password",
       "fullname": "Quick Check",
       "phone": "+621234567890",
-      "photo": "",
+      "photo": "http://res.cloudinary.com/dsngblge5/image/upload/v1698162390/ujthkimufopqx1pb9tci.png",
       "referral": "",
       "referralSelfId": "referral-20537",
       "walletId": "wallet-20537",
@@ -305,7 +305,7 @@
     {
       "id": "wallet-20537",
       "userId": 643,
-      "balance": 3000000,
+      "balance": 6052258,
       "history": [
         {
           "id": 1,
@@ -317,6 +317,36 @@
           "id": 2,
           "date": "Tue Oct 24 2023 22:36:53 GMT+0700 (Western Indonesia Time)",
           "amount": 1500000,
+          "selfReferral": false
+        },
+        {
+          "id": 3,
+          "date": "Tue Oct 24 2023 22:47:01 GMT+0700 (Western Indonesia Time)",
+          "amount": 1500000,
+          "selfReferral": true
+        },
+        {
+          "id": 4,
+          "date": "Tue Oct 24 2023 22:47:36 GMT+0700 (Western Indonesia Time)",
+          "amount": -515679,
+          "selfReferral": false
+        },
+        {
+          "id": 5,
+          "date": "Tue Oct 24 2023 22:56:18 GMT+0700 (Western Indonesia Time)",
+          "amount": 1992160,
+          "selfReferral": true
+        },
+        {
+          "id": 6,
+          "date": "Tue Oct 24 2023 22:56:41 GMT+0700 (Western Indonesia Time)",
+          "amount": -311281,
+          "selfReferral": false
+        },
+        {
+          "id": 7,
+          "date": "Tue Oct 24 2023 22:57:00 GMT+0700 (Western Indonesia Time)",
+          "amount": 387058,
           "selfReferral": false
         }
       ]
@@ -535,7 +565,16 @@
     {
       "id": "address-20537",
       "userId": 643,
-      "addressList": []
+      "addressList": [
+        {
+          "id": 1,
+          "address": "Sopo Del Tower Edit",
+          "city": "Bondowoso",
+          "province": "Jawa Timur",
+          "zip": "63122",
+          "adminId": 23
+        }
+      ]
     }
   ],
   "userShipping": [
@@ -862,7 +901,66 @@
     {
       "id": "shipping-20537",
       "userId": 643,
-      "shippingList": []
+      "shippingList": [
+        {
+          "id": 1,
+          "adminId": 11,
+          "length": "50",
+          "width": "50",
+          "height": "100",
+          "weight": "50",
+          "start": {
+            "id": 1,
+            "address": "Sopo Del Tower Edit",
+            "city": "Bondowoso",
+            "province": "Jawa Timur",
+            "zip": "63122",
+            "adminId": 23
+          },
+          "destAddress": "Pakuwon Tower",
+          "destCity": "Halmahera Tengah",
+          "destProvince": "Maluku Utara",
+          "destZip": "97853",
+          "category": "Medical Supplies",
+          "description": "Drugs",
+          "date": "Tue Oct 24 2023 22:40:13 GMT+0700 (Western Indonesia Time)",
+          "insurance": true,
+          "sameDay": false,
+          "twoDay": false,
+          "alreadyPaid": true,
+          "status": "Delivered",
+          "alreadyReviewed": true
+        },
+        {
+          "id": 2,
+          "adminId": 12,
+          "length": "50",
+          "width": "50",
+          "height": "50",
+          "weight": "50",
+          "start": {
+            "id": 1,
+            "address": "Sopo Del Tower Edit",
+            "city": "Bondowoso",
+            "province": "Jawa Timur",
+            "zip": "63122",
+            "adminId": 23
+          },
+          "destAddress": "Sopo Del Tower 3",
+          "destCity": "Pesisir Barat",
+          "destProvince": "Lampung",
+          "destZip": "34319",
+          "category": "Others",
+          "description": "Clothing",
+          "date": "Tue Oct 24 2023 22:52:24 GMT+0700 (Western Indonesia Time)",
+          "insurance": false,
+          "sameDay": true,
+          "twoDay": false,
+          "alreadyPaid": true,
+          "status": "Delivered",
+          "alreadyReviewed": true
+        }
+      ]
     }
   ],
   "userVouchers": [
@@ -871,7 +969,7 @@
       "code": "20-xab-200000",
       "description": "20% discount if total is above Rp. 200.000,00",
       "expirationDate": "Wed Dec 31 2025 23:59:00 GMT+0700 (Western Indonesia Time)",
-      "quantity": 3
+      "quantity": 1
     },
     {
       "id": 2,
@@ -904,9 +1002,16 @@
     {
       "id": 6,
       "code": "15-xab-150000",
-      "description": "15% discount if total is above Rp. 150.000,00",
-      "expirationDate": "Wed Jan 1 2025 13:43:55 GMT+0700 (Western Indonesia Time)",
-      "quantity": 2
+      "description": "25% discount if total is above Rp. 250.000,00",
+      "expirationDate": "Sat Feb 01 2025 15:59:00 GMT+0700 (Western Indonesia Time)",
+      "quantity": 5
+    },
+    {
+      "code": "15-shp-150000",
+      "description": "15% shipping discount if total is above Rp. 150.000,00",
+      "expirationDate": "Sun Dec 31 2023 23:59:00 GMT+0700 (Western Indonesia Time)",
+      "quantity": 3,
+      "id": 7
     }
   ],
   "adminEarnings": [
@@ -917,6 +1022,22 @@
       "fromShippingId": "shipping-1",
       "shippingNum": 2,
       "id": 1
+    },
+    {
+      "date": "Tue Oct 24 2023 22:47:36 GMT+0700 (Western Indonesia Time)",
+      "amount": 515679,
+      "fromUserId": 643,
+      "fromShippingId": "shipping-20537",
+      "shippingNum": 1,
+      "id": 2
+    },
+    {
+      "date": "Tue Oct 24 2023 22:56:41 GMT+0700 (Western Indonesia Time)",
+      "amount": 311281,
+      "fromUserId": 643,
+      "fromShippingId": "shipping-20537",
+      "shippingNum": 2,
+      "id": 3
     }
   ],
   "adminAddress": [
@@ -1087,6 +1208,14 @@
       "province": "Bangka Belitung",
       "city": "Belitung",
       "zip": "33613"
+    },
+    {
+      "id": 23,
+      "userId": 643,
+      "address": "Sopo Del Tower Edit",
+      "province": "Jawa Timur",
+      "city": "Bondowoso",
+      "zip": "63122"
     }
   ],
   "adminShipping": [
@@ -1362,6 +1491,64 @@
       "alreadyPaid": false,
       "status": "",
       "userId": 2
+    },
+    {
+      "id": 11,
+      "length": "50",
+      "width": "50",
+      "height": "100",
+      "weight": "50",
+      "start": {
+        "id": 1,
+        "address": "Sopo Del Tower Edit",
+        "city": "Bondowoso",
+        "province": "Jawa Timur",
+        "zip": "63122",
+        "adminId": 23
+      },
+      "destAddress": "Pakuwon Tower",
+      "destCity": "Halmahera Tengah",
+      "destProvince": "Maluku Utara",
+      "destZip": "97853",
+      "category": "Medical Supplies",
+      "description": "Drugs",
+      "date": "Tue Oct 24 2023 22:40:13 GMT+0700 (Western Indonesia Time)",
+      "insurance": true,
+      "sameDay": false,
+      "twoDay": false,
+      "alreadyPaid": true,
+      "status": "Delivered",
+      "alreadyReviewed": false,
+      "userId": 643
+    },
+    {
+      "id": 12,
+      "length": "50",
+      "width": "50",
+      "height": "50",
+      "weight": "50",
+      "start": {
+        "id": 1,
+        "address": "Sopo Del Tower Edit",
+        "city": "Bondowoso",
+        "province": "Jawa Timur",
+        "zip": "63122",
+        "adminId": 23
+      },
+      "destAddress": "Sopo Del Tower 3",
+      "destCity": "Pesisir Barat",
+      "destProvince": "Lampung",
+      "destZip": "34319",
+      "category": "Others",
+      "description": "Clothing",
+      "date": "Tue Oct 24 2023 22:52:24 GMT+0700 (Western Indonesia Time)",
+      "insurance": false,
+      "sameDay": true,
+      "twoDay": false,
+      "alreadyPaid": true,
+      "status": "Delivered",
+      "alreadyReviewed": false,
+      "userId": 643
     }
   ],
   "userReviews": [
@@ -1371,6 +1558,20 @@
       "review": "It was a great experience - thank you!\n\nAlso this is just a test.",
       "date": "Tue Oct 24 2023 16:53:05 GMT+0700 (Western Indonesia Time)",
       "id": 1
+    },
+    {
+      "userId": 643,
+      "shippingNum": 1,
+      "review": "Absolute trash of an experience.\n\nI'm really disappointed as this thing takes over a year to arrive.\n\nI have no idea what on earth is going on, but I'm so unhappy.",
+      "date": "Tue Oct 24 2023 22:51:31 GMT+0700 (Western Indonesia Time)",
+      "id": 2
+    },
+    {
+      "userId": 643,
+      "shippingNum": 2,
+      "review": "It was alright.",
+      "date": "Tue Oct 24 2023 22:59:18 GMT+0700 (Western Indonesia Time)",
+      "id": 3
     }
   ]
 }

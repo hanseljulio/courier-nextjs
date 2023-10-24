@@ -246,12 +246,6 @@ function Payment(props: PaymentProps) {
           return;
         } else if (
           referralCode.toLowerCase() === result[i].referral.toLowerCase() &&
-          result[i].userId !== stateLoginPersist.id
-        ) {
-          successReferral();
-          return;
-        } else if (
-          referralCode.toLowerCase() === result[i].referral.toLowerCase() &&
           result[i].userId === stateLoginPersist.id
         ) {
           selfReferralFail();
