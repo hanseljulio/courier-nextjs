@@ -1,112 +1,57 @@
 import React, { useState, useEffect } from "react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-import { useStoreLoginPersist } from "@/store/store";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { BASE_URL } from "@/constants/constants";
 import styles from "@/styles/Login.module.css";
+import { useStoreLoginPersist } from "@/store/store";
 
 export default function Home() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const stateLoginPersist = useStoreLoginPersist();
   const router = useRouter();
 
-  const loginFailMessage = () =>
-    toast("User not found or password is incorrect");
+  const stateLoginPersist = useStoreLoginPersist();
 
   useEffect(() => {
     if (stateLoginPersist.id !== 0 && stateLoginPersist.isAdmin) {
       router.replace("/admin");
     } else if (stateLoginPersist.id !== 0 && !stateLoginPersist.isAdmin) {
       router.replace("/user");
-    } else {
-      stateLoginPersist.setId(0);
-      stateLoginPersist.setIsAdmin(false);
     }
   }, []);
 
-  const submit = async (e: any) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(
-        `${BASE_URL}/auth/login?email=${email}&password=${password}`
-      );
-      const result = await response.json();
+  const redirectLogin = () => {
+    router.push("/login");
+  };
 
-      for (let i = 0; i < result.length; i++) {
-        if (
-          result[i].email === email &&
-          result[i].password === password &&
-          result[i].role === "admin"
-        ) {
-          stateLoginPersist.setId(result[i].id);
-          stateLoginPersist.setIsAdmin(true);
-          router.push("/admin");
-          return;
-        } else if (
-          result[i].email === email &&
-          result[i].password === password &&
-          result[i].role === "user"
-        ) {
-          stateLoginPersist.setId(result[i].id);
-          stateLoginPersist.setIsAdmin(false);
-          router.push("/user");
-          return;
-        }
-      }
-
-      loginFailMessage();
-    } catch (e) {
-      console.log(e);
-    }
+  const redirectRegister = () => {
+    router.push("/register");
   };
 
   return (
-    <div className="admin-login-div min-h-screen bg-amber-400 relative">
-      <ToastContainer />
+    <div className="admin-login-div min-h-screen bg-amber-300 relative">
       <div
-        className={`${styles.popout} w-[500px] h-[600px] bg-slate-200 absolute drop-shadow-lg m-auto top-0 bottom-0 right-0 left-0 rounded-[30px] mobile:w-[350px] mobile:h-[550px]`}
+        className={`${styles.popout} text-center main-section w-[600px] h-[450px] m-auto drop-shadow-lg bg-slate-50 rounded-[30px] absolute top-0 right-0 bottom-0 left-0`}
       >
-        <div className="admin-login-titles pb-8 text-center py-[80px]">
-          <h1 className="text-2xl font-3xl">Courier Login</h1>
-        </div>
-        <div className="admin-login-form items-center flex justify-center">
-          <form action="" onSubmit={submit}>
-            <Input
-              label="Email"
-              type="email"
-              name="userEmail"
-              styling="pb-5 mobile:scale-[0.9]"
-              required={true}
-              width="w-[300px]"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              label="Password"
-              type="password"
-              name="userPassword"
-              styling="pb-10 mobile:scale-[0.9]"
-              required={true}
-              width="w-[300px]"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button
-              text="Login"
-              styling="bg-blue-400 p-3 rounded-[8px] w-full my-6 hover:bg-blue-600 mobile:scale-[0.9]"
-            />
-          </form>
-        </div>
-        <p className="text-center mobile:scale-[0.9]">
-          Don&apos;t have an account?{" "}
-          <span className="font-bold hover:cursor-pointer">
-            <Link href="/register">Register here</Link>
-          </span>
+        <h1 className="font-bold text-[40px] pt-8 pb-5">
+          Welcome to <span className="text-amber-500">Courier!</span>
+        </h1>
+        <p className="text-[25px] py-2">
+          For all your <span className="text-amber-500">shipping</span> needs.
         </p>
+        <p>Need to ship something? Courier is ready to help!</p>
+
+        <div className="btn-section flex gap-8 justify-center pt-[150px]">
+          <Button
+            text="Login"
+            onClick={redirectLogin}
+            styling="bg-amber-400 p-3 rounded-[8px] w-[150px] hover:bg-amber-500 mobile:scale-[0.9]"
+          />
+
+          <Button
+            text="Register"
+            onClick={redirectRegister}
+            styling="bg-amber-400 p-3 rounded-[8px] w-[150px] hover:bg-amber-500 mobile:scale-[0.9]"
+          />
+        </div>
       </div>
     </div>
   );
