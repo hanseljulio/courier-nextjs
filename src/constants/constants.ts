@@ -1,3 +1,3 @@
-export const BASE_URL = "http://localhost:2000";
+export const BASE_URL = "https://json-server-vercel-new.vercel.app";
 
 // "https://json-server-vercel-new.vercel.app";
