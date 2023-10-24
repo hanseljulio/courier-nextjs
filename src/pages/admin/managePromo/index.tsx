@@ -59,6 +59,22 @@ function ManagePromo() {
         setVoucherData(
           sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
         );
+      } else if (sortBy === "Quantity - ASC") {
+        const sortedArray = result.sort(function (a: IVouchers, b: IVouchers) {
+          return a.quantity - b.quantity;
+        });
+
+        setVoucherData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else if (sortBy === "Quantity - DESC") {
+        const sortedArray = result.sort(function (a: IVouchers, b: IVouchers) {
+          return b.quantity - a.quantity;
+        });
+
+        setVoucherData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
       } else {
         setVoucherData(result.slice((currentPage - 1) * 5, currentPage * 5));
       }
@@ -92,6 +108,8 @@ function ManagePromo() {
               "None",
               "Expiration Date - ASC",
               "Expiration Date - DESC",
+              "Quantity - ASC",
+              "Quantity - DESC",
             ]}
             onChange={(e) => setSortBy(e)}
           />
