@@ -71,3 +71,8 @@ Note: Every address and shipping have an adminId. The adminId in this part refer
 9. Admin Shipping - Contains a list of all the shippings. Automatically added upon the creation of a new shipping by a user.
 
 - Get address (GET): `/adminShipping/adminId`
+
+10. User Reviews - Contains a list of all the user reviews. Can be added for user and fetched for admin.
+
+- Post review (POST): `/userReviews/`
+- Get review (GET): `/userReviews/reviewId`

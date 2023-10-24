@@ -43,7 +43,7 @@ function GreetUser() {
     <div
       className={`${styles.greetingArea} flex justify-between greet-user-div mx-[350px] pt-[50px]`}
     >
-      <div className="greet-section mx-10">
+      <div className="greet-section mx-0.5">
         <h1 className="text-[30px] font-medium pb-2">
           {getTimeOfDay()},{" "}
           <span className="text-amber-600 mobile:whitespace-pre">
