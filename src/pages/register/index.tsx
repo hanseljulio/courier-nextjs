@@ -118,7 +118,20 @@ function UserRegister() {
       }),
     };
 
+    const duplicateError = () =>
+      toast("This email has been taken. Please use another one!");
+
     try {
+      const checkDuplicate = await fetch(`${BASE_URL}/users`);
+      const checkDuplicateResult = await checkDuplicate.json();
+
+      for (let i = 0; i < checkDuplicateResult.length; i++) {
+        if (checkDuplicateResult[i].email === email) {
+          duplicateError();
+          return;
+        }
+      }
+
       const response = await fetch(`${BASE_URL}/users`, newUser);
 
       if (!response.ok) {
