@@ -1,10 +1,16 @@
 import UserHeader from "@/components/HeaderSection";
 import UserNav from "@/components/UserNav";
-import React from "react";
+import React, { useEffect } from "react";
 import SelectionCard from "@/components/SelectionCard";
 import styles from "../../../styles/UserPage.module.css";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Address",
+  description: "Create and manage your address for shipping with Courier",
+};
 
 function UserAddress() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -17,6 +23,13 @@ function UserAddress() {
   const redirectManageAddress = () => {
     router.push("/user/address/manage");
   };
+
+  useEffect(() => {
+    if (stateLoginPersist.id === 0 && stateLoginPersist.isAdmin) {
+      stateLoginPersist.setId(0);
+      stateLoginPersist.setIsAdmin(false);
+    }
+  }, []);
 
   return (
     <div>

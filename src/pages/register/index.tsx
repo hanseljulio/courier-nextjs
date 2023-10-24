@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "@/constants/constants";
 import styles from "@/styles/Login.module.css";
+import { useStoreLoginPersist } from "@/store/store";
 
 function UserRegister() {
   const [email, setEmail] = useState<string>("");
@@ -24,6 +25,16 @@ function UserRegister() {
   const successMessage = () => toast("Registration success! Redirecting...");
   const invalidPhoneMessage = () =>
     toast("Invalid phone format! Start with +62 or 0 for your phone number.");
+
+  const stateLoginPersist = useStoreLoginPersist();
+
+  useEffect(() => {
+    if (stateLoginPersist.id !== 0 && stateLoginPersist.isAdmin) {
+      router.replace("/admin");
+    } else if (stateLoginPersist.id !== 0 && !stateLoginPersist.isAdmin) {
+      router.replace("/user");
+    }
+  }, []);
 
   const submit = async (e: any) => {
     e.preventDefault();

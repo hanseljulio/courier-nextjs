@@ -47,6 +47,7 @@ export default function Home() {
           stateLoginPersist.setId(result[i].id);
           stateLoginPersist.setIsAdmin(true);
           router.push("/admin");
+          return;
         } else if (
           result[i].email === email &&
           result[i].password === password &&
@@ -55,6 +56,7 @@ export default function Home() {
           stateLoginPersist.setId(result[i].id);
           stateLoginPersist.setIsAdmin(false);
           router.push("/user");
+          return;
         }
       }
 
