@@ -5,6 +5,7 @@ import AdminNav from "@/components/AdminNav";
 import styles from "../../styles/AdminPage.module.css";
 import { IAdmin } from "@/types/types";
 import { BASE_URL } from "@/constants/constants";
+import Head from "next/head";
 
 function AdminPage() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -74,6 +75,9 @@ function AdminPage() {
 
   return (
     <div className="admin-main-div min-h-screen bg-slate-200">
+      <Head>
+        <title>Admin Home</title>
+      </Head>
       <AdminNav />
       <div
         className={`${styles.adminMainArea} admin-main-content mx-[200px] py-[18px] pt-[50px]`}

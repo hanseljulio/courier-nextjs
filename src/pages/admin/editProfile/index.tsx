@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { IAdmin } from "@/types/types";
 import { BASE_URL } from "@/constants/constants";
+import Head from "next/head";
 
 function AdminEditProfile() {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -129,6 +130,9 @@ function AdminEditProfile() {
 
   return (
     <div className="admin-profile-div min-h-screen bg-slate-200">
+      <Head>
+        <title>Edit Profile</title>
+      </Head>
       <AdminNav picture={adminData.photo} />
       <div
         className={`${styles.adminMainArea} admin-profile-content mx-[200px] py-[18px] pt-[100px]`}

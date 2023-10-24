@@ -9,6 +9,7 @@ import Pagination from "@/components/Pagination";
 import Button from "@/components/Button";
 import AddPromo from "@/components/AddPromo";
 import axios from "axios";
+import Head from "next/head";
 
 function ManagePromo() {
   const [voucherData, setVoucherData] = useState<IVouchers[]>([]);
@@ -93,6 +94,9 @@ function ManagePromo() {
 
   return (
     <>
+      <Head>
+        <title>Admin Manage Promo</title>
+      </Head>
       {showAdd && <AddPromo exitFunction={addPromoOff} />}
 
       <div className="manage-promo-div min-h-screen bg-slate-200">

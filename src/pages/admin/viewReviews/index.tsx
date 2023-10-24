@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import AdminNav from "@/components/AdminNav";
-import TableHead from "@/components/TableHead";
-import TableData from "@/components/TableData";
-import { IAdminAddress, IReviews, IUserAddress } from "@/types/types";
+import { IReviews } from "@/types/types";
 import { BASE_URL } from "@/constants/constants";
 import Pagination from "@/components/Pagination";
 import Input from "@/components/Input";
 import AdminReviewTableHead from "@/components/AdminReviewTableHead";
 import AdminReviewTableData from "@/components/AdminReviewTableData";
 import Dropdown from "@/components/Dropdown/Dropdown";
+import Head from "next/head";
 
 function AdminViewReviews() {
   const [reviewData, setReviewData] = useState<IReviews[]>([]);
@@ -64,6 +63,9 @@ function AdminViewReviews() {
 
   return (
     <div className="view-earnings-div min-h-screen bg-slate-200">
+      <Head>
+        <title>Admin View Reviews</title>
+      </Head>
       <AdminNav />
       <div className="flex justify-between items-center view-earnings-header mx-[200px] py-[18px] pt-[50px]">
         <h1 className="text-[30px] font-medium">View Reviews</h1>

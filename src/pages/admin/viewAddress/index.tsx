@@ -7,6 +7,7 @@ import { BASE_URL } from "@/constants/constants";
 import Pagination from "@/components/Pagination";
 import Input from "@/components/Input";
 import Dropdown from "@/components/Dropdown/Dropdown";
+import Head from "next/head";
 
 function AdminViewAddress() {
   const [addressData, setAddressData] = useState<IAdminAddress[]>([]);
@@ -138,6 +139,9 @@ function AdminViewAddress() {
 
   return (
     <div className="view-earnings-div min-h-screen bg-slate-200">
+      <Head>
+        <title>Admin View Address</title>
+      </Head>
       <AdminNav />
       <div className="flex justify-between items-center view-earnings-header mx-[200px] py-[18px] pt-[50px]">
         <h1 className="text-[30px] font-medium">View Adresses</h1>

@@ -6,6 +6,7 @@ import EarningsTableHead from "@/components/EarningsTableHead";
 import EarningsTableData from "@/components/EarningsTableData";
 import Pagination from "@/components/Pagination";
 import { BASE_URL } from "@/constants/constants";
+import Head from "next/head";
 
 function ViewEarnings() {
   const [earningsData, setEarningsData] = useState<IEarnings[]>([]);
@@ -44,6 +45,9 @@ function ViewEarnings() {
 
   return (
     <div className="view-earnings-div min-h-screen bg-slate-200">
+      <Head>
+        <title>Admin View Earnings</title>
+      </Head>
       <AdminNav />
       <div className="flex justify-between view-earnings-header mx-[200px] py-[18px] pt-[50px]">
         <h1 className="text-[30px] font-medium">View Earnings</h1>

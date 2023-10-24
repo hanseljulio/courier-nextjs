@@ -6,7 +6,7 @@ import { IAdminShipping, IShippingData } from "@/types/types";
 import Pagination from "@/components/Pagination";
 import { useStoreLoginPersist } from "@/store/store";
 import { BASE_URL } from "@/constants/constants";
-import provinces from "@/database/provinces.json";
+import Head from "next/head";
 import AdminShippingTableData from "@/components/AdminShippingTableData";
 import Dropdown from "@/components/Dropdown/Dropdown";
 import axios from "axios";
@@ -197,6 +197,9 @@ function AdminManageShipping() {
 
   return (
     <div className="view-earnings-div min-h-screen bg-slate-200">
+      <Head>
+        <title>Admin Manage Shipping</title>
+      </Head>
       <AdminNav />
       <ToastContainer />
       <div className="flex justify-between items-center view-earnings-header mx-[200px] py-[18px] pt-[50px]">
