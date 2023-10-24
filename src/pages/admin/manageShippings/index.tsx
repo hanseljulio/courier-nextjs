@@ -165,10 +165,6 @@ function AdminManageShipping() {
     getShippingData();
   }, [search, currentPage, sortBy]);
 
-  const getProvince = (id: string) => {
-    return provinces.provinces[parseInt(id) - 1].province;
-  };
-
   const deleteShipping = async (adminId: number, userId: number) => {
     try {
       await axios.delete(`${BASE_URL}/adminShipping/${adminId}`);

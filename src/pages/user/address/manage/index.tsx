@@ -13,6 +13,7 @@ import EditAddress from "../../../../components/EditAddress";
 import axios from "axios";
 import Input from "@/components/Input";
 import WarningModal from "@/components/WarningModal";
+import Dropdown from "@/components/Dropdown/Dropdown";
 
 function ManageAddress() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -23,6 +24,7 @@ function ManageAddress() {
   const [currentAddressId, setCurrentAddressId] = useState<string>("");
   const [currentSelectedId, setCurrentSelectedId] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
+  const [sortBy, setSortBy] = useState<string>("");
 
   const deleteMessage = () => toast("Address successfully deleted!");
 
@@ -61,9 +63,102 @@ function ManageAddress() {
       addressResult.addressList = filteredArray;
       setCount(addressResult.addressList.length);
 
-      setAddressData(
-        addressResult.addressList.slice((currentPage - 1) * 5, currentPage * 5)
-      );
+      if (sortBy === "Address - ASC") {
+        const sortedArray = addressResult.addressList.sort(function (
+          a: IAddress,
+          b: IAddress
+        ) {
+          return a.address.localeCompare(b.address);
+        });
+
+        setAddressData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else if (sortBy === "Address - DESC") {
+        const sortedArray = addressResult.addressList.sort(function (
+          a: IAddress,
+          b: IAddress
+        ) {
+          return b.address.localeCompare(a.address);
+        });
+
+        setAddressData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else if (sortBy === "City - ASC") {
+        const sortedArray = addressResult.addressList.sort(function (
+          a: IAddress,
+          b: IAddress
+        ) {
+          return a.city.localeCompare(b.city);
+        });
+
+        setAddressData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else if (sortBy === "City - DESC") {
+        const sortedArray = addressResult.addressList.sort(function (
+          a: IAddress,
+          b: IAddress
+        ) {
+          return b.city.localeCompare(a.city);
+        });
+
+        setAddressData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else if (sortBy === "Province - ASC") {
+        const sortedArray = addressResult.addressList.sort(function (
+          a: IAddress,
+          b: IAddress
+        ) {
+          return a.province.localeCompare(b.province);
+        });
+
+        setAddressData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else if (sortBy === "Province - DESC") {
+        const sortedArray = addressResult.addressList.sort(function (
+          a: IAddress,
+          b: IAddress
+        ) {
+          return b.province.localeCompare(a.province);
+        });
+
+        setAddressData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else if (sortBy === "Zip - ASC") {
+        const sortedArray = addressResult.addressList.sort(function (
+          a: IAddress,
+          b: IAddress
+        ) {
+          return parseInt(a.zip) - parseInt(b.zip);
+        });
+
+        setAddressData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else if (sortBy === "Zip - DESC") {
+        const sortedArray = addressResult.addressList.sort(function (
+          a: IAddress,
+          b: IAddress
+        ) {
+          return parseInt(b.zip) - parseInt(a.zip);
+        });
+
+        setAddressData(
+          sortedArray.slice((currentPage - 1) * 5, currentPage * 5)
+        );
+      } else {
+        setAddressData(
+          addressResult.addressList.slice(
+            (currentPage - 1) * 5,
+            currentPage * 5
+          )
+        );
+      }
     } catch (e) {
       console.log(e);
     }
@@ -71,7 +166,7 @@ function ManageAddress() {
 
   useEffect(() => {
     getAddressData();
-  }, [currentPage, search]);
+  }, [currentPage, search, sortBy]);
 
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   const [addressIdToDelete, setAddressIdToDelete] = useState<number>(0);
@@ -137,15 +232,34 @@ function ManageAddress() {
         <div>
           <UserNav currentPage="address" />
           <ToastContainer />
-          <div className="header-section flex items-center pb-8 mobile:flex-col">
-            <UserHeader title="Manage Address" />
+          <div className="flex justify-between items-center view-earnings-header mx-[350px] pt-[50px] pb-[50px] mobile:flex-col mobile:mx-auto mobile: gap-6">
+            <h1 className="text-[30px] text-amber-600 font-medium mt-2">
+              Manage Address
+            </h1>
+            <Dropdown
+              label="Sort by"
+              flexLabel="flex items-center gap-5 mt-3"
+              labelStyle="font-bold pb-2 pt-2"
+              width="w-[300px] mobile:w-[200px]"
+              onChange={(e) => setSortBy(e)}
+              options={[
+                "None",
+                "Address - ASC",
+                "Address - DESC",
+                "City - ASC",
+                "City - DESC",
+                "Province - ASC",
+                "Province - DESC",
+                "Zip - ASC",
+                "Zip - DESC",
+              ]}
+            />
             <Input
               label=""
               type="text"
               name="search"
-              styling="mt-8 ml-[340px] mobile:mx-auto"
               width="w-[300px]"
-              placeholder="Search address here"
+              placeholder="Search shipping description here"
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>

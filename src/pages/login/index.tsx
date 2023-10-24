@@ -30,13 +30,11 @@ export default function Login() {
     }
   }, []);
 
-  // /auth/login?email=${email}&password=${password}
-
   const submit = async (e: any) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `${BASE_URL}/users?email=${email}&password=${password}`
+        `${BASE_URL}/auth/login?email=${email}&password=${password}`
       );
       const result = await response.json();
 
