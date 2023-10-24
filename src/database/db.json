@@ -476,7 +476,8 @@
           "sameDay": true,
           "twoDay": false,
           "alreadyPaid": false,
-          "status": ""
+          "status": "",
+          "alreadyReviewed": false
         },
         {
           "id": 2,
@@ -503,7 +504,8 @@
           "sameDay": false,
           "twoDay": true,
           "alreadyPaid": true,
-          "status": "Delivered"
+          "status": "Delivered",
+          "alreadyReviewed": true
         },
         {
           "id": 3,
@@ -530,7 +532,8 @@
           "sameDay": false,
           "twoDay": false,
           "alreadyPaid": false,
-          "status": ""
+          "status": "",
+          "alreadyReviewed": false
         },
         {
           "id": 4,
@@ -557,7 +560,8 @@
           "sameDay": true,
           "twoDay": false,
           "alreadyPaid": false,
-          "status": ""
+          "status": "",
+          "alreadyReviewed": false
         },
         {
           "id": 5,
@@ -584,7 +588,8 @@
           "sameDay": true,
           "twoDay": false,
           "alreadyPaid": false,
-          "status": ""
+          "status": "",
+          "alreadyReviewed": false
         },
         {
           "id": 6,
@@ -611,7 +616,8 @@
           "sameDay": false,
           "twoDay": false,
           "alreadyPaid": false,
-          "status": ""
+          "status": "",
+          "alreadyReviewed": false
         },
         {
           "id": 7,
@@ -639,7 +645,8 @@
           "sameDay": false,
           "twoDay": false,
           "alreadyPaid": false,
-          "status": ""
+          "status": "",
+          "alreadyReviewed": false
         },
         {
           "id": 8,
@@ -667,7 +674,8 @@
           "sameDay": false,
           "twoDay": false,
           "alreadyPaid": false,
-          "status": ""
+          "status": "",
+          "alreadyReviewed": false
         },
         {
           "id": 9,
@@ -695,7 +703,8 @@
           "sameDay": false,
           "twoDay": false,
           "alreadyPaid": false,
-          "status": ""
+          "status": "",
+          "alreadyReviewed": false
         }
       ]
     },
@@ -748,7 +757,8 @@
           "sameDay": true,
           "twoDay": false,
           "alreadyPaid": false,
-          "status": ""
+          "status": "",
+          "alreadyReviewed": false
         }
       ]
     }
@@ -1234,6 +1244,14 @@
       "alreadyPaid": false,
       "status": "",
       "userId": 2
+    }
+  ],
+  "userReviews": [
+    {
+      "userId": 2,
+      "shippingNum": 2,
+      "review": "Absolute trash.\n\nMy mom has a better service than you guys do.",
+      "id": 1
     }
   ]
 }

@@ -46,6 +46,7 @@ function CreateShipping() {
     twoDay: false,
     alreadyPaid: false,
     status: "",
+    alreadyReviewed: false,
   });
 
   const selectStartingAddress = (address: IAddress) => {

@@ -12,6 +12,7 @@ import provinces from "@/database/provinces.json";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Payment from "@/components/Payment";
+import ReviewModal from "@/components/ReviewModal";
 
 function ManageShipping() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -79,8 +80,26 @@ function ManageShipping() {
     toast(
       "Payment sucessful! Go to the games section for a chance to win prizes!"
     );
+  const reviewMessage = () =>
+    toast("Review posted - thank you for your feedback!");
 
   const [selectedId, setSelectedId] = useState<number>(1);
+  const [showReview, setShowReview] = useState<boolean>(false);
+
+  const reviewOn = (selectedId: number) => {
+    setSelectedId(selectedId);
+    setShowReview(true);
+  };
+
+  const reviewOff = () => {
+    setShowReview(false);
+  };
+
+  const reviewSubmit = () => {
+    setShowReview(false);
+    getShippingData();
+    reviewMessage();
+  };
 
   const paymentOn = (selectedId: number) => {
     setSelectedId(selectedId);
@@ -144,6 +163,8 @@ function ManageShipping() {
                         shippingId={currentShippingId}
                         refresh={getShippingData}
                         paymentOn={paymentOn}
+                        alreadyReviewed={data.alreadyReviewed}
+                        reviewOn={reviewOn}
                       />
                     ))}
                   </tbody>
@@ -168,6 +189,16 @@ function ManageShipping() {
           selectedId={selectedId}
           exitPayment={paymentOff}
           paymentSubmit={paymentSubmit}
+        />
+      )}
+
+      {showReview && (
+        <ReviewModal
+          userId={stateLoginPersist.id}
+          shippingNum={selectedId}
+          shippingId={currentShippingId}
+          exitFunction={reviewOff}
+          submitFunction={reviewSubmit}
         />
       )}
     </>

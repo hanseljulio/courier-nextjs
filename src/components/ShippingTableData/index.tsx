@@ -11,8 +11,10 @@ interface ShippingTableDataProps {
   status: boolean;
   currentStatus: string;
   shippingId: string;
+  alreadyReviewed: boolean;
   refresh: () => void;
   paymentOn?: (selectedId: number) => void;
+  reviewOn?: (selectedId: number) => void;
 }
 
 function ShippingTableData(props: ShippingTableDataProps) {
@@ -61,9 +63,13 @@ function ShippingTableData(props: ShippingTableDataProps) {
           ) : (
             <h1 className="text-green-500">PAID - {props.currentStatus}</h1>
           )}
-          {props.currentStatus === "Delivered" && (
+          {props.currentStatus === "Delivered" && !props.alreadyReviewed && (
             <h1
-              onClick={() => alert("REVIEW TIME!")}
+              onClick={() => {
+                if (props.reviewOn) {
+                  props.reviewOn(props.id);
+                }
+              }}
               className="text-orange-500 hover:cursor-pointer"
             >
               [ REVIEW ]

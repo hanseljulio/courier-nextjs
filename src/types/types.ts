@@ -77,6 +77,7 @@ export interface IShippingData {
   twoDay: boolean;
   alreadyPaid: boolean;
   status: string;
+  alreadyReviewed: boolean;
 }
 
 export function useDebounce<Func extends (...args: any[]) => void>(
@@ -152,4 +153,11 @@ export interface IAdminShipping {
   twoDay: boolean;
   alreadyPaid: boolean;
   status: string;
+}
+
+export interface IReviews {
+  id: number;
+  userId: number;
+  shppingNum: number;
+  review: string;
 }
