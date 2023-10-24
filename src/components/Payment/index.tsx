@@ -47,6 +47,7 @@ function Payment(props: PaymentProps) {
     twoDay: false,
     alreadyPaid: false,
     status: "",
+    alreadyReviewed: false,
   });
 
   const [showVoucherPrice, setShowVoucherPrice] = useState<boolean>(false);
@@ -158,10 +159,6 @@ function Payment(props: PaymentProps) {
     let total = basePrice + shipping + addonsTotal - discount;
     setTotalCost(total);
   }, [basePrice, shipping, addonsTotal, discount]);
-
-  const getProvince = (id: string) => {
-    return provinces.provinces[parseInt(id) - 1].province;
-  };
 
   const currencyConverter = (money: number): string => {
     return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ",00";
@@ -415,13 +412,13 @@ function Payment(props: PaymentProps) {
         <hr />
         <div className="address-content flex-col pt-[10px] pl-[23px] pb-[8px] font-medium mr-[20px] overflow-y-scroll h-[90%]">
           <div className="order-details">
-            <div className="order-address-section flex justify-evenly items-center w-full py-8">
+            <div className="order-address-section flex justify-evenly items-center w-full py-8 mobile:flex-col mobile:gap-4">
               <div className="starting-address bg-amber-200 p-4 rounded-[10px] w-[250px]">
                 <h1>{shippingData.start.address}</h1>
                 <h1 className="mobile:text-[12px]">{`${shippingData.start.city}, ${shippingData.start.province}, ${shippingData.start.zip}`}</h1>
               </div>
               <div className="arrow-icon">
-                <FaCircleArrowRight className="text-[40px]" />
+                <FaCircleArrowRight className="text-[40px] mobile:rotate-90" />
               </div>
               <div className="dest-address bg-amber-200 p-4 rounded-[10px] w-[250px]">
                 <h1>{shippingData.destAddress}</h1>
@@ -506,7 +503,7 @@ function Payment(props: PaymentProps) {
                 {voucherList.length > 0 &&
                   voucherList.map((voucher, index) => {
                     return (
-                      <div key={index} className="text-center">
+                      <div key={index} className="text-center mobile:mx-5">
                         <VoucherPill
                           key={index}
                           id={voucher.id}

@@ -214,7 +214,7 @@ function UserEditProfile() {
               />
             </div>
             <div
-              className={`${styles.formImageArea} flex-col justify-center items-center admin-edit-photo`}
+              className={`${styles.formImageArea} flex-col justify-center items-center admin-edit-photo p-4 mobile:mx-auto`}
             >
               <Image
                 src={`${

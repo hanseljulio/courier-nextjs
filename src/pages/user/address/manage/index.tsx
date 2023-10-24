@@ -9,7 +9,7 @@ import { BASE_URL } from "@/constants/constants";
 import { IAddress } from "@/types/types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import EditAddress from "../../../../components/EditAddress/EditAddress";
+import EditAddress from "../../../../components/EditAddress";
 import axios from "axios";
 import Input from "@/components/Input";
 import WarningModal from "@/components/WarningModal";

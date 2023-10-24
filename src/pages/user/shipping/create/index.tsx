@@ -8,7 +8,7 @@ import PackageDimensions from "../../../../components/PackageDimensions";
 import SelectionModal from "@/components/SelectionModal";
 import { IAddress, IShippingData } from "@/types/types";
 import PackageAddress from "../../../../components/PackageAddress";
-import { useMultiStepForm } from "../../../../hooks/UseMultiform";
+import { useMultiStepForm } from "../../../../hooks/useMultiform";
 import Button from "@/components/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

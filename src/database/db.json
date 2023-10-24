@@ -272,10 +272,10 @@
         },
         {
           "id": 2,
-          "address": "This is my address test",
-          "province": "Jambi",
-          "city": "Kerinci",
-          "zip": "37319",
+          "address": "New address to prevent bugs",
+          "province": "Riau",
+          "city": "Rokan Hilir",
+          "zip": "28411",
           "adminId": 2
         },
         {
@@ -829,10 +829,10 @@
     {
       "id": 2,
       "userId": 2,
-      "address": "This is my address test",
-      "province": "Jambi",
-      "city": "Kerinci",
-      "zip": "37319"
+      "address": "New address to prevent bugs",
+      "province": "Riau",
+      "city": "Rokan Hilir",
+      "zip": "28411"
     },
     {
       "id": 3,

@@ -20,11 +20,11 @@
     flex-direction: column;
   }
 
-  .formImageArea {
+  /* .formImageArea {
     margin-top: 35px;
-  }
+  } */
 
-  .imgArea {
+  /* .imgArea {
     margin-left: 65px !important;
-  }
+  } */
 }
