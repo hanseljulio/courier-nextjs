@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "@/constants/constants";
 import styles from "@/styles/Login.module.css";
+import Head from "next/head";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
@@ -69,6 +70,10 @@ export default function Login() {
   return (
     <div className="admin-login-div min-h-screen bg-amber-400 relative">
       <ToastContainer />
+      <Head>
+        <title>Login</title>
+        <meta name="description" content="Log in to courier" />
+      </Head>
       <div
         className={`${styles.popout} w-[500px] h-[600px] bg-slate-200 absolute drop-shadow-lg m-auto top-0 bottom-0 right-0 left-0 rounded-[30px] mobile:w-[350px] mobile:h-[550px]`}
       >

@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import { useRouter } from "next/router";
 import styles from "@/styles/Login.module.css";
 import { useStoreLoginPersist } from "@/store/store";
+import Head from "next/head";
 
 export default function Home() {
   const router = useRouter();
@@ -28,6 +29,10 @@ export default function Home() {
 
   return (
     <div className="admin-login-div min-h-screen bg-amber-300 relative">
+      <Head>
+        <title>Welcome to Courier!</title>
+        <meta name="description" content="Get started with Courier!" />
+      </Head>
       <div
         className={`${styles.popout} text-center main-section w-[600px] h-[450px] m-auto drop-shadow-lg bg-slate-50 rounded-[30px] absolute top-0 right-0 bottom-0 left-0 mobile:w-[80%] mobile:h-[550px]`}
       >

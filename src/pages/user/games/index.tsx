@@ -8,6 +8,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function Games() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -120,6 +121,9 @@ function Games() {
   return (
     <>
       <div>
+        <Head>
+          <title>Games</title>
+        </Head>
         <UserNav currentPage="games" />
         <ToastContainer />
         <div className="header-section pb-8">

@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "@/constants/constants";
 import styles from "@/styles/Login.module.css";
 import { useStoreLoginPersist } from "@/store/store";
+import Head from "next/head";
 
 function UserRegister() {
   const [email, setEmail] = useState<string>("");
@@ -184,6 +185,10 @@ function UserRegister() {
   return (
     <div className="admin-login-div min-h-screen relative bg-amber-400">
       <ToastContainer />
+      <Head>
+        <title>Register</title>
+        <meta name="description" content="Register your account on Courier" />
+      </Head>
       <div
         className={`${styles.popout} w-[500px] h-[700px] bg-slate-200 absolute drop-shadow-lg m-auto top-0 bottom-0 right-0 left-0 rounded-[30px] mobile:w-[350px] mobile:h-[700px]`}
       >

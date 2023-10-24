@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import UserNav from "@/components/UserNav";
-import UserHeader from "@/components/HeaderSection";
 import TableHead from "@/components/TableHead";
 import TableData from "@/components/TableData";
 import Pagination from "@/components/Pagination";
@@ -14,6 +13,7 @@ import axios from "axios";
 import Input from "@/components/Input";
 import WarningModal from "@/components/WarningModal";
 import Dropdown from "@/components/Dropdown/Dropdown";
+import Head from "next/head";
 
 function ManageAddress() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -230,6 +230,9 @@ function ManageAddress() {
         />
       ) : (
         <div>
+          <Head>
+            <title>Manage Address</title>
+          </Head>
           <UserNav currentPage="address" />
           <ToastContainer />
           <div className="flex justify-between items-center view-earnings-header mx-[350px] pt-[50px] pb-[50px] mobile:flex-col mobile:mx-auto mobile: gap-6">

@@ -12,6 +12,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import UserNav from "@/components/UserNav";
 import { IUser } from "@/types/types";
 import { BASE_URL } from "@/constants/constants";
+import Head from "next/head";
 
 function UserEditProfile() {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -152,6 +153,9 @@ function UserEditProfile() {
 
   return (
     <div className="admin-profile-div min-h-screen bg-slate-50">
+      <Head>
+        <title>Edit Profile</title>
+      </Head>
       <UserNav />
       <div
         className={`${styles.adminMainArea} admin-profile-content mx-[200px] py-[18px] pt-[50px]`}

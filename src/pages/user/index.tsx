@@ -5,6 +5,7 @@ import UserNav from "@/components/UserNav";
 import GreetUser from "@/components/GreetUser";
 import SelectionCard from "@/components/SelectionCard";
 import styles from "../../styles/UserPage.module.css";
+import Head from "next/head";
 
 function UserPage() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -26,6 +27,10 @@ function UserPage() {
 
   return (
     <div>
+      <Head>
+        <title>Shipping</title>
+        <meta name="description" content="Ship with Courier!" />
+      </Head>
       <UserNav currentPage="shipping" />
       <div className="greeting-section pb-8">
         <GreetUser />

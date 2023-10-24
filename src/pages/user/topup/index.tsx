@@ -11,6 +11,7 @@ import { BASE_URL } from "@/constants/constants";
 import { useStoreLoginPersist } from "@/store/store";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Head from "next/head";
 
 function TopUp() {
   const [money, setMoney] = useState<number>(0);
@@ -108,6 +109,9 @@ function TopUp() {
   return (
     <>
       <div>
+        <Head>
+          <title>Top Up</title>
+        </Head>
         <UserNav currentPage="topup" />
         <ToastContainer />
         <div className="header-section pb-8">

@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Head from "next/head";
 
 interface IProvince {
   province_id: string;
@@ -124,6 +125,9 @@ function CreateAddress() {
 
   return (
     <div>
+      <Head>
+        <title>Create New Address</title>
+      </Head>
       <UserNav currentPage="address" />
       <ToastContainer />
       <div className="header-section pb-8">

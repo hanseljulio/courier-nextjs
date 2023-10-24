@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Payment from "@/components/Payment";
 import ReviewModal from "@/components/ReviewModal";
 import Dropdown from "@/components/Dropdown/Dropdown";
+import Head from "next/head";
 
 function ManageShipping() {
   const stateLoginPersist = useStoreLoginPersist();
@@ -227,6 +228,9 @@ function ManageShipping() {
   return (
     <>
       <div>
+        <Head>
+          <title>Manage Shipping</title>
+        </Head>
         <UserNav currentPage="shipping" />
         <ToastContainer />
         <div className="flex justify-between items-center view-earnings-header mx-[350px] pt-[50px] pb-[30px] mobile:flex-col mobile:mx-auto mobile: gap-6">

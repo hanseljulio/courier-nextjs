@@ -13,6 +13,7 @@ import Button from "@/components/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import Head from "next/head";
 
 function CreateShipping() {
   const [showEmptyAddress, setShowEmptyAddress] = useState<boolean>(false);
@@ -185,6 +186,9 @@ function CreateShipping() {
   return (
     <>
       <div>
+        <Head>
+          <title>Create Shipping</title>
+        </Head>
         <UserNav currentPage="shipping" />
         <ToastContainer />
         <div className="create-shipping-div pb-12">
